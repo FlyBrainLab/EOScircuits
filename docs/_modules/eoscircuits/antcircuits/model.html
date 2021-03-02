@@ -1,0 +1,275 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>eoscircuits.antcircuits.model &mdash; EOScircuits 0.1.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> EOScircuits
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../readme.html">EOScircuits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">eoscircuits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../authors.html">Credits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../history.html">History</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">EOScircuits</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>eoscircuits.antcircuits.model</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for eoscircuits.antcircuits.model</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;NeuroDriver Models and Utilities</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">OrderedDict</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">copy</span>
+<span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
+<span class="kn">import</span> <span class="nn">typing</span> <span class="k">as</span> <span class="nn">tp</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">NDComponents</span> <span class="k">as</span> <span class="n">ndcomp</span>
+
+<span class="n">EXTRA_COMPS</span> <span class="o">=</span> <span class="p">[</span><span class="n">ndcomp</span><span class="o">.</span><span class="n">OTP</span><span class="p">,</span> <span class="n">ndcomp</span><span class="o">.</span><span class="n">NoisyConnorStevens</span><span class="p">]</span>
+
+<div class="viewcode-block" id="OTP"><a class="viewcode-back" href="../../../eoscircuits.antcircuits.html#eoscircuits.antcircuits.model.OTP">[docs]</a><span class="k">class</span> <span class="nc">OTP</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Odorant Transduction Process</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">states</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">(</span>
+        <span class="p">[(</span><span class="s2">&quot;v&quot;</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;uh&quot;</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;duh&quot;</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;x1&quot;</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;x2&quot;</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;x3&quot;</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)]</span>
+    <span class="p">)</span>
+
+    <span class="n">params</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+        <span class="n">br</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
+        <span class="n">dr</span><span class="o">=</span><span class="mf">10.0</span><span class="p">,</span>
+        <span class="n">gamma</span><span class="o">=</span><span class="mf">0.138</span><span class="p">,</span>
+        <span class="n">a1</span><span class="o">=</span><span class="mf">45.0</span><span class="p">,</span>
+        <span class="n">b1</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span>
+        <span class="n">a2</span><span class="o">=</span><span class="mf">199.574</span><span class="p">,</span>
+        <span class="n">b2</span><span class="o">=</span><span class="mf">51.887</span><span class="p">,</span>
+        <span class="n">a3</span><span class="o">=</span><span class="mf">2.539</span><span class="p">,</span>
+        <span class="n">b3</span><span class="o">=</span><span class="mf">0.9096</span><span class="p">,</span>
+        <span class="n">kappa</span><span class="o">=</span><span class="mf">9593.9</span><span class="p">,</span>
+        <span class="n">p</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
+        <span class="n">c</span><span class="o">=</span><span class="mf">0.06546</span><span class="p">,</span>
+        <span class="n">Imax</span><span class="o">=</span><span class="mf">150.159</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">_ndcomp</span> <span class="o">=</span> <span class="n">ndcomp</span><span class="o">.</span><span class="n">OTP</span></div>
+
+
+<div class="viewcode-block" id="NoisyConnorStevens"><a class="viewcode-back" href="../../../eoscircuits.antcircuits.html#eoscircuits.antcircuits.model.NoisyConnorStevens">[docs]</a><span class="k">class</span> <span class="nc">NoisyConnorStevens</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Noisy Connor-Stevens Neuron Model</span>
+
+<span class="sd">    F-I curve is controlled by `sigma` parameter</span>
+
+<span class="sd">    Notes:</span>
+<span class="sd">        `sigma` value should be scaled by `sqrt(dt)` as `sigma/sqrt(dt)`</span>
+<span class="sd">        where `sigma` is the standard deviation of the Brownian Motion</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">states</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">m</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">h</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">a</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">v1</span><span class="o">=-</span><span class="mf">60.0</span><span class="p">,</span> <span class="n">v2</span><span class="o">=-</span><span class="mf">60.0</span><span class="p">,</span> <span class="n">refactory</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)</span>
+
+    <span class="n">params</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+        <span class="n">ms</span><span class="o">=-</span><span class="mf">5.3</span><span class="p">,</span>
+        <span class="n">ns</span><span class="o">=-</span><span class="mf">4.3</span><span class="p">,</span>
+        <span class="n">hs</span><span class="o">=-</span><span class="mf">12.0</span><span class="p">,</span>
+        <span class="n">gNa</span><span class="o">=</span><span class="mf">120.0</span><span class="p">,</span>
+        <span class="n">gK</span><span class="o">=</span><span class="mf">20.0</span><span class="p">,</span>
+        <span class="n">gL</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span>
+        <span class="n">ga</span><span class="o">=</span><span class="mf">47.7</span><span class="p">,</span>
+        <span class="n">ENa</span><span class="o">=</span><span class="mf">55.0</span><span class="p">,</span>
+        <span class="n">EK</span><span class="o">=-</span><span class="mf">72.0</span><span class="p">,</span>
+        <span class="n">EL</span><span class="o">=-</span><span class="mf">17.0</span><span class="p">,</span>
+        <span class="n">Ea</span><span class="o">=-</span><span class="mf">75.0</span><span class="p">,</span>
+        <span class="n">sigma</span><span class="o">=</span><span class="mf">2.05</span><span class="p">,</span>
+        <span class="n">refperiod</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">_ndcomp</span> <span class="o">=</span> <span class="n">ndcomp</span><span class="o">.</span><span class="n">NoisyConnorStevens</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, FlyBrainLab Dev Team.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

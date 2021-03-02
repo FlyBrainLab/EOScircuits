@@ -1,0 +1,714 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>eoscircuits.alcircuits.circuit &mdash; EOScircuits 0.1.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> EOScircuits
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../readme.html">EOScircuits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">eoscircuits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../authors.html">Credits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../history.html">History</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">EOScircuits</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>eoscircuits.alcircuits.circuit</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for eoscircuits.alcircuits.circuit</h1><div class="highlight"><pre>
+<span></span><span class="c1"># pylint:disable=unsupported-membership-test</span>
+<span class="c1"># pylint:disable=unsubscriptable-object</span>
+<span class="c1"># pylint:disable=unsupported-assignment-operation</span>
+<span class="sd">&quot;&quot;&quot;Antennal Lobe Circuit</span>
+
+<span class="sd">This module supports:</span>
+
+<span class="sd">1. Changing parameter values of Biological Spike Generators (BSGs) associated with each</span>
+<span class="sd">of the Local and Projection Neurons,</span>
+<span class="sd">2. Changing the number and connectivity of Projection Neurons innervating a given AL</span>
+<span class="sd">Glomerulus,</span>
+<span class="sd">3. Changing the number and connectivity of Local Neurons in the Predictive Coding and</span>
+<span class="sd">ON-OFF circuits of the AL</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">product</span>
+<span class="kn">import</span> <span class="nn">copy</span>
+<span class="kn">import</span> <span class="nn">typing</span> <span class="k">as</span> <span class="nn">tp</span>
+<span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span><span class="p">,</span> <span class="n">field</span><span class="p">,</span> <span class="n">asdict</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
+<span class="kn">import</span> <span class="nn">olftrans</span> <span class="k">as</span> <span class="nn">olf</span>
+<span class="kn">import</span> <span class="nn">olftrans.fbl</span>
+<span class="kn">import</span> <span class="nn">olftrans.data</span>
+<span class="kn">from</span> <span class="nn">..basecircuit</span> <span class="kn">import</span> <span class="n">Circuit</span>
+
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">model</span> <span class="k">as</span> <span class="n">NDModel</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">NDComponents</span> <span class="k">as</span> <span class="n">ndcomp</span>
+<span class="kn">from</span> <span class="nn">..antcircuits.circuit</span> <span class="kn">import</span> <span class="n">ANTConfig</span>
+
+
+<div class="viewcode-block" id="ALException"><a class="viewcode-back" href="../../../eoscircuits.alcircuits.html#eoscircuits.alcircuits.circuit.ALException">[docs]</a><span class="k">class</span> <span class="nc">ALException</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Base Antennal Lobe Exception&quot;&quot;&quot;</span></div>
+
+
+<div class="viewcode-block" id="ALConfig"><a class="viewcode-back" href="../../../eoscircuits.alcircuits.html#eoscircuits.alcircuits.circuit.ALConfig">[docs]</a><span class="nd">@dataclass</span>
+<span class="k">class</span> <span class="nc">ALConfig</span><span class="p">(</span><span class="n">ANTConfig</span><span class="p">):</span>
+    <span class="c1"># numbers</span>
+    <span class="n">NP</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">tp</span><span class="o">.</span><span class="n">Iterable</span><span class="p">[</span><span class="nb">int</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="sd">&quot;&quot;&quot;Number of PNs, organized by Receptor Type&quot;&quot;&quot;</span>
+
+    <span class="n">NPreLN</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="sd">&quot;&quot;&quot;Number of Pre-synaptic Local Neurons&quot;&quot;&quot;</span>
+
+    <span class="n">NPosteLN</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">tp</span><span class="o">.</span><span class="n">Iterable</span><span class="p">[</span><span class="nb">int</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="sd">&quot;&quot;&quot;Number of Post-synaptic Excitatory Local Neurons, organized by Receptor Type&quot;&quot;&quot;</span>
+
+    <span class="n">NPostiLN</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">tp</span><span class="o">.</span><span class="n">Iterable</span><span class="p">[</span><span class="nb">int</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="sd">&quot;&quot;&quot;Number of Post-synaptic Inhibitory Local Neurons, organized by Receptor Type&quot;&quot;&quot;</span>
+
+    <span class="c1"># names</span>
+    <span class="n">prelns</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Iterable</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="nb">repr</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+    <span class="n">postelns</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Iterable</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Iterable</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="nb">repr</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+    <span class="n">postilns</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Iterable</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Iterable</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="nb">repr</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+    <span class="n">pns</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Iterable</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Iterable</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="nb">repr</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+
+    <span class="c1"># routings</span>
+    <span class="n">osn_to_preln</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Iterable</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Iterable</span><span class="p">[</span><span class="nb">float</span><span class="p">]]</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="nb">repr</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">osn_to_postiln</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Iterable</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Iterable</span><span class="p">[</span><span class="nb">float</span><span class="p">]]</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="nb">repr</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">osn_to_posteln</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Iterable</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Iterable</span><span class="p">[</span><span class="nb">float</span><span class="p">]]</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="nb">repr</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">preln_to_axt</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Iterable</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Iterable</span><span class="p">[</span><span class="nb">float</span><span class="p">]]</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="nb">repr</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">axt_to_pn</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Iterable</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Iterable</span><span class="p">[</span><span class="nb">float</span><span class="p">]]</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="nb">repr</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">postiln_to_pn</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Iterable</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Iterable</span><span class="p">[</span><span class="nb">float</span><span class="p">]]</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="nb">repr</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">posteln_to_pn</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Iterable</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Iterable</span><span class="p">[</span><span class="nb">float</span><span class="p">]]</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="nb">repr</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__post_init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Set Variable Names and Default Routing Tables&quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">__post_init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">node_params</span><span class="p">[</span><span class="s2">&quot;postelns&quot;</span><span class="p">][</span><span class="s2">&quot;polarity&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">node_params</span><span class="p">[</span><span class="s2">&quot;postilns&quot;</span><span class="p">][</span><span class="s2">&quot;polarity&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1.0</span>
+        <span class="c1"># set pn names</span>
+        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">isscalar</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">NP</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">NP</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">NR</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">NP</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">NP</span><span class="p">)</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">NR</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pns</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">set_or_assert</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">pns</span><span class="p">,</span>
+            <span class="p">[</span>
+                <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;PN/</span><span class="si">{</span><span class="n">_or</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">p</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">NP</span><span class="p">[</span><span class="n">r</span><span class="p">])]</span>
+                <span class="k">for</span> <span class="n">r</span><span class="p">,</span> <span class="n">_or</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">receptors</span><span class="p">)</span>
+            <span class="p">],</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">NP</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="c1"># set prelns names</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">prelns</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">set_or_assert</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">prelns</span><span class="p">,</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;PreLN/</span><span class="si">{</span><span class="n">r</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">NPreLN</span><span class="p">)],</span> <span class="bp">self</span><span class="o">.</span><span class="n">NPreLN</span>
+        <span class="p">)</span>
+
+        <span class="c1"># set posteln names</span>
+        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">isscalar</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">NPosteLN</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">NPosteLN</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">NR</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">NPosteLN</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">NPosteLN</span><span class="p">)</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">NR</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">postelns</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">set_or_assert</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">postelns</span><span class="p">,</span>
+            <span class="p">[</span>
+                <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;PostLN/e/</span><span class="si">{</span><span class="n">_or</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">p</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">NPosteLN</span><span class="p">[</span><span class="n">r</span><span class="p">])]</span>
+                <span class="k">for</span> <span class="n">r</span><span class="p">,</span> <span class="n">_or</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">receptors</span><span class="p">)</span>
+            <span class="p">],</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">NPosteLN</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="c1"># set postiln names</span>
+        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">isscalar</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">NPostiLN</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">NPostiLN</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">NR</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">NPostiLN</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">NPostiLN</span><span class="p">)</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">NR</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">postilns</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">set_or_assert</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">postilns</span><span class="p">,</span>
+            <span class="p">[</span>
+                <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;PostLN/i/</span><span class="si">{</span><span class="n">_or</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">p</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">NPostiLN</span><span class="p">[</span><span class="n">r</span><span class="p">])]</span>
+                <span class="k">for</span> <span class="n">r</span><span class="p">,</span> <span class="n">_or</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">receptors</span><span class="p">)</span>
+            <span class="p">],</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">NPostiLN</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">osn_to_preln</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">set_or_assert_edges</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">osn_to_preln</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">default_osn_to_preln</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">NR</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">osn_to_postiln</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">set_or_assert_edges</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">osn_to_postiln</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">default_osn_to_postiln</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">NR</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">osn_to_posteln</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">set_or_assert_edges</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">osn_to_posteln</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">default_osn_to_posteln</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">NR</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">preln_to_axt</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">set_or_assert_edges</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">preln_to_axt</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">default_preln_to_axt</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">NR</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">axt_to_pn</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">set_or_assert_edges</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">axt_to_pn</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">default_axt_to_pn</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">NR</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">postiln_to_pn</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">set_or_assert_edges</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">postiln_to_pn</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">default_postiln_to_pn</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">NR</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">posteln_to_pn</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">set_or_assert_edges</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">posteln_to_pn</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">default_posteln_to_pn</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">NR</span>
+        <span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">node_types</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">tp</span><span class="o">.</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+        <span class="sd">&quot;&quot;&quot;List of Recognized Node Types&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">[</span>
+            <span class="s2">&quot;osn_otps&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;osn_bsgs&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;osn_alphas&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;osn_axts&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;prelns&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;postelns&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;postilns&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;pns&quot;</span><span class="p">,</span>
+        <span class="p">]</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">routing_tables</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">tp</span><span class="o">.</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+        <span class="sd">&quot;&quot;&quot;List of Recognized Routing Tables&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">[</span>
+            <span class="s2">&quot;osn_to_preln&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;osn_to_postiln&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;osn_to_posteln&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;preln_to_axt&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;axt_to_pn&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;postiln_to_pn&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;posteln_to_pn&quot;</span><span class="p">,</span>
+        <span class="p">]</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">osn_otps</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">[[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">/OTP&quot;</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">names</span><span class="p">]</span> <span class="k">for</span> <span class="n">names</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">osns</span><span class="p">]</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">osn_bsgs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">[[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">/BSG&quot;</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">names</span><span class="p">]</span> <span class="k">for</span> <span class="n">names</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">osns</span><span class="p">]</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">osn_alphas</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">[[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">/ALP&quot;</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">names</span><span class="p">]</span> <span class="k">for</span> <span class="n">names</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">osns</span><span class="p">]</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">osn_axts</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">[[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">/AXT&quot;</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">names</span><span class="p">]</span> <span class="k">for</span> <span class="n">names</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">osns</span><span class="p">]</span>
+
+<div class="viewcode-block" id="ALConfig.as_node_ids"><a class="viewcode-back" href="../../../eoscircuits.alcircuits.html#eoscircuits.alcircuits.circuit.ALConfig.as_node_ids">[docs]</a>    <span class="k">def</span> <span class="nf">as_node_ids</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">table</span><span class="p">,</span> <span class="n">source</span><span class="p">,</span> <span class="n">target</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">tp</span><span class="o">.</span><span class="n">List</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]:</span>
+        <span class="sd">&quot;&quot;&quot;Convert Routing Table&#39;s indices to node Ids</span>
+
+<span class="sd">        Arguments:</span>
+<span class="sd">            table: routing table</span>
+<span class="sd">            source: source node ids</span>
+<span class="sd">            target: target node ids</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            A flattenend list of all [source, target] node ids</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">uids</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">r</span><span class="p">,</span> <span class="n">tab</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">table</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">tab</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">continue</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">source_id</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">source</span><span class="p">)[</span><span class="n">r</span><span class="p">][</span><span class="n">tab</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]]</span>
+            <span class="k">except</span><span class="p">:</span>
+                <span class="n">source_id</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">source</span><span class="p">)[</span><span class="n">tab</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]]</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">target_id</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">target</span><span class="p">)[</span><span class="n">r</span><span class="p">][</span><span class="n">tab</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]]</span>
+            <span class="k">except</span><span class="p">:</span>
+                <span class="n">target_id</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">target</span><span class="p">)[</span><span class="n">tab</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]]</span>
+            <span class="n">uids</span> <span class="o">+=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">source_id</span><span class="p">,</span> <span class="n">target_id</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">uids</span></div>
+
+<div class="viewcode-block" id="ALConfig.set_or_assert_edges"><a class="viewcode-back" href="../../../eoscircuits.alcircuits.html#eoscircuits.alcircuits.circuit.ALConfig.set_or_assert_edges">[docs]</a>    <span class="k">def</span> <span class="nf">set_or_assert_edges</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">array</span><span class="p">,</span> <span class="n">new_array</span><span class="p">,</span> <span class="n">size</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">array</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">new_array</span><span class="p">)</span> <span class="o">==</span> <span class="n">size</span>
+            <span class="n">array</span> <span class="o">=</span> <span class="n">new_array</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">array</span><span class="p">)</span> <span class="o">==</span> <span class="n">size</span>
+        <span class="k">return</span> <span class="n">array</span></div>
+
+<div class="viewcode-block" id="ALConfig.default_osn_to_preln"><a class="viewcode-back" href="../../../eoscircuits.alcircuits.html#eoscircuits.alcircuits.circuit.ALConfig.default_osn_to_preln">[docs]</a>    <span class="k">def</span> <span class="nf">default_osn_to_preln</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">tbl</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">NR</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">NR</span><span class="p">):</span>
+            <span class="n">conn</span> <span class="o">=</span> <span class="n">product</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">NO</span><span class="p">[</span><span class="n">r</span><span class="p">]),</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">NPreLN</span><span class="p">))</span>
+            <span class="n">tbl</span><span class="p">[</span><span class="n">r</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">conn</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">tbl</span></div>
+
+<div class="viewcode-block" id="ALConfig.default_osn_to_posteln"><a class="viewcode-back" href="../../../eoscircuits.alcircuits.html#eoscircuits.alcircuits.circuit.ALConfig.default_osn_to_posteln">[docs]</a>    <span class="k">def</span> <span class="nf">default_osn_to_posteln</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">tbl</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">NR</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">r</span><span class="p">,</span> <span class="p">(</span><span class="n">no</span><span class="p">,</span> <span class="n">npln</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">NO</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">NPosteLN</span><span class="p">)):</span>
+            <span class="n">conn</span> <span class="o">=</span> <span class="n">product</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">no</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">npln</span><span class="p">))</span>
+            <span class="n">tbl</span><span class="p">[</span><span class="n">r</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">conn</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">tbl</span></div>
+
+<div class="viewcode-block" id="ALConfig.default_osn_to_postiln"><a class="viewcode-back" href="../../../eoscircuits.alcircuits.html#eoscircuits.alcircuits.circuit.ALConfig.default_osn_to_postiln">[docs]</a>    <span class="k">def</span> <span class="nf">default_osn_to_postiln</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">tbl</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">NR</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">r</span><span class="p">,</span> <span class="p">(</span><span class="n">no</span><span class="p">,</span> <span class="n">npln</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">NO</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">NPostiLN</span><span class="p">)):</span>
+            <span class="n">conn</span> <span class="o">=</span> <span class="n">product</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">no</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">npln</span><span class="p">))</span>
+            <span class="n">tbl</span><span class="p">[</span><span class="n">r</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">conn</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">tbl</span></div>
+
+<div class="viewcode-block" id="ALConfig.default_preln_to_axt"><a class="viewcode-back" href="../../../eoscircuits.alcircuits.html#eoscircuits.alcircuits.circuit.ALConfig.default_preln_to_axt">[docs]</a>    <span class="k">def</span> <span class="nf">default_preln_to_axt</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">tbl</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">NR</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">NR</span><span class="p">):</span>
+            <span class="n">conn</span> <span class="o">=</span> <span class="n">product</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">NPreLN</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">NO</span><span class="p">[</span><span class="n">r</span><span class="p">]))</span>
+            <span class="n">tbl</span><span class="p">[</span><span class="n">r</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">conn</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">tbl</span></div>
+
+<div class="viewcode-block" id="ALConfig.default_postiln_to_pn"><a class="viewcode-back" href="../../../eoscircuits.alcircuits.html#eoscircuits.alcircuits.circuit.ALConfig.default_postiln_to_pn">[docs]</a>    <span class="k">def</span> <span class="nf">default_postiln_to_pn</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">tbl</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">NR</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">NR</span><span class="p">):</span>
+            <span class="n">conn</span> <span class="o">=</span> <span class="n">product</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">NPostiLN</span><span class="p">[</span><span class="n">r</span><span class="p">]),</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">NP</span><span class="p">[</span><span class="n">r</span><span class="p">]))</span>
+            <span class="n">tbl</span><span class="p">[</span><span class="n">r</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">conn</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">tbl</span></div>
+
+<div class="viewcode-block" id="ALConfig.default_posteln_to_pn"><a class="viewcode-back" href="../../../eoscircuits.alcircuits.html#eoscircuits.alcircuits.circuit.ALConfig.default_posteln_to_pn">[docs]</a>    <span class="k">def</span> <span class="nf">default_posteln_to_pn</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">tbl</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">NR</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">NR</span><span class="p">):</span>
+            <span class="n">conn</span> <span class="o">=</span> <span class="n">product</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">NPosteLN</span><span class="p">[</span><span class="n">r</span><span class="p">]),</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">NP</span><span class="p">[</span><span class="n">r</span><span class="p">]))</span>
+            <span class="n">tbl</span><span class="p">[</span><span class="n">r</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">conn</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">tbl</span></div>
+
+<div class="viewcode-block" id="ALConfig.default_axt_to_pn"><a class="viewcode-back" href="../../../eoscircuits.alcircuits.html#eoscircuits.alcircuits.circuit.ALConfig.default_axt_to_pn">[docs]</a>    <span class="k">def</span> <span class="nf">default_axt_to_pn</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">tbl</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">NR</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">NR</span><span class="p">):</span>
+            <span class="n">conn</span> <span class="o">=</span> <span class="n">product</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">NO</span><span class="p">[</span><span class="n">r</span><span class="p">]),</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">NP</span><span class="p">[</span><span class="n">r</span><span class="p">]))</span>
+            <span class="n">tbl</span><span class="p">[</span><span class="n">r</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">conn</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">tbl</span></div></div>
+
+
+<div class="viewcode-block" id="ALCircuit"><a class="viewcode-back" href="../../../eoscircuits.alcircuits.html#eoscircuits.alcircuits.circuit.ALCircuit">[docs]</a><span class="nd">@dataclass</span><span class="p">(</span><span class="nb">repr</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">ALCircuit</span><span class="p">(</span><span class="n">Circuit</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Antennal Lobe Circuit&quot;&quot;&quot;</span>
+
+    <span class="n">config</span><span class="p">:</span> <span class="n">ALConfig</span>
+    <span class="n">extra_comps</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">List</span><span class="p">[</span><span class="s2">&quot;NDComponent&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span>
+        <span class="n">init</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">default_factory</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span> <span class="n">NDModel</span><span class="o">.</span><span class="n">EXTRA_COMPS</span>
+    <span class="p">)</span>
+
+<div class="viewcode-block" id="ALCircuit.create_graph"><a class="viewcode-back" href="../../../eoscircuits.alcircuits.html#eoscircuits.alcircuits.circuit.ALCircuit.create_graph">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">create_graph</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">cfg</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">nx</span><span class="o">.</span><span class="n">MultiDiGraph</span><span class="p">:</span>
+        <span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">MultiDiGraph</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">r</span><span class="p">,</span> <span class="p">(</span><span class="n">_otp_ids</span><span class="p">,</span> <span class="n">_bsg_ids</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">cfg</span><span class="o">.</span><span class="n">osn_otps</span><span class="p">,</span> <span class="n">cfg</span><span class="o">.</span><span class="n">osn_bsgs</span><span class="p">)):</span>
+            <span class="n">bsg_params</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">NDModel</span><span class="o">.</span><span class="n">NoisyConnorStevens</span><span class="o">.</span><span class="n">params</span><span class="p">)</span>
+            <span class="n">bsg_params</span><span class="o">.</span><span class="n">update</span><span class="p">(</span>
+                <span class="p">{</span>
+                    <span class="n">key</span><span class="p">:</span> <span class="n">val</span>
+                    <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">cfg</span><span class="o">.</span><span class="n">node_params</span><span class="p">[</span><span class="s2">&quot;osn_bsgs&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+                    <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="s2">&quot;__len__&quot;</span><span class="p">)</span>
+                <span class="p">}</span>
+            <span class="p">)</span>
+            <span class="n">otp_params</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">NDModel</span><span class="o">.</span><span class="n">OTP</span><span class="o">.</span><span class="n">params</span><span class="p">)</span>
+            <span class="n">otp_params</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s2">&quot;br&quot;</span><span class="p">:</span> <span class="n">cfg</span><span class="o">.</span><span class="n">brs</span><span class="p">[</span><span class="n">r</span><span class="p">],</span> <span class="s2">&quot;dr&quot;</span><span class="p">:</span> <span class="n">cfg</span><span class="o">.</span><span class="n">drs</span><span class="p">[</span><span class="n">r</span><span class="p">]})</span>
+            <span class="n">otp_params</span><span class="o">.</span><span class="n">update</span><span class="p">(</span>
+                <span class="p">{</span>
+                    <span class="n">key</span><span class="p">:</span> <span class="n">val</span>
+                    <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">cfg</span><span class="o">.</span><span class="n">node_params</span><span class="p">[</span><span class="s2">&quot;osn_otps&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+                    <span class="k">if</span> <span class="n">key</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;br&quot;</span><span class="p">,</span> <span class="s2">&quot;dr&quot;</span><span class="p">]</span> <span class="ow">and</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="s2">&quot;__len__&quot;</span><span class="p">)</span>
+                <span class="p">}</span>
+            <span class="p">)</span>
+
+            <span class="k">for</span> <span class="n">_o_id</span><span class="p">,</span> <span class="n">_b_id</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">_otp_ids</span><span class="p">,</span> <span class="n">_bsg_ids</span><span class="p">):</span>
+                <span class="n">G</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="n">_o_id</span><span class="p">,</span> <span class="o">**</span><span class="p">{</span><span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;OTP&quot;</span><span class="p">},</span> <span class="o">**</span><span class="n">otp_params</span><span class="p">)</span>
+                <span class="n">G</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="n">_b_id</span><span class="p">,</span> <span class="o">**</span><span class="p">{</span><span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;NoisyConnorStevens&quot;</span><span class="p">},</span> <span class="o">**</span><span class="n">bsg_params</span><span class="p">)</span>
+                <span class="n">G</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="n">_o_id</span><span class="p">,</span> <span class="n">_b_id</span><span class="p">,</span> <span class="n">variable</span><span class="o">=</span><span class="s2">&quot;I&quot;</span><span class="p">)</span>
+
+        <span class="bp">cls</span><span class="o">.</span><span class="n">add_nodes_to_graph</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">cfg</span><span class="p">,</span> <span class="s2">&quot;osn_alphas&quot;</span><span class="p">,</span> <span class="s2">&quot;Alpha&quot;</span><span class="p">,</span> <span class="n">NDModel</span><span class="p">)</span>
+        <span class="bp">cls</span><span class="o">.</span><span class="n">add_nodes_to_graph</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">cfg</span><span class="p">,</span> <span class="s2">&quot;osn_axts&quot;</span><span class="p">,</span> <span class="s2">&quot;OSNAxt2&quot;</span><span class="p">,</span> <span class="n">NDModel</span><span class="p">)</span>
+        <span class="bp">cls</span><span class="o">.</span><span class="n">add_nodes_to_graph</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">cfg</span><span class="p">,</span> <span class="s2">&quot;pns&quot;</span><span class="p">,</span> <span class="s2">&quot;PN&quot;</span><span class="p">,</span> <span class="n">NDModel</span><span class="p">)</span>
+        <span class="bp">cls</span><span class="o">.</span><span class="n">add_nodes_to_graph</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">cfg</span><span class="p">,</span> <span class="s2">&quot;prelns&quot;</span><span class="p">,</span> <span class="s2">&quot;PreLN&quot;</span><span class="p">,</span> <span class="n">NDModel</span><span class="p">)</span>
+        <span class="bp">cls</span><span class="o">.</span><span class="n">add_nodes_to_graph</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">cfg</span><span class="p">,</span> <span class="s2">&quot;postelns&quot;</span><span class="p">,</span> <span class="s2">&quot;PostLN&quot;</span><span class="p">,</span> <span class="n">NDModel</span><span class="p">)</span>
+        <span class="bp">cls</span><span class="o">.</span><span class="n">add_nodes_to_graph</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">cfg</span><span class="p">,</span> <span class="s2">&quot;postilns&quot;</span><span class="p">,</span> <span class="s2">&quot;PostLN&quot;</span><span class="p">,</span> <span class="n">NDModel</span><span class="p">)</span>
+
+        <span class="c1"># connect nodes</span>
+        <span class="n">G</span><span class="o">.</span><span class="n">add_edges_from</span><span class="p">(</span>
+            <span class="nb">zip</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">cfg</span><span class="o">.</span><span class="n">osn_bsgs</span><span class="p">,</span> <span class="p">[]),</span> <span class="nb">sum</span><span class="p">(</span><span class="n">cfg</span><span class="o">.</span><span class="n">osn_alphas</span><span class="p">,</span> <span class="p">[])),</span> <span class="n">variable</span><span class="o">=</span><span class="s2">&quot;spike_state&quot;</span>
+        <span class="p">)</span>
+        <span class="n">G</span><span class="o">.</span><span class="n">add_edges_from</span><span class="p">(</span>
+            <span class="nb">zip</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">cfg</span><span class="o">.</span><span class="n">osn_alphas</span><span class="p">,</span> <span class="p">[]),</span> <span class="nb">sum</span><span class="p">(</span><span class="n">cfg</span><span class="o">.</span><span class="n">osn_axts</span><span class="p">,</span> <span class="p">[])),</span> <span class="n">variable</span><span class="o">=</span><span class="s2">&quot;g&quot;</span>
+        <span class="p">)</span>
+
+        <span class="n">G</span><span class="o">.</span><span class="n">add_edges_from</span><span class="p">(</span>
+            <span class="n">cfg</span><span class="o">.</span><span class="n">as_node_ids</span><span class="p">(</span><span class="n">cfg</span><span class="o">.</span><span class="n">osn_to_preln</span><span class="p">,</span> <span class="n">cfg</span><span class="o">.</span><span class="n">osn_alphas</span><span class="p">,</span> <span class="n">cfg</span><span class="o">.</span><span class="n">prelns</span><span class="p">),</span> <span class="n">variable</span><span class="o">=</span><span class="s2">&quot;g&quot;</span>
+        <span class="p">)</span>
+        <span class="n">G</span><span class="o">.</span><span class="n">add_edges_from</span><span class="p">(</span>
+            <span class="n">cfg</span><span class="o">.</span><span class="n">as_node_ids</span><span class="p">(</span><span class="n">cfg</span><span class="o">.</span><span class="n">osn_to_postiln</span><span class="p">,</span> <span class="n">cfg</span><span class="o">.</span><span class="n">osn_alphas</span><span class="p">,</span> <span class="n">cfg</span><span class="o">.</span><span class="n">postilns</span><span class="p">),</span>
+            <span class="n">variable</span><span class="o">=</span><span class="s2">&quot;g&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">G</span><span class="o">.</span><span class="n">add_edges_from</span><span class="p">(</span>
+            <span class="n">cfg</span><span class="o">.</span><span class="n">as_node_ids</span><span class="p">(</span><span class="n">cfg</span><span class="o">.</span><span class="n">osn_to_posteln</span><span class="p">,</span> <span class="n">cfg</span><span class="o">.</span><span class="n">osn_alphas</span><span class="p">,</span> <span class="n">cfg</span><span class="o">.</span><span class="n">postelns</span><span class="p">),</span>
+            <span class="n">variable</span><span class="o">=</span><span class="s2">&quot;g&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="n">G</span><span class="o">.</span><span class="n">add_edges_from</span><span class="p">(</span>
+            <span class="n">cfg</span><span class="o">.</span><span class="n">as_node_ids</span><span class="p">(</span><span class="n">cfg</span><span class="o">.</span><span class="n">preln_to_axt</span><span class="p">,</span> <span class="n">cfg</span><span class="o">.</span><span class="n">prelns</span><span class="p">,</span> <span class="n">cfg</span><span class="o">.</span><span class="n">osn_axts</span><span class="p">),</span> <span class="n">variable</span><span class="o">=</span><span class="s2">&quot;r&quot;</span>
+        <span class="p">)</span>
+        <span class="n">G</span><span class="o">.</span><span class="n">add_edges_from</span><span class="p">(</span>
+            <span class="n">cfg</span><span class="o">.</span><span class="n">as_node_ids</span><span class="p">(</span><span class="n">cfg</span><span class="o">.</span><span class="n">axt_to_pn</span><span class="p">,</span> <span class="n">cfg</span><span class="o">.</span><span class="n">osn_axts</span><span class="p">,</span> <span class="n">cfg</span><span class="o">.</span><span class="n">pns</span><span class="p">),</span> <span class="n">variable</span><span class="o">=</span><span class="s2">&quot;I&quot;</span>
+        <span class="p">)</span>
+        <span class="n">G</span><span class="o">.</span><span class="n">add_edges_from</span><span class="p">(</span>
+            <span class="n">cfg</span><span class="o">.</span><span class="n">as_node_ids</span><span class="p">(</span><span class="n">cfg</span><span class="o">.</span><span class="n">postiln_to_pn</span><span class="p">,</span> <span class="n">cfg</span><span class="o">.</span><span class="n">postilns</span><span class="p">,</span> <span class="n">cfg</span><span class="o">.</span><span class="n">pns</span><span class="p">),</span> <span class="n">variable</span><span class="o">=</span><span class="s2">&quot;I&quot;</span>
+        <span class="p">)</span>
+        <span class="n">G</span><span class="o">.</span><span class="n">add_edges_from</span><span class="p">(</span>
+            <span class="n">cfg</span><span class="o">.</span><span class="n">as_node_ids</span><span class="p">(</span><span class="n">cfg</span><span class="o">.</span><span class="n">posteln_to_pn</span><span class="p">,</span> <span class="n">cfg</span><span class="o">.</span><span class="n">postelns</span><span class="p">,</span> <span class="n">cfg</span><span class="o">.</span><span class="n">pns</span><span class="p">),</span> <span class="n">variable</span><span class="o">=</span><span class="s2">&quot;I&quot;</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">G</span></div>
+
+<div class="viewcode-block" id="ALCircuit.create_from_config"><a class="viewcode-back" href="../../../eoscircuits.alcircuits.html#eoscircuits.alcircuits.circuit.ALCircuit.create_from_config">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">create_from_config</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">cfg</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;ALCircuit&quot;</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Create Instance from Config</span>
+
+<span class="sd">        Arguments:</span>
+<span class="sd">            cfg: Config instance that specifies the configuration of the module</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            A new ANTCircuit instance</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">graph</span><span class="o">=</span><span class="bp">cls</span><span class="o">.</span><span class="n">create_graph</span><span class="p">(</span><span class="n">cfg</span><span class="p">),</span> <span class="n">config</span><span class="o">=</span><span class="n">cfg</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="ALCircuit.set_node_params"><a class="viewcode-back" href="../../../eoscircuits.alcircuits.html#eoscircuits.alcircuits.circuit.ALCircuit.set_node_params">[docs]</a>    <span class="k">def</span> <span class="nf">set_node_params</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">node_type</span><span class="p">:</span> <span class="s2">&quot;ALConfig.node_types&quot;</span><span class="p">,</span>
+        <span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">value</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+        <span class="n">receptor</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">tp</span><span class="o">.</span><span class="n">Iterable</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Set Parameter Value of selected Nodes&quot;&quot;&quot;</span>
+        <span class="n">node_ids</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_node_ids</span><span class="p">(</span><span class="n">node_type</span><span class="o">=</span><span class="n">node_type</span><span class="p">,</span> <span class="n">receptor</span><span class="o">=</span><span class="n">receptor</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">key</span> <span class="o">==</span> <span class="s2">&quot;sigma&quot;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">sigma</span> <span class="o">=</span> <span class="n">value</span>
+        <span class="n">update_dct</span> <span class="o">=</span> <span class="p">{</span><span class="n">n</span><span class="p">:</span> <span class="p">{</span><span class="n">key</span><span class="p">:</span> <span class="n">value</span><span class="p">}</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">sum</span><span class="p">(</span><span class="n">node_ids</span><span class="p">,</span> <span class="p">[])}</span>
+        <span class="n">nx</span><span class="o">.</span><span class="n">set_node_attributes</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">graph</span><span class="p">,</span> <span class="n">update_dct</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="ALCircuit.set_neuron_number"><a class="viewcode-back" href="../../../eoscircuits.alcircuits.html#eoscircuits.alcircuits.circuit.ALCircuit.set_neuron_number">[docs]</a>    <span class="k">def</span> <span class="nf">set_neuron_number</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">node_type</span><span class="p">:</span> <span class="s2">&quot;ALConfig.node_types&quot;</span><span class="p">,</span>
+        <span class="n">number</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">receptor</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">tp</span><span class="o">.</span><span class="n">Iterable</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;ALCircuit&quot;</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Set Number of Neurons and change Routing Table Appropriately&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">node_type</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">node_types</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">ALException</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;Node Type </span><span class="si">{</span><span class="n">node_type</span><span class="si">}</span><span class="s2"> not found in graph&quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;must be one of </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">node_types</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="p">)</span>
+        <span class="n">cfg</span> <span class="o">=</span> <span class="n">asdict</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">)</span>
+
+        <span class="k">def</span> <span class="nf">_set_PN</span><span class="p">(</span><span class="n">number</span><span class="p">):</span>
+            <span class="n">_</span> <span class="o">=</span> <span class="n">cfg</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;axt_to_pn&quot;</span><span class="p">)</span>
+            <span class="n">_</span> <span class="o">=</span> <span class="n">cfg</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;postiln_to_pn&quot;</span><span class="p">)</span>
+            <span class="n">_</span> <span class="o">=</span> <span class="n">cfg</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;posteln_to_pn&quot;</span><span class="p">)</span>
+            <span class="n">_</span> <span class="o">=</span> <span class="n">cfg</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;pns&quot;</span><span class="p">)</span>
+            <span class="n">cfg</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">NP</span><span class="o">=</span><span class="n">number</span><span class="p">))</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_from_config</span><span class="p">(</span><span class="n">ALConfig</span><span class="p">(</span><span class="o">**</span><span class="n">cfg</span><span class="p">))</span>
+
+        <span class="k">def</span> <span class="nf">_set_PreLN</span><span class="p">(</span><span class="n">number</span><span class="p">):</span>
+            <span class="n">_</span> <span class="o">=</span> <span class="n">cfg</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;osn_to_preln&quot;</span><span class="p">)</span>
+            <span class="n">_</span> <span class="o">=</span> <span class="n">cfg</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;preln_to_axt&quot;</span><span class="p">)</span>
+            <span class="n">_</span> <span class="o">=</span> <span class="n">cfg</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;prelns&quot;</span><span class="p">)</span>
+            <span class="n">cfg</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">NPreLN</span><span class="o">=</span><span class="n">number</span><span class="p">))</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_from_config</span><span class="p">(</span><span class="n">ALConfig</span><span class="p">(</span><span class="o">**</span><span class="n">cfg</span><span class="p">))</span>
+
+        <span class="k">def</span> <span class="nf">_set_PosteLN</span><span class="p">(</span><span class="n">number</span><span class="p">):</span>
+            <span class="n">_</span> <span class="o">=</span> <span class="n">cfg</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;osn_to_posteln&quot;</span><span class="p">)</span>
+            <span class="n">_</span> <span class="o">=</span> <span class="n">cfg</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;posteln_to_pn&quot;</span><span class="p">)</span>
+            <span class="n">_</span> <span class="o">=</span> <span class="n">cfg</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;postelns&quot;</span><span class="p">)</span>
+            <span class="n">cfg</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">NPreLN</span><span class="o">=</span><span class="n">number</span><span class="p">))</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_from_config</span><span class="p">(</span><span class="n">ALConfig</span><span class="p">(</span><span class="o">**</span><span class="n">cfg</span><span class="p">))</span>
+
+        <span class="k">def</span> <span class="nf">_set_PostiLN</span><span class="p">(</span><span class="n">number</span><span class="p">):</span>
+            <span class="n">_</span> <span class="o">=</span> <span class="n">cfg</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;osn_to_postiln&quot;</span><span class="p">)</span>
+            <span class="n">_</span> <span class="o">=</span> <span class="n">cfg</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;postiln_to_pn&quot;</span><span class="p">)</span>
+            <span class="n">_</span> <span class="o">=</span> <span class="n">cfg</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;postilns&quot;</span><span class="p">)</span>
+            <span class="n">cfg</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">NPreLN</span><span class="o">=</span><span class="n">number</span><span class="p">))</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_from_config</span><span class="p">(</span><span class="n">ALConfig</span><span class="p">(</span><span class="o">**</span><span class="n">cfg</span><span class="p">))</span>
+
+        <span class="k">def</span> <span class="nf">_set_OSN</span><span class="p">(</span><span class="n">number</span><span class="p">):</span>
+            <span class="n">_</span> <span class="o">=</span> <span class="n">cfg</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;osn_to_preln&quot;</span><span class="p">)</span>
+            <span class="n">_</span> <span class="o">=</span> <span class="n">cfg</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;osns&quot;</span><span class="p">)</span>
+
+            <span class="n">_</span> <span class="o">=</span> <span class="n">cfg</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;osn_to_postiln&quot;</span><span class="p">)</span>
+            <span class="n">_</span> <span class="o">=</span> <span class="n">cfg</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;osn_to_posteln&quot;</span><span class="p">)</span>
+            <span class="n">_</span> <span class="o">=</span> <span class="n">cfg</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;preln_to_axt&quot;</span><span class="p">)</span>
+            <span class="n">_</span> <span class="o">=</span> <span class="n">cfg</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;axt_to_pn&quot;</span><span class="p">)</span>
+            <span class="n">_</span> <span class="o">=</span> <span class="n">cfg</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">NPreLN</span><span class="o">=</span><span class="n">number</span><span class="p">))</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_from_config</span><span class="p">(</span><span class="n">ALConfig</span><span class="p">(</span><span class="o">**</span><span class="n">cfg</span><span class="p">))</span>
+
+        <span class="k">if</span> <span class="s2">&quot;osn&quot;</span> <span class="ow">in</span> <span class="n">node_type</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">_set_OSN</span><span class="p">(</span><span class="n">number</span><span class="p">)</span>
+        <span class="k">if</span> <span class="s2">&quot;pn&quot;</span> <span class="ow">in</span> <span class="n">node_type</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">_set_PN</span><span class="p">(</span><span class="n">number</span><span class="p">)</span>
+        <span class="k">if</span> <span class="s2">&quot;posteln&quot;</span> <span class="ow">in</span> <span class="n">node_type</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">_set_PosteLN</span><span class="p">(</span><span class="n">number</span><span class="p">)</span>
+        <span class="k">if</span> <span class="s2">&quot;postiln&quot;</span> <span class="ow">in</span> <span class="n">node_type</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">_set_PosteLN</span><span class="p">(</span><span class="n">number</span><span class="p">)</span>
+        <span class="k">if</span> <span class="s2">&quot;preln&quot;</span> <span class="ow">in</span> <span class="n">node_type</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">_set_PreLN</span><span class="p">(</span><span class="n">number</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="ALCircuit.set_routing"><a class="viewcode-back" href="../../../eoscircuits.alcircuits.html#eoscircuits.alcircuits.circuit.ALCircuit.set_routing">[docs]</a>    <span class="k">def</span> <span class="nf">set_routing</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">table</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+        <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">receptor</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">tp</span><span class="o">.</span><span class="n">Iterable</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Seting Routing Table in Antennal Lobe&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">routing_tables</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">ALException</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;Attempting to set table </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">, &quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;Must be one of </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">routing_tables</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">receptor</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">receptor</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">atleast_1d</span><span class="p">(</span><span class="n">receptor</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">receptor</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">receptors</span>
+
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">table</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">receptor</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="n">ALException</span><span class="p">(</span>
+                <span class="s2">&quot;Table must be of shape &quot;</span>
+                <span class="s2">&quot;(len(receptor),) with each entry being the routing &quot;</span>
+                <span class="s2">&quot;in that particular channel&quot;</span>
+            <span class="p">)</span>
+
+        <span class="n">cfg</span> <span class="o">=</span> <span class="n">asdict</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">)</span>
+        <span class="n">update_table</span> <span class="o">=</span> <span class="n">cfg</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">n</span><span class="p">,</span> <span class="n">r</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">receptor</span><span class="p">):</span>
+            <span class="n">r_idx</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">receptors</span><span class="p">)</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+            <span class="n">update_table</span><span class="p">[</span><span class="n">r_idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">table</span><span class="p">[</span><span class="n">n</span><span class="p">]</span>
+        <span class="n">cfg</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="n">name</span><span class="p">:</span> <span class="n">update_table</span><span class="p">})</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_from_config</span><span class="p">(</span><span class="n">ALConfig</span><span class="p">(</span><span class="o">**</span><span class="n">cfg</span><span class="p">))</span></div>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">inputs</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Output OTP Nodes IDs and the Variables</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            OTPs with input variable `conc`</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;conc&quot;</span><span class="p">:</span> <span class="nb">sum</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">osn_otps</span><span class="p">,</span> <span class="p">[])}</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">outputs</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Output BSG Nodes IDs and the Variables</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            PNs with output variable `r`</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;r&quot;</span><span class="p">:</span> <span class="nb">sum</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">pns</span><span class="p">,</span> <span class="p">[])}</span>
+
+<div class="viewcode-block" id="ALCircuit.get_node_ids"><a class="viewcode-back" href="../../../eoscircuits.alcircuits.html#eoscircuits.alcircuits.circuit.ALCircuit.get_node_ids">[docs]</a>    <span class="k">def</span> <span class="nf">get_node_ids</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">node_type</span><span class="p">:</span> <span class="s2">&quot;ALConfig.node_types&quot;</span><span class="p">,</span>
+        <span class="n">receptor</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">tp</span><span class="o">.</span><span class="n">Iterable</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">receptor</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">receptor</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">receptors</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">receptor</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">atleast_1d</span><span class="p">(</span><span class="n">receptor</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">receptor</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">r</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">receptors</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">ALException</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Receptors </span><span class="si">{</span><span class="n">r</span><span class="si">}</span><span class="s2"> not found in list of receptor names&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">node_type</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">node_types</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">ALException</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;node_type </span><span class="si">{</span><span class="n">node_type</span><span class="si">}</span><span class="s2"> not recognized, &quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;must be one of </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">node_types</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="p">)</span>
+
+        <span class="n">node_ids</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">,</span> <span class="n">node_type</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">node_ids</span><span class="p">[</span><span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">receptors</span><span class="p">)</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">r</span><span class="p">)]</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">receptor</span><span class="p">]</span></div></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, FlyBrainLab Dev Team.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

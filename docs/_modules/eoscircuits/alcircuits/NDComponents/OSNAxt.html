@@ -1,0 +1,448 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>eoscircuits.alcircuits.NDComponents.OSNAxt &mdash; EOScircuits 0.1.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../index.html" class="icon icon-home"> EOScircuits
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../readme.html">EOScircuits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules.html">eoscircuits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../authors.html">Credits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../history.html">History</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">EOScircuits</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../../index.html">Module code</a> &raquo;</li>
+        
+      <li>eoscircuits.alcircuits.NDComponents.OSNAxt</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for eoscircuits.alcircuits.NDComponents.OSNAxt</h1><div class="highlight"><pre>
+<span></span><span class="c1"># pylint:disable=no-member</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">OrderedDict</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pycuda.gpuarray</span> <span class="k">as</span> <span class="nn">garray</span>
+<span class="kn">from</span> <span class="nn">pycuda.tools</span> <span class="kn">import</span> <span class="n">dtype_to_ctype</span>
+<span class="kn">import</span> <span class="nn">pycuda.driver</span> <span class="k">as</span> <span class="nn">drv</span>
+<span class="kn">from</span> <span class="nn">pycuda.compiler</span> <span class="kn">import</span> <span class="n">SourceModule</span>
+<span class="kn">from</span> <span class="nn">neurokernel.LPU.NDComponents.NDComponent</span> <span class="kn">import</span> <span class="n">NDComponent</span>
+
+<span class="n">CUDA_SRC</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+
+
+
+<span class="s2">struct States {</span>
+<span class="s2">    double I;</span>
+<span class="s2">};</span>
+
+<span class="s2">struct Derivatives {</span>
+<span class="s2">    double I;</span>
+<span class="s2">};</span>
+
+
+
+<span class="s2">__device__ void forward(</span>
+<span class="s2">    States &amp;states,</span>
+<span class="s2">    Derivatives &amp;gstates,</span>
+<span class="s2">    double dt</span>
+<span class="s2">)</span>
+<span class="s2">{</span>
+<span class="s2">    states.I += dt * gstates.I;</span>
+<span class="s2">}</span>
+
+<span class="s2">__device__ int ode(</span>
+<span class="s2">    States &amp;states,</span>
+<span class="s2">    Derivatives &amp;gstates,</span>
+<span class="s2">    double GAIN,</span>
+<span class="s2">    double BIAS,</span>
+<span class="s2">    double GAMMA,</span>
+<span class="s2">    double &amp;g,</span>
+<span class="s2">    double &amp;r</span>
+<span class="s2">)</span>
+<span class="s2">{</span>
+
+<span class="s2">    gstates.I = ((GAMMA * g) - ((GAMMA * (BIAS + (GAIN * r))) * states.I));</span>
+<span class="s2">    return 0;</span>
+<span class="s2">}</span>
+
+
+
+<span class="s2">__global__ void run_step (</span>
+<span class="s2">    int num_thread,</span>
+<span class="s2">    double dt,</span>
+<span class="s2">    double *g_state_I,</span>
+<span class="s2">    double *g_param_gain,</span>
+<span class="s2">    double *g_param_bias,</span>
+<span class="s2">    double *g_param_gamma,</span>
+<span class="s2">    double *g_input_g,</span>
+<span class="s2">    double *g_input_r,</span>
+<span class="s2">    double *g_output_I</span>
+<span class="s2">)</span>
+<span class="s2">{</span>
+<span class="s2">    /* TODO: option for 1-D or 2-D */</span>
+<span class="s2">    int tid = blockIdx.x * blockDim.x + threadIdx.x;</span>
+<span class="s2">    int total_threads = gridDim.x * blockDim.x;</span>
+
+<span class="s2">    for (int nid = tid; nid &lt; num_thread; nid += total_threads) {</span>
+
+<span class="s2">        States states;</span>
+<span class="s2">        Derivatives gstates;</span>
+
+<span class="s2">        /* import data */</span>
+<span class="s2">        states.I = g_state_I[nid];</span>
+<span class="s2">        double param_GAIN = g_param_gain[nid];</span>
+<span class="s2">        double param_BIAS = g_param_bias[nid];</span>
+<span class="s2">        double param_GAMMA = g_param_gamma[nid];</span>
+<span class="s2">        double input_g = g_input_g[nid];</span>
+<span class="s2">        double input_r = g_input_r[nid];</span>
+
+<span class="s2">        </span>
+<span class="s2">        </span>
+<span class="s2">        /* compute gradient */</span>
+<span class="s2">        ode(states, gstates, param_GAIN, param_BIAS, param_GAMMA, input_g, input_r);</span>
+
+<span class="s2">        /* solve ode */</span>
+<span class="s2">        forward(states, gstates, dt);</span>
+
+<span class="s2">        </span>
+
+<span class="s2">        </span>
+
+<span class="s2">        /* export state (internals) data */</span>
+<span class="s2">        g_state_I[nid] = states.I;</span>
+
+<span class="s2">        /* export output (updates) data */</span>
+<span class="s2">        g_output_I[nid] = states.I;</span>
+<span class="s2">    }</span>
+
+<span class="s2">    return;</span>
+<span class="s2">}</span>
+
+
+<span class="s2">&quot;&quot;&quot;</span>
+
+
+<div class="viewcode-block" id="OSNAxt"><a class="viewcode-back" href="../../../../eoscircuits.alcircuits.NDComponents.html#eoscircuits.alcircuits.NDComponents.OSNAxt.OSNAxt">[docs]</a><span class="k">class</span> <span class="nc">OSNAxt</span><span class="p">(</span><span class="n">NDComponent</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;OSNAxt</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        accesses (list): list of input variables</span>
+<span class="sd">        updates (list): list of output variables</span>
+<span class="sd">        params (list): list of parameters</span>
+<span class="sd">        params_default (dict): default values of the parameters</span>
+<span class="sd">        internals (OrderedDict): internal variables of the model and initial value</span>
+<span class="sd">        time_scale (float): scaling factor of the `dt`</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">accesses</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="s2">&quot;g&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;r&quot;</span><span class="p">,</span>
+    <span class="p">]</span>
+    <span class="n">updates</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="s2">&quot;I&quot;</span><span class="p">,</span>
+    <span class="p">]</span>
+    <span class="n">params</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="s2">&quot;gain&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;bias&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;gamma&quot;</span><span class="p">,</span>
+    <span class="p">]</span>
+    <span class="n">params_default</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+        <span class="n">gamma</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
+        <span class="n">bias</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+        <span class="n">gain</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">internals</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">(</span>
+        <span class="p">[</span>
+            <span class="p">(</span><span class="s2">&quot;I&quot;</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span>
+        <span class="p">]</span>
+    <span class="p">)</span>
+    <span class="n">time_scale</span> <span class="o">=</span> <span class="mf">1.0</span>  <span class="c1"># scales dt</span>
+    <span class="n">_has_rand</span> <span class="o">=</span> <span class="kc">False</span>
+
+<div class="viewcode-block" id="OSNAxt.maximum_dt_allowed"><a class="viewcode-back" href="../../../../eoscircuits.alcircuits.NDComponents.html#eoscircuits.alcircuits.NDComponents.OSNAxt.OSNAxt.maximum_dt_allowed">[docs]</a>    <span class="k">def</span> <span class="nf">maximum_dt_allowed</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span></div>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">params_dict</span><span class="p">,</span>
+        <span class="n">access_buffers</span><span class="p">,</span>
+        <span class="n">dt</span><span class="p">,</span>
+        <span class="n">LPU_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">debug</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">cuda_verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="k">if</span> <span class="n">cuda_verbose</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">compile_options</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;--ptxas-options=-v&quot;</span><span class="p">,</span> <span class="s2">&quot;--expt-relaxed-constexpr&quot;</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">compile_options</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;--expt-relaxed-constexpr&quot;</span><span class="p">]</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">debug</span> <span class="o">=</span> <span class="n">debug</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">LPU_id</span> <span class="o">=</span> <span class="n">LPU_id</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">num_comps</span> <span class="o">=</span> <span class="n">params_dict</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span><span class="o">.</span><span class="n">size</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dtype</span> <span class="o">=</span> <span class="n">params_dict</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span><span class="o">.</span><span class="n">dtype</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">dt</span> <span class="o">=</span> <span class="n">dt</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">time_scale</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">params_dict</span> <span class="o">=</span> <span class="n">params_dict</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">access_buffers</span> <span class="o">=</span> <span class="n">access_buffers</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">internal_states</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="n">c</span><span class="p">:</span> <span class="n">garray</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">num_comps</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">internals</span><span class="p">[</span><span class="n">c</span><span class="p">]</span>
+            <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">internals</span>
+        <span class="p">}</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">inputs</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="n">k</span><span class="p">:</span> <span class="n">garray</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">num_comps</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">access_buffers</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">accesses</span>
+        <span class="p">}</span>
+
+        <span class="c1"># make all dtypes consistent</span>
+        <span class="n">dtypes</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;dt&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">dtype</span><span class="p">}</span>
+        <span class="n">dtypes</span><span class="o">.</span><span class="n">update</span><span class="p">(</span>
+            <span class="p">{</span><span class="s2">&quot;state_&quot;</span> <span class="o">+</span> <span class="n">k</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">internal_states</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">.</span><span class="n">dtype</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">internals</span><span class="p">}</span>
+        <span class="p">)</span>
+        <span class="n">dtypes</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s2">&quot;param_&quot;</span> <span class="o">+</span> <span class="n">k</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">params_dict</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">.</span><span class="n">dtype</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="p">})</span>
+        <span class="n">dtypes</span><span class="o">.</span><span class="n">update</span><span class="p">(</span>
+            <span class="p">{</span><span class="s2">&quot;input_&quot;</span> <span class="o">+</span> <span class="n">k</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">k</span><span class="p">):</span> <span class="bp">self</span><span class="o">.</span><span class="n">inputs</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">.</span><span class="n">dtype</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">accesses</span><span class="p">}</span>
+        <span class="p">)</span>
+        <span class="n">dtypes</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s2">&quot;output_&quot;</span> <span class="o">+</span> <span class="n">k</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">dtype</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">updates</span><span class="p">})</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">update_func</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_update_func</span><span class="p">(</span><span class="n">dtypes</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_has_rand</span><span class="p">:</span>
+            <span class="kn">import</span> <span class="nn">neurokernel.LPU.utils.curand</span> <span class="k">as</span> <span class="nn">curand</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">randState</span> <span class="o">=</span> <span class="n">curand</span><span class="o">.</span><span class="n">curand_setup</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">num_comps</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">10000</span><span class="p">)</span>
+            <span class="p">)</span>
+            <span class="n">dtypes</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s2">&quot;rand&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">dtype</span><span class="p">})</span>
+
+<div class="viewcode-block" id="OSNAxt.run_step"><a class="viewcode-back" href="../../../../eoscircuits.alcircuits.NDComponents.html#eoscircuits.alcircuits.NDComponents.OSNAxt.OSNAxt.run_step">[docs]</a>    <span class="k">def</span> <span class="nf">run_step</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">update_pointers</span><span class="p">,</span> <span class="n">st</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">inputs</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">sum_in_variable</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">inputs</span><span class="p">[</span><span class="n">k</span><span class="p">],</span> <span class="n">st</span><span class="o">=</span><span class="n">st</span><span class="p">)</span>
+        <span class="n">args</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">internal_states</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">.</span><span class="n">gpudata</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">internals</span><span class="p">]</span>
+            <span class="o">+</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">params_dict</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">.</span><span class="n">gpudata</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="p">]</span>
+            <span class="o">+</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">inputs</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">.</span><span class="n">gpudata</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">accesses</span><span class="p">]</span>
+            <span class="o">+</span> <span class="p">[</span><span class="n">update_pointers</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">updates</span><span class="p">]</span>
+        <span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_has_rand</span><span class="p">:</span>
+            <span class="n">args</span> <span class="o">+=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">randState</span><span class="o">.</span><span class="n">gpudata</span><span class="p">]</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">update_func</span><span class="o">.</span><span class="n">prepared_async_call</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">update_func</span><span class="o">.</span><span class="n">grid</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">update_func</span><span class="o">.</span><span class="n">block</span><span class="p">,</span>
+            <span class="n">st</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">num_comps</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">dt</span><span class="p">,</span>
+            <span class="o">*</span><span class="n">args</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="OSNAxt.get_update_func"><a class="viewcode-back" href="../../../../eoscircuits.alcircuits.NDComponents.html#eoscircuits.alcircuits.NDComponents.OSNAxt.OSNAxt.get_update_func">[docs]</a>    <span class="k">def</span> <span class="nf">get_update_func</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dtypes</span><span class="p">):</span>
+        <span class="kn">from</span> <span class="nn">pycuda.compiler</span> <span class="kn">import</span> <span class="n">SourceModule</span>
+
+        <span class="n">mod</span> <span class="o">=</span> <span class="n">SourceModule</span><span class="p">(</span>
+            <span class="n">CUDA_SRC</span><span class="p">,</span>
+            <span class="n">options</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">compile_options</span><span class="p">,</span>
+            <span class="n">no_extern_c</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_has_rand</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">func</span> <span class="o">=</span> <span class="n">mod</span><span class="o">.</span><span class="n">get_function</span><span class="p">(</span><span class="s2">&quot;run_step&quot;</span><span class="p">)</span>
+        <span class="n">type_dict</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">dtype_to_ctype</span><span class="p">(</span><span class="n">dtypes</span><span class="p">[</span><span class="n">k</span><span class="p">])</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">dtypes</span><span class="p">}</span>
+
+        <span class="n">func</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="s2">&quot;i&quot;</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">dtype</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span><span class="o">.</span><span class="n">char</span> <span class="o">+</span> <span class="s2">&quot;P&quot;</span> <span class="o">*</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">type_dict</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span>
+        <span class="n">func</span><span class="o">.</span><span class="n">block</span> <span class="o">=</span> <span class="p">(</span><span class="mi">256</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">func</span><span class="o">.</span><span class="n">grid</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="nb">min</span><span class="p">(</span>
+                <span class="mi">6</span> <span class="o">*</span> <span class="n">drv</span><span class="o">.</span><span class="n">Context</span><span class="o">.</span><span class="n">get_device</span><span class="p">()</span><span class="o">.</span><span class="n">MULTIPROCESSOR_COUNT</span><span class="p">,</span>
+                <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">num_comps</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">//</span> <span class="mi">256</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span>
+            <span class="p">),</span>
+            <span class="mi">1</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">func</span></div></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, FlyBrainLab Dev Team.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

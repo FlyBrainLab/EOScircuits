@@ -1,0 +1,726 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>eoscircuits.mbcircuits.NDComponents package &mdash; EOScircuits 0.1.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Contributing" href="contributing.html" />
+    <link rel="prev" title="eoscircuits.mbcircuits package" href="eoscircuits.mbcircuits.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> EOScircuits
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="readme.html">EOScircuits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">eoscircuits</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="eoscircuits.html">eoscircuits package</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="eoscircuits.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="eoscircuits.alcircuits.html">eoscircuits.alcircuits package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="eoscircuits.antcircuits.html">eoscircuits.antcircuits package</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="eoscircuits.mbcircuits.html">eoscircuits.mbcircuits package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="eoscircuits.html#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="eoscircuits.html#module-eoscircuits.basecircuit">eoscircuits.basecircuit module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="eoscircuits.html#module-eoscircuits.plot">eoscircuits.plot module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="eoscircuits.html#module-eoscircuits">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="authors.html">Credits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="history.html">History</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">EOScircuits</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="modules.html">eoscircuits</a> &raquo;</li>
+        
+          <li><a href="eoscircuits.html">eoscircuits package</a> &raquo;</li>
+        
+          <li><a href="eoscircuits.mbcircuits.html">eoscircuits.mbcircuits package</a> &raquo;</li>
+        
+      <li>eoscircuits.mbcircuits.NDComponents package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/eoscircuits.mbcircuits.NDComponents.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="eoscircuits-mbcircuits-ndcomponents-package">
+<h1>eoscircuits.mbcircuits.NDComponents package<a class="headerlink" href="#eoscircuits-mbcircuits-ndcomponents-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-eoscircuits.mbcircuits.NDComponents.APL">
+<span id="eoscircuits-mbcircuits-ndcomponents-apl-module"></span><h2>eoscircuits.mbcircuits.NDComponents.APL module<a class="headerlink" href="#module-eoscircuits.mbcircuits.NDComponents.APL" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="eoscircuits.mbcircuits.NDComponents.APL.APL">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">eoscircuits.mbcircuits.NDComponents.APL.</span></code><code class="sig-name descname"><span class="pre">APL</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">params_dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">access_buffers</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">LPU_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">debug</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cuda_verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/eoscircuits/mbcircuits/NDComponents/APL.html#APL"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#eoscircuits.mbcircuits.NDComponents.APL.APL" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">neurokernel.LPU.NDComponents.NDComponent.NDComponent</span></code></p>
+<dl class="py attribute">
+<dt id="eoscircuits.mbcircuits.NDComponents.APL.APL.accesses">
+<code class="sig-name descname"><span class="pre">accesses</span></code><a class="headerlink" href="#eoscircuits.mbcircuits.NDComponents.APL.APL.accesses" title="Permalink to this definition">¶</a></dt>
+<dd><p>list of input variables</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="eoscircuits.mbcircuits.NDComponents.APL.APL.updates">
+<code class="sig-name descname"><span class="pre">updates</span></code><a class="headerlink" href="#eoscircuits.mbcircuits.NDComponents.APL.APL.updates" title="Permalink to this definition">¶</a></dt>
+<dd><p>list of output variables</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="eoscircuits.mbcircuits.NDComponents.APL.APL.params">
+<code class="sig-name descname"><span class="pre">params</span></code><a class="headerlink" href="#eoscircuits.mbcircuits.NDComponents.APL.APL.params" title="Permalink to this definition">¶</a></dt>
+<dd><p>list of parameters</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="eoscircuits.mbcircuits.NDComponents.APL.APL.params_default">
+<code class="sig-name descname"><span class="pre">params_default</span></code><a class="headerlink" href="#eoscircuits.mbcircuits.NDComponents.APL.APL.params_default" title="Permalink to this definition">¶</a></dt>
+<dd><p>default values of the parameters</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="eoscircuits.mbcircuits.NDComponents.APL.APL.internals">
+<code class="sig-name descname"><span class="pre">internals</span></code><a class="headerlink" href="#eoscircuits.mbcircuits.NDComponents.APL.APL.internals" title="Permalink to this definition">¶</a></dt>
+<dd><p>internal variables of the model and initial value</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>OrderedDict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="eoscircuits.mbcircuits.NDComponents.APL.APL.time_scale">
+<code class="sig-name descname"><span class="pre">time_scale</span></code><a class="headerlink" href="#eoscircuits.mbcircuits.NDComponents.APL.APL.time_scale" title="Permalink to this definition">¶</a></dt>
+<dd><p>scaling factor of the <cite>dt</cite></p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="id0">
+<code class="sig-name descname"><span class="pre">accesses</span></code><em class="property"> <span class="pre">=</span> <span class="pre">['r']</span></em><a class="headerlink" href="#id0" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="eoscircuits.mbcircuits.NDComponents.APL.APL.get_update_func">
+<code class="sig-name descname"><span class="pre">get_update_func</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dtypes</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/eoscircuits/mbcircuits/NDComponents/APL.html#APL.get_update_func"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#eoscircuits.mbcircuits.NDComponents.APL.APL.get_update_func" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="id1">
+<code class="sig-name descname"><span class="pre">internals</span></code><em class="property"> <span class="pre">=</span> <span class="pre">{'g':</span> <span class="pre">0.0}</span></em><a class="headerlink" href="#id1" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="eoscircuits.mbcircuits.NDComponents.APL.APL.maximum_dt_allowed">
+<code class="sig-name descname"><span class="pre">maximum_dt_allowed</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/eoscircuits/mbcircuits/NDComponents/APL.html#APL.maximum_dt_allowed"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#eoscircuits.mbcircuits.NDComponents.APL.APL.maximum_dt_allowed" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="id2">
+<code class="sig-name descname"><span class="pre">params</span></code><em class="property"> <span class="pre">=</span> <span class="pre">['N']</span></em><a class="headerlink" href="#id2" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="id3">
+<code class="sig-name descname"><span class="pre">params_default</span></code><em class="property"> <span class="pre">=</span> <span class="pre">{'N':</span> <span class="pre">1.0}</span></em><a class="headerlink" href="#id3" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="eoscircuits.mbcircuits.NDComponents.APL.APL.run_step">
+<code class="sig-name descname"><span class="pre">run_step</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">update_pointers</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">st</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/eoscircuits/mbcircuits/NDComponents/APL.html#APL.run_step"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#eoscircuits.mbcircuits.NDComponents.APL.APL.run_step" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="id4">
+<code class="sig-name descname"><span class="pre">time_scale</span></code><em class="property"> <span class="pre">=</span> <span class="pre">1.0</span></em><a class="headerlink" href="#id4" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="id5">
+<code class="sig-name descname"><span class="pre">updates</span></code><em class="property"> <span class="pre">=</span> <span class="pre">['g']</span></em><a class="headerlink" href="#id5" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-eoscircuits.mbcircuits.NDComponents.KC">
+<span id="eoscircuits-mbcircuits-ndcomponents-kc-module"></span><h2>eoscircuits.mbcircuits.NDComponents.KC module<a class="headerlink" href="#module-eoscircuits.mbcircuits.NDComponents.KC" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="eoscircuits.mbcircuits.NDComponents.KC.KC">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">eoscircuits.mbcircuits.NDComponents.KC.</span></code><code class="sig-name descname"><span class="pre">KC</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">params_dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">access_buffers</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">LPU_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">debug</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cuda_verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/eoscircuits/mbcircuits/NDComponents/KC.html#KC"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#eoscircuits.mbcircuits.NDComponents.KC.KC" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">neurokernel.LPU.NDComponents.NDComponent.NDComponent</span></code></p>
+<dl class="py attribute">
+<dt id="eoscircuits.mbcircuits.NDComponents.KC.KC.accesses">
+<code class="sig-name descname"><span class="pre">accesses</span></code><a class="headerlink" href="#eoscircuits.mbcircuits.NDComponents.KC.KC.accesses" title="Permalink to this definition">¶</a></dt>
+<dd><p>list of input variables</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="eoscircuits.mbcircuits.NDComponents.KC.KC.updates">
+<code class="sig-name descname"><span class="pre">updates</span></code><a class="headerlink" href="#eoscircuits.mbcircuits.NDComponents.KC.KC.updates" title="Permalink to this definition">¶</a></dt>
+<dd><p>list of output variables</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="eoscircuits.mbcircuits.NDComponents.KC.KC.params">
+<code class="sig-name descname"><span class="pre">params</span></code><a class="headerlink" href="#eoscircuits.mbcircuits.NDComponents.KC.KC.params" title="Permalink to this definition">¶</a></dt>
+<dd><p>list of parameters</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="eoscircuits.mbcircuits.NDComponents.KC.KC.params_default">
+<code class="sig-name descname"><span class="pre">params_default</span></code><a class="headerlink" href="#eoscircuits.mbcircuits.NDComponents.KC.KC.params_default" title="Permalink to this definition">¶</a></dt>
+<dd><p>default values of the parameters</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="eoscircuits.mbcircuits.NDComponents.KC.KC.internals">
+<code class="sig-name descname"><span class="pre">internals</span></code><a class="headerlink" href="#eoscircuits.mbcircuits.NDComponents.KC.KC.internals" title="Permalink to this definition">¶</a></dt>
+<dd><p>internal variables of the model and initial value</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>OrderedDict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="eoscircuits.mbcircuits.NDComponents.KC.KC.time_scale">
+<code class="sig-name descname"><span class="pre">time_scale</span></code><a class="headerlink" href="#eoscircuits.mbcircuits.NDComponents.KC.KC.time_scale" title="Permalink to this definition">¶</a></dt>
+<dd><p>scaling factor of the <cite>dt</cite></p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="id6">
+<code class="sig-name descname"><span class="pre">accesses</span></code><em class="property"> <span class="pre">=</span> <span class="pre">['I']</span></em><a class="headerlink" href="#id6" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="eoscircuits.mbcircuits.NDComponents.KC.KC.get_update_func">
+<code class="sig-name descname"><span class="pre">get_update_func</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dtypes</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/eoscircuits/mbcircuits/NDComponents/KC.html#KC.get_update_func"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#eoscircuits.mbcircuits.NDComponents.KC.KC.get_update_func" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="id7">
+<code class="sig-name descname"><span class="pre">internals</span></code><em class="property"> <span class="pre">=</span> <span class="pre">{'r':</span> <span class="pre">0.0}</span></em><a class="headerlink" href="#id7" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="eoscircuits.mbcircuits.NDComponents.KC.KC.maximum_dt_allowed">
+<code class="sig-name descname"><span class="pre">maximum_dt_allowed</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/eoscircuits/mbcircuits/NDComponents/KC.html#KC.maximum_dt_allowed"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#eoscircuits.mbcircuits.NDComponents.KC.KC.maximum_dt_allowed" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="id8">
+<code class="sig-name descname"><span class="pre">params</span></code><em class="property"> <span class="pre">=</span> <span class="pre">['threshold']</span></em><a class="headerlink" href="#id8" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="id9">
+<code class="sig-name descname"><span class="pre">params_default</span></code><em class="property"> <span class="pre">=</span> <span class="pre">{'threshold':</span> <span class="pre">1.0}</span></em><a class="headerlink" href="#id9" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="eoscircuits.mbcircuits.NDComponents.KC.KC.run_step">
+<code class="sig-name descname"><span class="pre">run_step</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">update_pointers</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">st</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/eoscircuits/mbcircuits/NDComponents/KC.html#KC.run_step"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#eoscircuits.mbcircuits.NDComponents.KC.KC.run_step" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="id10">
+<code class="sig-name descname"><span class="pre">time_scale</span></code><em class="property"> <span class="pre">=</span> <span class="pre">1.0</span></em><a class="headerlink" href="#id10" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="id11">
+<code class="sig-name descname"><span class="pre">updates</span></code><em class="property"> <span class="pre">=</span> <span class="pre">['r']</span></em><a class="headerlink" href="#id11" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-eoscircuits.mbcircuits.NDComponents.KCDend">
+<span id="eoscircuits-mbcircuits-ndcomponents-kcdend-module"></span><h2>eoscircuits.mbcircuits.NDComponents.KCDend module<a class="headerlink" href="#module-eoscircuits.mbcircuits.NDComponents.KCDend" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="eoscircuits.mbcircuits.NDComponents.KCDend.KCDend">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">eoscircuits.mbcircuits.NDComponents.KCDend.</span></code><code class="sig-name descname"><span class="pre">KCDend</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">params_dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">access_buffers</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">LPU_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">debug</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cuda_verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/eoscircuits/mbcircuits/NDComponents/KCDend.html#KCDend"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#eoscircuits.mbcircuits.NDComponents.KCDend.KCDend" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">neurokernel.LPU.NDComponents.NDComponent.NDComponent</span></code></p>
+<dl class="py attribute">
+<dt id="eoscircuits.mbcircuits.NDComponents.KCDend.KCDend.accesses">
+<code class="sig-name descname"><span class="pre">accesses</span></code><a class="headerlink" href="#eoscircuits.mbcircuits.NDComponents.KCDend.KCDend.accesses" title="Permalink to this definition">¶</a></dt>
+<dd><p>list of input variables</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="eoscircuits.mbcircuits.NDComponents.KCDend.KCDend.updates">
+<code class="sig-name descname"><span class="pre">updates</span></code><a class="headerlink" href="#eoscircuits.mbcircuits.NDComponents.KCDend.KCDend.updates" title="Permalink to this definition">¶</a></dt>
+<dd><p>list of output variables</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="eoscircuits.mbcircuits.NDComponents.KCDend.KCDend.params">
+<code class="sig-name descname"><span class="pre">params</span></code><a class="headerlink" href="#eoscircuits.mbcircuits.NDComponents.KCDend.KCDend.params" title="Permalink to this definition">¶</a></dt>
+<dd><p>list of parameters</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="eoscircuits.mbcircuits.NDComponents.KCDend.KCDend.params_default">
+<code class="sig-name descname"><span class="pre">params_default</span></code><a class="headerlink" href="#eoscircuits.mbcircuits.NDComponents.KCDend.KCDend.params_default" title="Permalink to this definition">¶</a></dt>
+<dd><p>default values of the parameters</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="eoscircuits.mbcircuits.NDComponents.KCDend.KCDend.internals">
+<code class="sig-name descname"><span class="pre">internals</span></code><a class="headerlink" href="#eoscircuits.mbcircuits.NDComponents.KCDend.KCDend.internals" title="Permalink to this definition">¶</a></dt>
+<dd><p>internal variables of the model and initial value</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>OrderedDict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="eoscircuits.mbcircuits.NDComponents.KCDend.KCDend.time_scale">
+<code class="sig-name descname"><span class="pre">time_scale</span></code><a class="headerlink" href="#eoscircuits.mbcircuits.NDComponents.KCDend.KCDend.time_scale" title="Permalink to this definition">¶</a></dt>
+<dd><p>scaling factor of the <cite>dt</cite></p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="id12">
+<code class="sig-name descname"><span class="pre">accesses</span></code><em class="property"> <span class="pre">=</span> <span class="pre">['r',</span> <span class="pre">'g']</span></em><a class="headerlink" href="#id12" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="eoscircuits.mbcircuits.NDComponents.KCDend.KCDend.get_update_func">
+<code class="sig-name descname"><span class="pre">get_update_func</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dtypes</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/eoscircuits/mbcircuits/NDComponents/KCDend.html#KCDend.get_update_func"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#eoscircuits.mbcircuits.NDComponents.KCDend.KCDend.get_update_func" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="id13">
+<code class="sig-name descname"><span class="pre">internals</span></code><em class="property"> <span class="pre">=</span> <span class="pre">{'I':</span> <span class="pre">0.0}</span></em><a class="headerlink" href="#id13" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="eoscircuits.mbcircuits.NDComponents.KCDend.KCDend.maximum_dt_allowed">
+<code class="sig-name descname"><span class="pre">maximum_dt_allowed</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/eoscircuits/mbcircuits/NDComponents/KCDend.html#KCDend.maximum_dt_allowed"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#eoscircuits.mbcircuits.NDComponents.KCDend.KCDend.maximum_dt_allowed" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="id14">
+<code class="sig-name descname"><span class="pre">params</span></code><em class="property"> <span class="pre">=</span> <span class="pre">['bias',</span> <span class="pre">'gain']</span></em><a class="headerlink" href="#id14" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="id15">
+<code class="sig-name descname"><span class="pre">params_default</span></code><em class="property"> <span class="pre">=</span> <span class="pre">{'bias':</span> <span class="pre">1.0,</span> <span class="pre">'gain':</span> <span class="pre">1.0}</span></em><a class="headerlink" href="#id15" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="eoscircuits.mbcircuits.NDComponents.KCDend.KCDend.run_step">
+<code class="sig-name descname"><span class="pre">run_step</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">update_pointers</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">st</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/eoscircuits/mbcircuits/NDComponents/KCDend.html#KCDend.run_step"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#eoscircuits.mbcircuits.NDComponents.KCDend.KCDend.run_step" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="id16">
+<code class="sig-name descname"><span class="pre">time_scale</span></code><em class="property"> <span class="pre">=</span> <span class="pre">1.0</span></em><a class="headerlink" href="#id16" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="id17">
+<code class="sig-name descname"><span class="pre">updates</span></code><em class="property"> <span class="pre">=</span> <span class="pre">['I']</span></em><a class="headerlink" href="#id17" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-eoscircuits.mbcircuits.NDComponents.PN2KC">
+<span id="eoscircuits-mbcircuits-ndcomponents-pn2kc-module"></span><h2>eoscircuits.mbcircuits.NDComponents.PN2KC module<a class="headerlink" href="#module-eoscircuits.mbcircuits.NDComponents.PN2KC" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="eoscircuits.mbcircuits.NDComponents.PN2KC.PN2KC">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">eoscircuits.mbcircuits.NDComponents.PN2KC.</span></code><code class="sig-name descname"><span class="pre">PN2KC</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">params_dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">access_buffers</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">LPU_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">debug</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cuda_verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/eoscircuits/mbcircuits/NDComponents/PN2KC.html#PN2KC"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#eoscircuits.mbcircuits.NDComponents.PN2KC.PN2KC" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">neurokernel.LPU.NDComponents.NDComponent.NDComponent</span></code></p>
+<dl class="py attribute">
+<dt id="eoscircuits.mbcircuits.NDComponents.PN2KC.PN2KC.accesses">
+<code class="sig-name descname"><span class="pre">accesses</span></code><a class="headerlink" href="#eoscircuits.mbcircuits.NDComponents.PN2KC.PN2KC.accesses" title="Permalink to this definition">¶</a></dt>
+<dd><p>list of input variables</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="eoscircuits.mbcircuits.NDComponents.PN2KC.PN2KC.updates">
+<code class="sig-name descname"><span class="pre">updates</span></code><a class="headerlink" href="#eoscircuits.mbcircuits.NDComponents.PN2KC.PN2KC.updates" title="Permalink to this definition">¶</a></dt>
+<dd><p>list of output variables</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="eoscircuits.mbcircuits.NDComponents.PN2KC.PN2KC.params">
+<code class="sig-name descname"><span class="pre">params</span></code><a class="headerlink" href="#eoscircuits.mbcircuits.NDComponents.PN2KC.PN2KC.params" title="Permalink to this definition">¶</a></dt>
+<dd><p>list of parameters</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="eoscircuits.mbcircuits.NDComponents.PN2KC.PN2KC.params_default">
+<code class="sig-name descname"><span class="pre">params_default</span></code><a class="headerlink" href="#eoscircuits.mbcircuits.NDComponents.PN2KC.PN2KC.params_default" title="Permalink to this definition">¶</a></dt>
+<dd><p>default values of the parameters</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="eoscircuits.mbcircuits.NDComponents.PN2KC.PN2KC.internals">
+<code class="sig-name descname"><span class="pre">internals</span></code><a class="headerlink" href="#eoscircuits.mbcircuits.NDComponents.PN2KC.PN2KC.internals" title="Permalink to this definition">¶</a></dt>
+<dd><p>internal variables of the model and initial value</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>OrderedDict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="eoscircuits.mbcircuits.NDComponents.PN2KC.PN2KC.time_scale">
+<code class="sig-name descname"><span class="pre">time_scale</span></code><a class="headerlink" href="#eoscircuits.mbcircuits.NDComponents.PN2KC.PN2KC.time_scale" title="Permalink to this definition">¶</a></dt>
+<dd><p>scaling factor of the <cite>dt</cite></p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="id18">
+<code class="sig-name descname"><span class="pre">accesses</span></code><em class="property"> <span class="pre">=</span> <span class="pre">['r']</span></em><a class="headerlink" href="#id18" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="eoscircuits.mbcircuits.NDComponents.PN2KC.PN2KC.get_update_func">
+<code class="sig-name descname"><span class="pre">get_update_func</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dtypes</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/eoscircuits/mbcircuits/NDComponents/PN2KC.html#PN2KC.get_update_func"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#eoscircuits.mbcircuits.NDComponents.PN2KC.PN2KC.get_update_func" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="id19">
+<code class="sig-name descname"><span class="pre">internals</span></code><em class="property"> <span class="pre">=</span> <span class="pre">{'I':</span> <span class="pre">0.0}</span></em><a class="headerlink" href="#id19" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="eoscircuits.mbcircuits.NDComponents.PN2KC.PN2KC.maximum_dt_allowed">
+<code class="sig-name descname"><span class="pre">maximum_dt_allowed</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/eoscircuits/mbcircuits/NDComponents/PN2KC.html#PN2KC.maximum_dt_allowed"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#eoscircuits.mbcircuits.NDComponents.PN2KC.PN2KC.maximum_dt_allowed" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="id20">
+<code class="sig-name descname"><span class="pre">params</span></code><em class="property"> <span class="pre">=</span> <span class="pre">['weight']</span></em><a class="headerlink" href="#id20" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="id21">
+<code class="sig-name descname"><span class="pre">params_default</span></code><em class="property"> <span class="pre">=</span> <span class="pre">{'weight':</span> <span class="pre">1.0}</span></em><a class="headerlink" href="#id21" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="eoscircuits.mbcircuits.NDComponents.PN2KC.PN2KC.run_step">
+<code class="sig-name descname"><span class="pre">run_step</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">update_pointers</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">st</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/eoscircuits/mbcircuits/NDComponents/PN2KC.html#PN2KC.run_step"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#eoscircuits.mbcircuits.NDComponents.PN2KC.PN2KC.run_step" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="id22">
+<code class="sig-name descname"><span class="pre">time_scale</span></code><em class="property"> <span class="pre">=</span> <span class="pre">1.0</span></em><a class="headerlink" href="#id22" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="id23">
+<code class="sig-name descname"><span class="pre">updates</span></code><em class="property"> <span class="pre">=</span> <span class="pre">['I']</span></em><a class="headerlink" href="#id23" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-eoscircuits.mbcircuits.NDComponents">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-eoscircuits.mbcircuits.NDComponents" title="Permalink to this headline">¶</a></h2>
+<p>Additional NeuroDriver Components for MBcircuits</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="contributing.html" class="btn btn-neutral float-right" title="Contributing" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="eoscircuits.mbcircuits.html" class="btn btn-neutral float-left" title="eoscircuits.mbcircuits package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, FlyBrainLab Dev Team.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

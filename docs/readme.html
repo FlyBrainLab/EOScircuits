@@ -1,0 +1,308 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>EOScircuits &mdash; EOScircuits 0.1.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Installation" href="installation.html" />
+    <link rel="prev" title="Welcome to EOScircuits’s documentation!" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> EOScircuits
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">EOScircuits</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#features">Features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#api">API</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#circuit-modules">Circuit Modules</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#references">References</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#license">License</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#credits">Credits</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">eoscircuits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="authors.html">Credits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="history.html">History</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">EOScircuits</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>EOScircuits</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/readme.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <a class="reference internal image-reference" href="ffbo_logo.png"><img alt="ffbo_logo.png" class="align-center" src="ffbo_logo.png" style="width: 150px;" /></a>
+<div class="section" id="eoscircuits">
+<h1>EOScircuits<a class="headerlink" href="#eoscircuits" title="Permalink to this headline">¶</a></h1>
+<p>Drosophila Early Olfactory Circuit Libraries for FlyBrainLab.</p>
+<ul class="simple">
+<li><p>Documentation: <a class="reference external" href="https://flybrainlab.github.io/EOSCircuits/">https://flybrainlab.github.io/EOSCircuits/</a></p></li>
+</ul>
+<div class="section" id="features">
+<h2>Features<a class="headerlink" href="#features" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li><p>Integration with <a class="reference external" href="https://github.com/FlyBrainLab/OlfTrans">OlfTrans</a> for modeling odorant input</p></li>
+<li><p>Simulation of <em>Drosophila</em> Antenna circuit based on model in <a class="reference external" href="https://doi.org/10.1371/journal.pcbi.1007751">Lazar, A. A., &amp; Yeh, C.-H. (2020).</a></p></li>
+<li><p>Simulation of <em>Drosophila</em> Antennal Lobe and Mushroom Body based on modified model in <a class="reference external" href="https://doi.org/10.1109/ICASSP40776.2020.9054588">Lazar, A. A., Liu, T., &amp; Yeh, C. H. (2020).</a></p></li>
+</ol>
+</div>
+<div class="section" id="api">
+<h2>API<a class="headerlink" href="#api" title="Permalink to this headline">¶</a></h2>
+<p>See <code class="code docutils literal notranslate"><span class="pre">notebooks</span></code> folder for detailed examples of using each circuit module.</p>
+<p>There are 3 modules that are exposed to user, each 1 of the modules has 2 main classes: <code class="code docutils literal notranslate"><span class="pre">Config</span></code> and <code class="code docutils literal notranslate"><span class="pre">Circuit</span></code>.
+The <code class="code docutils literal notranslate"><span class="pre">Config</span></code> completely specifies the executable circuit that is the core concept of <code class="code docutils literal notranslate"><span class="pre">Circuit</span></code>. To do this,
+each instance of <code class="code docutils literal notranslate"><span class="pre">Config</span></code> specifies the number as well as the unique ids of each individual nodes in the circuit.
+For example, in <code class="code docutils literal notranslate"><span class="pre">eoscircuits.ant.ANTConfig</span></code>, the number of nodes and other relevant attributes are specified as</p>
+<ol class="arabic simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">eoscircuits.ant.ANTConfig.NR</span></code>: Number of receptors in the graph</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">eoscircuits.ant.ANTConfig.NO</span></code>: Number of Olfactory Sensory Neurons (OSNs) expressing each given receptor type</p></li>
+</ol>
+<p>3. <code class="code docutils literal notranslate"><span class="pre">eoscircuits.ant.ANTConfig.affs</span></code>: An array of affinity values (of length <code class="code docutils literal notranslate"><span class="pre">eoscircuits.ant.ANTConfig.NR</span></code>) for each receptor type. The concept of affinity is detailed in the paper <a class="reference external" href="https://doi.org/10.1371/journal.pcbi.1007751">Lazar, A. A., &amp; Yeh, C.-H. (2020).</a> as well as in the package <a class="reference external" href="https://github.com/FlyBrainLab/OlfTrans">OlfTrans</a>.
+3. <code class="code docutils literal notranslate"><span class="pre">eoscircuits.ant.ANTConfig.receptors</span></code>: An array of names (of length <code class="code docutils literal notranslate"><span class="pre">eoscircuits.ant.ANTConfig.NR</span></code>) for each receptor type</p>
+<p>Based on these, the node ids for the Odorant Transduction Process (OTP) nodes, as well as the Biophysical Spike Generators (BSG) nodes in
+the Antenna circuit is given as:</p>
+<ol class="arabic simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">eoscircuits.ant.ANTConfig.osn_otps</span></code>: the naming scheme follows the format <code class="code docutils literal notranslate"><span class="pre">'OSN/{receptor_name}/{osn_index}/OTP'</span></code>, where the <code class="code docutils literal notranslate"><span class="pre">osn_index</span></code> specifies the index of the OSN expressing this specific <code class="code docutils literal notranslate"><span class="pre">receptor_name</span></code>. The value for <code class="code docutils literal notranslate"><span class="pre">osn_index</span></code> is from <code class="code docutils literal notranslate"><span class="pre">0</span></code> to <code class="code docutils literal notranslate"><span class="pre">eoscircuits.ant.ANTConfig.NO[r]-1</span></code> where <code class="code docutils literal notranslate"><span class="pre">r</span></code> is the index of the specific <code class="code docutils literal notranslate"><span class="pre">receptor_name</span></code> within the :code:<code class="code docutils literal notranslate"><span class="pre">eoscircuits.ant.ANTConfig.receptors</span></code> array.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">eoscircuits.ant.ANTConfig.osn_bsgs</span></code>: the naming scheme follows the format <code class="code docutils literal notranslate"><span class="pre">'OSN/{receptor_name}/{osn_index}/BSG'</span></code></p></li>
+</ol>
+<p>After the <code class="code docutils literal notranslate"><span class="pre">Config</span></code> object is instantiated, the main entry point for each <code class="code docutils literal notranslate"><span class="pre">Circuit</span></code> is the <em>classmethod</em> <code class="code docutils literal notranslate"><span class="pre">Circuit.create_from_config</span></code>,
+which will create a <a class="reference external" href="https://networkx.org/documentation/stable/reference/classes/multidigraph.html?highlight=multidigraph#networkx.MultiDiGraph">networkx.MultiDiGraph</a> (as attribute <code class="code docutils literal notranslate"><span class="pre">Circuit.graph</span></code>) that is compatible with our simulation engine of choice: <a class="reference external" href="https://github.com/neurokernel/neurokernel">NeuroKernel</a> using <a class="reference external" href="https://github.com/neurokernel/neurodriver">NeuroDriver</a> as circuit specification API.</p>
+<p>Each instance of <code class="code docutils literal notranslate"><span class="pre">Circuit</span></code> can be simulated by calling the <code class="code docutils literal notranslate"><span class="pre">Circuit.simulate</span></code> function. However, you need to specify
+the inputs to pass to the circuit as well as the outputs that you would like to record. The inputs are specified as instances
+of <code class="code docutils literal notranslate"><span class="pre">neurokernel.LPU.InputProcessors</span></code> and the outputs (specified as the <code class="code docutils literal notranslate"><span class="pre">record_var_list</span></code> argument to <code class="code docutils literal notranslate"><span class="pre">Circuit.simulate</span></code>)
+is a list of tuple of the form <code class="code docutils literal notranslate"><span class="pre">(variable_name,</span> <span class="pre">node_ids)</span></code>. The simulation will return a tuple of 3 elements that correspond to
+the <a class="reference external" href="https://github.com/neurokernel/neurodriver/tree/master/neurokernel/LPU/InputProcessors">InputProcessor</a>, <a class="reference external" href="https://github.com/neurokernel/neurodriver">OutputProcessor</a> and the <a class="reference external" href="https://github.com/neurokernel/neurodriver/blob/master/neurokernel/LPU/LPU.py">LPU</a> that, together, completely specifies an executable circuit for <a class="reference external" href="https://github.com/neurokernel/neurodriver">NeuroDriver</a>.</p>
+<div class="section" id="circuit-modules">
+<h3>Circuit Modules<a class="headerlink" href="#circuit-modules" title="Permalink to this headline">¶</a></h3>
+<p>Using the API specified above, <em>EOSCircuits</em> provides the following 3 modules to model the <em>Drosophila</em> olfactory system:</p>
+<ol class="arabic simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">eoscircuits.ant</span></code>: Antenna Circuit</p>
+<ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">eoscircuits.ant.ANTConfig</span></code></p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">eoscircuits.ant.ANTCircuit</span></code></p></li>
+</ul>
+</li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">eoscircuits.al</span></code>: Antennal Lobe Circuit</p>
+<ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">eoscircuits.ant.ALConfig</span></code>, subclassed from <code class="code docutils literal notranslate"><span class="pre">eoscircuits.ant.ANTConfig</span></code></p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">eoscircuits.ant.ALCircuit</span></code></p></li>
+</ul>
+</li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">eoscircuits.mb</span></code>: Mushroom Body Circuit</p>
+<ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">eoscircuits.ant.MBConfig</span></code> subclassed from <code class="code docutils literal notranslate"><span class="pre">eoscircuits.ant.ALConfig</span></code></p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">eoscircuits.ant.MBCircuit</span></code></p></li>
+</ul>
+</li>
+</ol>
+</div>
+</div>
+<div class="section" id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li><p><a class="reference external" href="https://doi.org/10.1371/journal.pcbi.1007751">Lazar, A. A., &amp; Yeh, C.-H. (2020).</a> <em>A molecular odorant transduction model and the complexity of spatio-temporal encoding in the Drosophila antenna</em>. PLOS Computational Biology.</p></li>
+<li><p><a class="reference external" href="https://doi.org/10.1109/ICASSP40776.2020.9054588">Lazar, A. A., Liu, T., &amp; Yeh, C. H. (2020).</a> <em>An odorant encoding machine for sampling, reconstruction and robust representation of odorant identity</em>. ICASSP.</p></li>
+<li><p><a class="reference external" href="https://doi.org/10.7554/eLife.62362">Lazar, A. A., Liu, T., Turkcan, M. K., &amp; Zhou, Y. (2021).</a> <em>Accelerating with FlyBrainLab the discovery of the functional logic of the Drosophila brain in the connectomic era</em>. ELife.</p></li>
+</ol>
+</div>
+<div class="section" id="license">
+<h2>License<a class="headerlink" href="#license" title="Permalink to this headline">¶</a></h2>
+<p>Free software: BSD license</p>
+</div>
+<div class="section" id="credits">
+<h2>Credits<a class="headerlink" href="#credits" title="Permalink to this headline">¶</a></h2>
+<p>This package was created with <a class="reference external" href="https://github.com/audreyr/cookiecutter">Cookiecutter</a> and the <a class="reference external" href="https://github.com/audreyr/cookiecutter-pypackage">audreyr/cookiecutter-pypackage</a> project template.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="installation.html" class="btn btn-neutral float-right" title="Installation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="index.html" class="btn btn-neutral float-left" title="Welcome to EOScircuits’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, FlyBrainLab Dev Team.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

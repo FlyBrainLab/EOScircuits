@@ -1,0 +1,461 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>eoscircuits.basecircuit &mdash; EOScircuits 0.1.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> EOScircuits
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../readme.html">EOScircuits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules.html">eoscircuits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../authors.html">Credits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../history.html">History</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">EOScircuits</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+        
+      <li>eoscircuits.basecircuit</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for eoscircuits.basecircuit</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Base Circuit Class for EOS Circuits&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">copy</span>
+<span class="kn">from</span> <span class="nn">warnings</span> <span class="kn">import</span> <span class="n">warn</span>
+<span class="kn">from</span> <span class="nn">abc</span> <span class="kn">import</span> <span class="n">abstractclassmethod</span><span class="p">,</span> <span class="n">abstractproperty</span>
+<span class="kn">import</span> <span class="nn">typing</span> <span class="k">as</span> <span class="nn">tp</span>
+<span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span><span class="p">,</span> <span class="n">field</span>
+
+
+<div class="viewcode-block" id="EOSCircuitException"><a class="viewcode-back" href="../../eoscircuits.html#eoscircuits.basecircuit.EOSCircuitException">[docs]</a><span class="k">class</span> <span class="nc">EOSCircuitException</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Base EOS Circuit Exception&quot;&quot;&quot;</span>
+
+    <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="Config"><a class="viewcode-back" href="../../eoscircuits.html#eoscircuits.basecircuit.Config">[docs]</a><span class="nd">@dataclass</span>
+<span class="k">class</span> <span class="nc">Config</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;A Base Dataclass of EOS Configuration</span>
+
+<span class="sd">    :py:class:`Config` objects are full specifications of the executable circuit modules in</span>
+<span class="sd">    the :py:mod:`EOSCircuits` module. It is consumed by the</span>
+<span class="sd">    :py:meth:`Circuit.create_from_config` function to create instances of</span>
+<span class="sd">    EOS Executable Circuits.</span>
+
+<span class="sd">    Among others, :py:class:`Config` objects provide 3 types attributes:</span>
+
+<span class="sd">    1. Number of Nodes: :code:`N{x}`</span>
+
+<span class="sd">        * These are attributes that specify, for example, the number of receptor</span>
+<span class="sd">          types in the circuit is specified as</span>
+<span class="sd">          :py:obj:`~eoscircuits.antcircuits.circuit.ANTConfig.NR`</span>
+
+<span class="sd">    2. Node Ids:</span>
+
+<span class="sd">        * These are attributes that specify the unique node ids for every</span>
+<span class="sd">          neuron type in the circuit. For example,</span>
+<span class="sd">          :py:obj:`~eoscircuits.antcircuits.circuit.ANTConfig.osns` defines</span>
+<span class="sd">          all unique node ids of the osns.</span>
+
+<span class="sd">    3. Routing Table: :code:`{source_node_type}_to_{target_node_type}`</span>
+
+<span class="sd">        * These are attributes that specify how node types are connected together.</span>
+<span class="sd">          Routing tables are typically :py:class:`numpy.ndarray` of either</span>
+<span class="sd">          :py:class:`numpy.ndarray` of :code:`(int, int)` or :code:`(int, int)`,</span>
+<span class="sd">          where each entry is the integer indices of the source and target nodes in the</span>
+<span class="sd">          corresponding *Node Ids* list.</span>
+<span class="sd">        * For example, if the routing table :code:`osn_to_pn[0][1] = (1,2)` means that</span>
+<span class="sd">          the in the *0-th* receptor type, the *1st* OSN  is connected to the *2nd* PN</span>
+<span class="sd">          expressing this particular receptor type.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="nd">@abstractproperty</span>
+    <span class="k">def</span> <span class="nf">node_types</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">tp</span><span class="o">.</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+        <span class="sd">&quot;&quot;&quot;List of Recognized Node Types&quot;&quot;&quot;</span></div>
+
+
+<div class="viewcode-block" id="Circuit"><a class="viewcode-back" href="../../eoscircuits.html#eoscircuits.basecircuit.Circuit">[docs]</a><span class="nd">@dataclass</span><span class="p">(</span><span class="nb">repr</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">Circuit</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;A Dataclass of Base EOS Circuit&quot;&quot;&quot;</span>
+
+    <span class="n">graph</span><span class="p">:</span> <span class="n">nx</span><span class="o">.</span><span class="n">MultiDiGraph</span>
+    <span class="sd">&quot;&quot;&quot;Specification of Executable Graph Compatible with NeuroDriver&quot;&quot;&quot;</span>
+
+    <span class="n">config</span><span class="p">:</span> <span class="n">Config</span>
+    <span class="sd">&quot;&quot;&quot;Configuration of Circuit. Fully Specifies the Circuit&quot;&quot;&quot;</span>
+
+    <span class="n">extra_comps</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">List</span><span class="p">[</span><span class="s2">&quot;neurokernel.LPU.NDComponents.NDComponent&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span>
+        <span class="n">default_factory</span><span class="o">=</span><span class="nb">list</span>
+    <span class="p">)</span>
+    <span class="sd">&quot;&quot;&quot;Extra Components to be aded to NeuroKernel at Run Time&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="Circuit.create_from_config"><a class="viewcode-back" href="../../eoscircuits.html#eoscircuits.basecircuit.Circuit.create_from_config">[docs]</a>    <span class="nd">@abstractclassmethod</span>
+    <span class="k">def</span> <span class="nf">create_from_config</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span><span class="n">Config</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;eoscircuits.basecircuit.Circuit&quot;</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;class method that creates an instance of circuit from configuration&quot;&quot;&quot;</span></div>
+
+<div class="viewcode-block" id="Circuit.create_graph"><a class="viewcode-back" href="../../eoscircuits.html#eoscircuits.basecircuit.Circuit.create_graph">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">create_graph</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span><span class="n">Config</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">nx</span><span class="o">.</span><span class="n">MultiDiGraph</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;class method that creates an instance of networkx graph from configuration&quot;&quot;&quot;</span></div>
+
+    <span class="nd">@abstractproperty</span>
+    <span class="k">def</span> <span class="nf">inputs</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;input variable and uids dictionary&quot;&quot;&quot;</span>
+
+    <span class="nd">@abstractproperty</span>
+    <span class="k">def</span> <span class="nf">outputs</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;output variable and uids dictionary&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="Circuit.simulate"><a class="viewcode-back" href="../../eoscircuits.html#eoscircuits.basecircuit.Circuit.simulate">[docs]</a>    <span class="k">def</span> <span class="nf">simulate</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">t</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+        <span class="n">inputs</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Any</span><span class="p">,</span>
+        <span class="n">record_var_list</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Iterable</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">tp</span><span class="o">.</span><span class="n">Iterable</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">sample_interval</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">tp</span><span class="o">.</span><span class="n">Tuple</span><span class="p">[</span><span class="s2">&quot;InputProcessor&quot;</span><span class="p">,</span> <span class="s2">&quot;OuputProcessor&quot;</span><span class="p">,</span> <span class="s2">&quot;LPU&quot;</span><span class="p">]:</span>
+        <span class="sd">&quot;&quot;&quot;Simulate The Circuit</span>
+<span class="sd">        Update Affinities and Change Circuit Accordingly</span>
+
+<span class="sd">        Arguments:</span>
+<span class="sd">            t: input time array</span>
+<span class="sd">            inputs: input data</span>
+
+<span class="sd">                * if is `BaseInputProcessor` instance, passed to LPU directly</span>
+<span class="sd">                * if is dictionary, passed to `ArrayInputProcessor` if is compatible</span>
+<span class="sd">            record_var_list: :code:`[(var, uids)]` list of tuples of variables to be</span>
+<span class="sd">                recorded during simulation</span>
+<span class="sd">            sample_interval: interval at which output is recorded</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            A tuple with the follow 3 components:</span>
+
+<span class="sd">            * fi: :py:class:`~neurokernel.LPU.InputProcerssors.BaseInputProcessor.BaseInputProcessor`</span>
+<span class="sd">            * fo: :py:class:`~neurokernel.LPU.OutputProcessors.OutputRecorder.OutputRecorder`</span>
+<span class="sd">            * lpu: :py:class:`~neurokernel.LPU.LPU.LPU`</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="kn">from</span> <span class="nn">neurokernel.LPU.LPU</span> <span class="kn">import</span> <span class="n">LPU</span>
+        <span class="kn">from</span> <span class="nn">neurokernel.LPU.InputProcessors.BaseInputProcessor</span> <span class="kn">import</span> <span class="p">(</span>
+            <span class="n">BaseInputProcessor</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="kn">from</span> <span class="nn">neurokernel.LPU.InputProcessors.ArrayInputProcessor</span> <span class="kn">import</span> <span class="p">(</span>
+            <span class="n">ArrayInputProcessor</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="kn">from</span> <span class="nn">neurokernel.LPU.OutputProcessors.OutputRecorder</span> <span class="kn">import</span> <span class="n">OutputRecorder</span>
+
+        <span class="n">dt</span> <span class="o">=</span> <span class="n">t</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="n">BaseInputProcessor</span><span class="p">):</span>
+            <span class="n">fi</span> <span class="o">=</span> <span class="p">[</span><span class="n">inputs</span><span class="p">]</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">))</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span>
+            <span class="n">inputs</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">BaseInputProcessor</span>
+        <span class="p">):</span>
+            <span class="n">fi</span> <span class="o">=</span> <span class="n">inputs</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">inputs</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+                <span class="k">assert</span> <span class="s2">&quot;uids&quot;</span> <span class="ow">in</span> <span class="n">data</span>
+                <span class="k">assert</span> <span class="s2">&quot;data&quot;</span> <span class="ow">in</span> <span class="n">data</span>
+                <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span>
+            <span class="n">fi</span> <span class="o">=</span> <span class="p">[</span><span class="n">ArrayInputProcessor</span><span class="p">(</span><span class="n">inputs</span><span class="p">)]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Input not understood&quot;</span><span class="p">)</span>
+        <span class="n">fo</span> <span class="o">=</span> <span class="n">OutputRecorder</span><span class="p">(</span><span class="n">record_var_list</span><span class="p">,</span> <span class="n">sample_interval</span><span class="o">=</span><span class="n">sample_interval</span><span class="p">)</span>
+        <span class="n">lpu</span> <span class="o">=</span> <span class="n">LPU</span><span class="p">(</span>
+            <span class="n">dt</span><span class="p">,</span>
+            <span class="s2">&quot;obj&quot;</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">graph</span><span class="p">,</span>
+            <span class="n">device</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+            <span class="nb">id</span><span class="o">=</span><span class="s2">&quot;EOS&quot;</span><span class="p">,</span>
+            <span class="n">input_processors</span><span class="o">=</span><span class="n">fi</span><span class="p">,</span>
+            <span class="n">output_processors</span><span class="o">=</span><span class="p">[</span><span class="n">fo</span><span class="p">],</span>
+            <span class="n">debug</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+            <span class="n">manager</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+            <span class="n">extra_comps</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">extra_comps</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">lpu</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">steps</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">fi</span><span class="p">,</span> <span class="n">fo</span><span class="p">,</span> <span class="n">lpu</span></div>
+
+<div class="viewcode-block" id="Circuit.update_graph_attributes"><a class="viewcode-back" href="../../eoscircuits.html#eoscircuits.basecircuit.Circuit.update_graph_attributes">[docs]</a>    <span class="k">def</span> <span class="nf">update_graph_attributes</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">data_dict</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span>
+        <span class="n">node_predictive</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">nx</span><span class="o">.</span><span class="n">classes</span><span class="o">.</span><span class="n">reportviews</span><span class="o">.</span><span class="n">NodeView</span><span class="p">],</span> <span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Update Attributes of the graph</span>
+
+<span class="sd">        Arguments:</span>
+<span class="sd">            data_dict: a dictionary of {attr: value} to be set for all filtered nodes</span>
+<span class="sd">            node_predictive: a function that filtering of nodes from</span>
+<span class="sd">              :py:func:`networkx.nodes(data=True)` call</span>
+
+<span class="sd">        Example:</span>
+<span class="sd">            &gt;&gt;&gt; circuit.update_graph_attributes(</span>
+<span class="sd">                    {&#39;sigma&#39;:1.},</span>
+<span class="sd">                    node_predictive=lambda key, val: val[&#39;class&#39;] == &#39;NoisyConnorStevens&#39;</span>
+<span class="sd">                )</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">node_predictive</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">node_predictive</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">node_id</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="kc">True</span>
+
+        <span class="n">node_uids</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">key</span> <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">nodes</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="k">if</span> <span class="n">node_predictive</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">val</span><span class="p">)</span>
+        <span class="p">]</span>
+        <span class="n">update_dict</span> <span class="o">=</span> <span class="p">{</span><span class="n">_id</span><span class="p">:</span> <span class="n">data_dict</span> <span class="k">for</span> <span class="n">_id</span> <span class="ow">in</span> <span class="n">node_uids</span><span class="p">}</span>
+        <span class="n">nx</span><span class="o">.</span><span class="n">set_node_attributes</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">graph</span><span class="p">,</span> <span class="n">update_dict</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Circuit.add_nodes_to_graph"><a class="viewcode-back" href="../../eoscircuits.html#eoscircuits.basecircuit.Circuit.add_nodes_to_graph">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">add_nodes_to_graph</span><span class="p">(</span>
+        <span class="bp">cls</span><span class="p">,</span>
+        <span class="n">G</span><span class="p">:</span> <span class="n">nx</span><span class="o">.</span><span class="n">MultiDiGraph</span><span class="p">,</span>
+        <span class="n">cfg</span><span class="p">:</span> <span class="n">Config</span><span class="p">,</span>
+        <span class="n">node_type</span><span class="p">:</span> <span class="s2">&quot;Config.node_types&quot;</span><span class="p">,</span>
+        <span class="n">ndcomp_clsname</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">ndcomp_module</span><span class="p">:</span> <span class="s2">&quot;Module&quot;</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Add Node to Graph</span>
+
+<span class="sd">        This method adds nodes to :py:attr:`Circuit.graph` with the appropriate</span>
+<span class="sd">        ids and attributes based on the :py:attr:`Circuit.Config` specifications.</span>
+
+<span class="sd">        Arguments:</span>
+<span class="sd">            G: The networkx graph that the node should be added to</span>
+<span class="sd">            cfg: The configuration instance</span>
+<span class="sd">            node_type: The node types permissible according to the configuration</span>
+<span class="sd">            ndcomp_clsname: The class name of the NeuroDriver component</span>
+<span class="sd">            ndcomp_module: The name of the ndcomp_module in the associated *model.py*</span>
+<span class="sd">              file for each circuit module. This name is used to pull the :code:`params`</span>
+<span class="sd">              from the correct class from the *model.py* file to add to the graph.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">node_type</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">cfg</span><span class="o">.</span><span class="n">node_types</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">EOSCircuitException</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;Attempting to add node of type </span><span class="si">{</span><span class="n">node_type</span><span class="si">}</span><span class="s2">, &quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;must be one of </span><span class="si">{</span><span class="n">cfg</span><span class="o">.</span><span class="n">node_types</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="p">)</span>
+        <span class="n">node_ids</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">cfg</span><span class="p">,</span> <span class="n">node_type</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">node_ids</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)):</span>
+            <span class="n">node_ids</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">node_ids</span><span class="p">,</span> <span class="p">[])</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">_ndcomp</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">ndcomp_module</span><span class="p">,</span> <span class="n">ndcomp_clsname</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">AttributeError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">EOSCircuitException</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;NDComponent </span><span class="si">{</span><span class="n">ndcomp_clsname</span><span class="si">}</span><span class="s2"> not found.&quot;</span><span class="p">)</span> <span class="kn">from</span> <span class="nn">e</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">EOSCircuitException</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;Unknown error encountered when adding NDComponent </span><span class="si">{</span><span class="n">ndcomp_clsname</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="p">)</span> <span class="kn">from</span> <span class="nn">e</span>
+
+        <span class="n">node_params</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">_ndcomp</span><span class="o">.</span><span class="n">params</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">any</span><span class="p">(</span>
+            <span class="p">[</span><span class="nb">hasattr</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="s2">&quot;__len__&quot;</span><span class="p">)</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">cfg</span><span class="o">.</span><span class="n">node_params</span><span class="p">[</span><span class="n">node_type</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">()]</span>
+        <span class="p">):</span>  <span class="c1"># only scalar parameter, set param to all nodes</span>
+            <span class="n">node_params</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">cfg</span><span class="o">.</span><span class="n">node_params</span><span class="p">[</span><span class="n">node_type</span><span class="p">])</span>
+            <span class="n">G</span><span class="o">.</span><span class="n">add_nodes_from</span><span class="p">(</span><span class="n">node_ids</span><span class="p">,</span> <span class="o">**</span><span class="p">{</span><span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="n">ndcomp_clsname</span><span class="p">},</span> <span class="o">**</span><span class="n">node_params</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>  <span class="c1"># iterable parameter, not supported</span>
+            <span class="n">new_params</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="n">key</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">node_ids</span><span class="p">),</span> <span class="n">val</span><span class="p">)</span> <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">isscalar</span><span class="p">(</span><span class="n">val</span><span class="p">)</span> <span class="k">else</span> <span class="n">val</span>
+                <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">cfg</span><span class="o">.</span><span class="n">node_params</span><span class="p">[</span><span class="n">node_type</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+            <span class="p">}</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">all</span><span class="p">(</span>
+                <span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">node_ids</span><span class="p">)</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">cfg</span><span class="o">.</span><span class="n">node_params</span><span class="p">[</span><span class="n">node_type</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">()]</span>
+            <span class="p">):</span>
+                <span class="k">raise</span> <span class="n">EOSCircuitException</span><span class="p">(</span>
+                    <span class="s2">&quot;Some node parameters have length not equal to number of nodes. &quot;</span>
+                    <span class="sa">f</span><span class="s2">&quot;Please add node_type &#39;</span><span class="si">{</span><span class="n">node_type</span><span class="si">}</span><span class="s2">&#39;&#39; to graph manually.&quot;</span>
+                <span class="p">)</span>
+
+            <span class="n">warn</span><span class="p">(</span>
+                <span class="s2">&quot;Adding nodes with iterable parameter values could lead to &quot;</span>
+                <span class="s2">&quot;parameters being assigned to the wrong node.&quot;</span>
+            <span class="p">)</span>
+
+            <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">new_params</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>  <span class="c1"># remove overlapping parameters</span>
+                <span class="n">_</span> <span class="o">=</span> <span class="n">node_params</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+
+            <span class="k">for</span> <span class="n">r</span><span class="p">,</span> <span class="n">_id</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">node_ids</span><span class="p">):</span>
+                <span class="n">G</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span>
+                    <span class="n">_id</span> <span class="o">**</span> <span class="p">{</span><span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="n">ndcomp_clsname</span><span class="p">},</span>
+                    <span class="o">**</span><span class="n">node_params</span><span class="p">,</span>
+                    <span class="o">**</span><span class="p">{</span><span class="n">key</span><span class="p">:</span> <span class="n">new_params</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="n">r</span><span class="p">]</span> <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">new_params</span><span class="o">.</span><span class="n">keys</span><span class="p">()},</span>
+                <span class="p">)</span></div></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, FlyBrainLab Dev Team.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

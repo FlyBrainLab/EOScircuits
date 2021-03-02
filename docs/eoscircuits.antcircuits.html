@@ -1,0 +1,581 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>eoscircuits.antcircuits package &mdash; EOScircuits 0.1.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="eoscircuits.antcircuits.NDComponents package" href="eoscircuits.antcircuits.NDComponents.html" />
+    <link rel="prev" title="eoscircuits.alcircuits.NDComponents package" href="eoscircuits.alcircuits.NDComponents.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> EOScircuits
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="readme.html">EOScircuits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">eoscircuits</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="eoscircuits.html">eoscircuits package</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="eoscircuits.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="eoscircuits.alcircuits.html">eoscircuits.alcircuits package</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">eoscircuits.antcircuits package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="eoscircuits.mbcircuits.html">eoscircuits.mbcircuits package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="eoscircuits.html#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="eoscircuits.html#module-eoscircuits.basecircuit">eoscircuits.basecircuit module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="eoscircuits.html#module-eoscircuits.plot">eoscircuits.plot module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="eoscircuits.html#module-eoscircuits">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="authors.html">Credits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="history.html">History</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">EOScircuits</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="modules.html">eoscircuits</a> &raquo;</li>
+        
+          <li><a href="eoscircuits.html">eoscircuits package</a> &raquo;</li>
+        
+      <li>eoscircuits.antcircuits package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/eoscircuits.antcircuits.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="eoscircuits-antcircuits-package">
+<h1>eoscircuits.antcircuits package<a class="headerlink" href="#eoscircuits-antcircuits-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="eoscircuits.antcircuits.NDComponents.html">eoscircuits.antcircuits.NDComponents package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="eoscircuits.antcircuits.NDComponents.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="eoscircuits.antcircuits.NDComponents.html#module-eoscircuits.antcircuits.NDComponents.NoisyConnorStevens">eoscircuits.antcircuits.NDComponents.NoisyConnorStevens module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="eoscircuits.antcircuits.NDComponents.html#module-eoscircuits.antcircuits.NDComponents.OTP">eoscircuits.antcircuits.NDComponents.OTP module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="eoscircuits.antcircuits.NDComponents.html#module-eoscircuits.antcircuits.NDComponents">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-eoscircuits.antcircuits.circuit">
+<span id="eoscircuits-antcircuits-circuit-module"></span><h2>eoscircuits.antcircuits.circuit module<a class="headerlink" href="#module-eoscircuits.antcircuits.circuit" title="Permalink to this headline">¶</a></h2>
+<p>Antenna Circuit</p>
+<p>This module supports:</p>
+<p>1. Changing the affinity values of each of the odorant-receptor pairs
+characterizing the input of the Odorant Transduction Process.
+2. Changing parameter values of the Biological Spike Generators (BSGs)
+associated with each OSN.
+3. Changing the number of OSNs expressing the same Odorant Receptor (OR) type.</p>
+<dl class="py class">
+<dt id="eoscircuits.antcircuits.circuit.ANTCircuit">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">eoscircuits.antcircuits.circuit.</span></code><code class="sig-name descname"><span class="pre">ANTCircuit</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">graph</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/eoscircuits/antcircuits/circuit.html#ANTCircuit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#eoscircuits.antcircuits.circuit.ANTCircuit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="eoscircuits.html#eoscircuits.basecircuit.Circuit" title="eoscircuits.basecircuit.Circuit"><code class="xref py py-class docutils literal notranslate"><span class="pre">eoscircuits.basecircuit.Circuit</span></code></a></p>
+<p>Antenna Circuit</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>graph</strong> (<em>networkx.classes.multidigraph.MultiDiGraph</em>) – </p></li>
+<li><p><strong>config</strong> (<a class="reference internal" href="#eoscircuits.antcircuits.circuit.ANTConfig" title="eoscircuits.antcircuits.circuit.ANTConfig"><em>eoscircuits.antcircuits.circuit.ANTConfig</em></a>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt id="eoscircuits.antcircuits.circuit.ANTCircuit.config">
+<code class="sig-name descname"><span class="pre">config</span></code><em class="property"><span class="pre">:</span> <a class="reference internal" href="#eoscircuits.antcircuits.circuit.ANTConfig" title="eoscircuits.antcircuits.circuit.ANTConfig"><span class="pre">eoscircuits.antcircuits.circuit.ANTConfig</span></a></em><a class="headerlink" href="#eoscircuits.antcircuits.circuit.ANTCircuit.config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Configuration of Circuit. Fully Specifies the Circuit</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="eoscircuits.antcircuits.circuit.ANTCircuit.create_from_config">
+<em class="property"><span class="pre">classmethod</span> </em><code class="sig-name descname"><span class="pre">create_from_config</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cfg</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/eoscircuits/antcircuits/circuit.html#ANTCircuit.create_from_config"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#eoscircuits.antcircuits.circuit.ANTCircuit.create_from_config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create Instance from Config</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>cfg</strong> – Config instance that specifies the configuration of the module</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A new ANTCircuit instance</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#eoscircuits.antcircuits.circuit.ANTCircuit" title="eoscircuits.antcircuits.circuit.ANTCircuit">eoscircuits.antcircuits.circuit.ANTCircuit</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="eoscircuits.antcircuits.circuit.ANTCircuit.create_graph">
+<em class="property"><span class="pre">classmethod</span> </em><code class="sig-name descname"><span class="pre">create_graph</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cfg</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/eoscircuits/antcircuits/circuit.html#ANTCircuit.create_graph"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#eoscircuits.antcircuits.circuit.ANTCircuit.create_graph" title="Permalink to this definition">¶</a></dt>
+<dd><p>class method that creates an instance of networkx graph from configuration</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>networkx.classes.multidigraph.MultiDiGraph</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="eoscircuits.antcircuits.circuit.ANTCircuit.extra_comps">
+<code class="sig-name descname"><span class="pre">extra_comps</span></code><em class="property"><span class="pre">:</span> <span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">NDComponent</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#eoscircuits.antcircuits.circuit.ANTCircuit.extra_comps" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extra Components to be aded to NeuroKernel at Run Time</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="eoscircuits.antcircuits.circuit.ANTCircuit.get_node_ids">
+<code class="sig-name descname"><span class="pre">get_node_ids</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">receptor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/eoscircuits/antcircuits/circuit.html#ANTCircuit.get_node_ids"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#eoscircuits.antcircuits.circuit.ANTCircuit.get_node_ids" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>node_type</strong> (<em>ANTConfig.node_types</em>) – </p></li>
+<li><p><strong>receptor</strong> (<em>Union</em><em>[</em><em>str</em><em>, </em><em>Iterable</em><em>[</em><em>str</em><em>]</em><em>]</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="eoscircuits.antcircuits.circuit.ANTCircuit.inputs">
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">inputs</span></code><a class="headerlink" href="#eoscircuits.antcircuits.circuit.ANTCircuit.inputs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Output OTP Nodes IDs and the Variables</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="eoscircuits.antcircuits.circuit.ANTCircuit.outputs">
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">outputs</span></code><a class="headerlink" href="#eoscircuits.antcircuits.circuit.ANTCircuit.outputs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Output BSG Nodes IDs and the Variables</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="eoscircuits.antcircuits.circuit.ANTCircuit.set_NO">
+<code class="sig-name descname"><span class="pre">set_NO</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">NO</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">receptor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">aff_noise_std</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/eoscircuits/antcircuits/circuit.html#ANTCircuit.set_NO"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#eoscircuits.antcircuits.circuit.ANTCircuit.set_NO" title="Permalink to this definition">¶</a></dt>
+<dd><p>Change number of OSNs expressing each receptor type</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>NO</strong> (<em>Union</em><em>[</em><em>int</em><em>, </em><em>Iterable</em><em>[</em><em>int</em><em>]</em><em>]</em>) – </p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="eoscircuits.antcircuits.circuit.ANTCircuit.set_affinities">
+<code class="sig-name descname"><span class="pre">set_affinities</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">receptors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/eoscircuits/antcircuits/circuit.html#ANTCircuit.set_affinities"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#eoscircuits.antcircuits.circuit.ANTCircuit.set_affinities" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set Affinity values.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Because binding rates are computed from affinities <code class="code docutils literal notranslate"><span class="pre">config.affs</span></code>
+and dissociations rates <code class="code docutils literal notranslate"><span class="pre">config.drs</span></code>, change affinities
+will have effect of changing binding rates but not dissociation
+rates.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="eoscircuits.antcircuits.circuit.ANTCircuit.set_bsg_params">
+<code class="sig-name descname"><span class="pre">set_bsg_params</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/eoscircuits/antcircuits/circuit.html#ANTCircuit.set_bsg_params"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#eoscircuits.antcircuits.circuit.ANTCircuit.set_bsg_params" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set parameter value of BSG nodes</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>key</strong> (<em>str</em>) – </p></li>
+<li><p><strong>value</strong> (<em>float</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="eoscircuits.antcircuits.circuit.ANTConfig">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">eoscircuits.antcircuits.circuit.</span></code><code class="sig-name descname"><span class="pre">ANTConfig</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="pre">NO</span></em>, <em class="sig-param"><span class="pre">affs</span></em>, <em class="sig-param"><span class="pre">receptors=None</span></em>, <em class="sig-param"><span class="pre">resting=None</span></em>, <em class="sig-param"><span class="pre">node_params=&lt;factory&gt;</span></em>, <em class="sig-param"><span class="pre">osns=None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/eoscircuits/antcircuits/circuit.html#ANTConfig"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#eoscircuits.antcircuits.circuit.ANTConfig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="eoscircuits.html#eoscircuits.basecircuit.Config" title="eoscircuits.basecircuit.Config"><code class="xref py py-class docutils literal notranslate"><span class="pre">eoscircuits.basecircuit.Config</span></code></a></p>
+<p>Configuration for Antenna Circuits</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>NO</strong> (<em>Iterable</em><em>[</em><em>Iterable</em><em>[</em><em>int</em><em>]</em><em>]</em>) – </p></li>
+<li><p><strong>affs</strong> (<em>Iterable</em><em>[</em><em>float</em><em>]</em>) – </p></li>
+<li><p><strong>receptors</strong> (<em>Iterable</em><em>[</em><em>str</em><em>]</em>) – </p></li>
+<li><p><strong>resting</strong> (<em>float</em>) – </p></li>
+<li><p><strong>node_params</strong> (<em>dict</em>) – </p></li>
+<li><p><strong>osns</strong> (<em>Iterable</em><em>[</em><em>Iterable</em><em>[</em><em>str</em><em>]</em><em>]</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt id="eoscircuits.antcircuits.circuit.ANTConfig.NO">
+<code class="sig-name descname"><span class="pre">NO</span></code><em class="property"><span class="pre">:</span> <span class="pre">Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#eoscircuits.antcircuits.circuit.ANTConfig.NO" title="Permalink to this definition">¶</a></dt>
+<dd><p>Number of OSNs per Receptor Type</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="eoscircuits.antcircuits.circuit.ANTConfig.NR">
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">NR</span></code><a class="headerlink" href="#eoscircuits.antcircuits.circuit.ANTConfig.NR" title="Permalink to this definition">¶</a></dt>
+<dd><p>Number of Receptors</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="eoscircuits.antcircuits.circuit.ANTConfig.affs">
+<code class="sig-name descname"><span class="pre">affs</span></code><em class="property"><span class="pre">:</span> <span class="pre">Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#eoscircuits.antcircuits.circuit.ANTConfig.affs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Affinity Values</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="eoscircuits.antcircuits.circuit.ANTConfig.brs">
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">brs</span></code><a class="headerlink" href="#eoscircuits.antcircuits.circuit.ANTConfig.brs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Binding Rates of the OTPs</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="eoscircuits.antcircuits.circuit.ANTConfig.drs">
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">drs</span></code><a class="headerlink" href="#eoscircuits.antcircuits.circuit.ANTConfig.drs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Binding Rates of the OTPs</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="eoscircuits.antcircuits.circuit.ANTConfig.node_params">
+<code class="sig-name descname"><span class="pre">node_params</span></code><em class="property"><span class="pre">:</span> <span class="pre">dict</span></em><a class="headerlink" href="#eoscircuits.antcircuits.circuit.ANTConfig.node_params" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parameters for each neuron type</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="eoscircuits.antcircuits.circuit.ANTConfig.node_types">
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">node_types</span></code><a class="headerlink" href="#eoscircuits.antcircuits.circuit.ANTConfig.node_types" title="Permalink to this definition">¶</a></dt>
+<dd><p>List of Recognized Node Types</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="eoscircuits.antcircuits.circuit.ANTConfig.osn_bsgs">
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">osn_bsgs</span></code><a class="headerlink" href="#eoscircuits.antcircuits.circuit.ANTConfig.osn_bsgs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="eoscircuits.antcircuits.circuit.ANTConfig.osn_otps">
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">osn_otps</span></code><a class="headerlink" href="#eoscircuits.antcircuits.circuit.ANTConfig.osn_otps" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="eoscircuits.antcircuits.circuit.ANTConfig.osns">
+<code class="sig-name descname"><span class="pre">osns</span></code><em class="property"><span class="pre">:</span> <span class="pre">Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"> <span class="pre">=</span> <span class="pre">None</span></em><a class="headerlink" href="#eoscircuits.antcircuits.circuit.ANTConfig.osns" title="Permalink to this definition">¶</a></dt>
+<dd><p>Ids of OSNs for each channel</p>
+<p>This is a list of list, where the outer list correspond to</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="eoscircuits.antcircuits.circuit.ANTConfig.receptors">
+<code class="sig-name descname"><span class="pre">receptors</span></code><em class="property"><span class="pre">:</span> <span class="pre">Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><em class="property"> <span class="pre">=</span> <span class="pre">None</span></em><a class="headerlink" href="#eoscircuits.antcircuits.circuit.ANTConfig.receptors" title="Permalink to this definition">¶</a></dt>
+<dd><p>Name of receptors of length NR</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="eoscircuits.antcircuits.circuit.ANTConfig.resting">
+<code class="sig-name descname"><span class="pre">resting</span></code><em class="property"><span class="pre">:</span> <span class="pre">float</span></em><em class="property"> <span class="pre">=</span> <span class="pre">None</span></em><a class="headerlink" href="#eoscircuits.antcircuits.circuit.ANTConfig.resting" title="Permalink to this definition">¶</a></dt>
+<dd><p>Resting OSN Spike Rates [Hz]</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="eoscircuits.antcircuits.circuit.ANTConfig.set_affs">
+<code class="sig-name descname"><span class="pre">set_affs</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">new_affs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/eoscircuits/antcircuits/circuit.html#ANTConfig.set_affs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#eoscircuits.antcircuits.circuit.ANTConfig.set_affs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="eoscircuits.antcircuits.circuit.ANTConfig.set_or_assert">
+<code class="sig-name descname"><span class="pre">set_or_assert</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">var</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">new_var</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/eoscircuits/antcircuits/circuit.html#ANTConfig.set_or_assert"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#eoscircuits.antcircuits.circuit.ANTConfig.set_or_assert" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set Variable or Check Dimensionality</p>
+<p>If <code class="code docutils literal notranslate"><span class="pre">var</span></code> to new_names if None and perform dimensionality checks</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>var</strong> (<em>Config.Attribute</em>) – old variable value</p></li>
+<li><p><strong>new_var</strong> (<em>Config.Attribute</em>) – new variable value</p></li>
+<li><p><strong>N</strong> (<em>numpy.ndarray</em>) – dimensionality for the variable, could be multi-dimensional</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>Config.Attribute</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="eoscircuits.antcircuits.circuit.ANTConfig.sigma">
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">sigma</span></code><a class="headerlink" href="#eoscircuits.antcircuits.circuit.ANTConfig.sigma" title="Permalink to this definition">¶</a></dt>
+<dd><p>Noisy Connor Stevens model Noise Level</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py exception">
+<dt id="eoscircuits.antcircuits.circuit.ANTException">
+<em class="property"><span class="pre">exception</span> </em><code class="sig-prename descclassname"><span class="pre">eoscircuits.antcircuits.circuit.</span></code><code class="sig-name descname"><span class="pre">ANTException</span></code><a class="reference internal" href="_modules/eoscircuits/antcircuits/circuit.html#ANTException"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#eoscircuits.antcircuits.circuit.ANTException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="eoscircuits.html#eoscircuits.basecircuit.EOSCircuitException" title="eoscircuits.basecircuit.EOSCircuitException"><code class="xref py py-class docutils literal notranslate"><span class="pre">eoscircuits.basecircuit.EOSCircuitException</span></code></a></p>
+<p>Base Antenna Exception</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-eoscircuits.antcircuits.model">
+<span id="eoscircuits-antcircuits-model-module"></span><h2>eoscircuits.antcircuits.model module<a class="headerlink" href="#module-eoscircuits.antcircuits.model" title="Permalink to this headline">¶</a></h2>
+<p>NeuroDriver Models and Utilities</p>
+<dl class="py class">
+<dt id="eoscircuits.antcircuits.model.NoisyConnorStevens">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">eoscircuits.antcircuits.model.</span></code><code class="sig-name descname"><span class="pre">NoisyConnorStevens</span></code><a class="reference internal" href="_modules/eoscircuits/antcircuits/model.html#NoisyConnorStevens"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#eoscircuits.antcircuits.model.NoisyConnorStevens" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Noisy Connor-Stevens Neuron Model</p>
+<p>F-I curve is controlled by <cite>sigma</cite> parameter</p>
+<p class="rubric">Notes</p>
+<p><cite>sigma</cite> value should be scaled by <cite>sqrt(dt)</cite> as <cite>sigma/sqrt(dt)</cite>
+where <cite>sigma</cite> is the standard deviation of the Brownian Motion</p>
+<dl class="py attribute">
+<dt id="eoscircuits.antcircuits.model.NoisyConnorStevens.params">
+<code class="sig-name descname"><span class="pre">params</span></code><em class="property"> <span class="pre">=</span> <span class="pre">{'EK':</span> <span class="pre">-72.0,</span> <span class="pre">'EL':</span> <span class="pre">-17.0,</span> <span class="pre">'ENa':</span> <span class="pre">55.0,</span> <span class="pre">'Ea':</span> <span class="pre">-75.0,</span> <span class="pre">'gK':</span> <span class="pre">20.0,</span> <span class="pre">'gL':</span> <span class="pre">0.3,</span> <span class="pre">'gNa':</span> <span class="pre">120.0,</span> <span class="pre">'ga':</span> <span class="pre">47.7,</span> <span class="pre">'hs':</span> <span class="pre">-12.0,</span> <span class="pre">'ms':</span> <span class="pre">-5.3,</span> <span class="pre">'ns':</span> <span class="pre">-4.3,</span> <span class="pre">'refperiod':</span> <span class="pre">1.0,</span> <span class="pre">'sigma':</span> <span class="pre">2.05}</span></em><a class="headerlink" href="#eoscircuits.antcircuits.model.NoisyConnorStevens.params" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="eoscircuits.antcircuits.model.NoisyConnorStevens.states">
+<code class="sig-name descname"><span class="pre">states</span></code><em class="property"> <span class="pre">=</span> <span class="pre">{'a':</span> <span class="pre">1.0,</span> <span class="pre">'b':</span> <span class="pre">1.0,</span> <span class="pre">'h':</span> <span class="pre">1.0,</span> <span class="pre">'m':</span> <span class="pre">0.0,</span> <span class="pre">'n':</span> <span class="pre">0.0,</span> <span class="pre">'refactory':</span> <span class="pre">0.0,</span> <span class="pre">'v1':</span> <span class="pre">-60.0,</span> <span class="pre">'v2':</span> <span class="pre">-60.0}</span></em><a class="headerlink" href="#eoscircuits.antcircuits.model.NoisyConnorStevens.states" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="eoscircuits.antcircuits.model.OTP">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">eoscircuits.antcircuits.model.</span></code><code class="sig-name descname"><span class="pre">OTP</span></code><a class="reference internal" href="_modules/eoscircuits/antcircuits/model.html#OTP"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#eoscircuits.antcircuits.model.OTP" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Odorant Transduction Process</p>
+<dl class="py attribute">
+<dt id="eoscircuits.antcircuits.model.OTP.params">
+<code class="sig-name descname"><span class="pre">params</span></code><em class="property"> <span class="pre">=</span> <span class="pre">{'Imax':</span> <span class="pre">150.159,</span> <span class="pre">'a1':</span> <span class="pre">45.0,</span> <span class="pre">'a2':</span> <span class="pre">199.574,</span> <span class="pre">'a3':</span> <span class="pre">2.539,</span> <span class="pre">'b1':</span> <span class="pre">0.8,</span> <span class="pre">'b2':</span> <span class="pre">51.887,</span> <span class="pre">'b3':</span> <span class="pre">0.9096,</span> <span class="pre">'br':</span> <span class="pre">1.0,</span> <span class="pre">'c':</span> <span class="pre">0.06546,</span> <span class="pre">'dr':</span> <span class="pre">10.0,</span> <span class="pre">'gamma':</span> <span class="pre">0.138,</span> <span class="pre">'kappa':</span> <span class="pre">9593.9,</span> <span class="pre">'p':</span> <span class="pre">1.0}</span></em><a class="headerlink" href="#eoscircuits.antcircuits.model.OTP.params" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="eoscircuits.antcircuits.model.OTP.states">
+<code class="sig-name descname"><span class="pre">states</span></code><em class="property"> <span class="pre">=</span> <span class="pre">{'duh':</span> <span class="pre">0.0,</span> <span class="pre">'uh':</span> <span class="pre">0.0,</span> <span class="pre">'v':</span> <span class="pre">0.0,</span> <span class="pre">'x1':</span> <span class="pre">0.0,</span> <span class="pre">'x2':</span> <span class="pre">0.0,</span> <span class="pre">'x3':</span> <span class="pre">0.0}</span></em><a class="headerlink" href="#eoscircuits.antcircuits.model.OTP.states" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-eoscircuits.antcircuits">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-eoscircuits.antcircuits" title="Permalink to this headline">¶</a></h2>
+<p>Antenna Circuit</p>
+<p>This module supports:</p>
+<ol class="arabic simple">
+<li><p>Changing the affinity values of each of the odorant-receptor pairs characterizing the input of the Odorant Transduction Process.</p></li>
+<li><p>Changing parameter values of the Biological Spike Generators (BSGs) associated with each OSN.</p></li>
+<li><p>Changing the number of OSNs expressing the same Odorant Receptor (OR) type.</p></li>
+</ol>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="eoscircuits.antcircuits.NDComponents.html" class="btn btn-neutral float-right" title="eoscircuits.antcircuits.NDComponents package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="eoscircuits.alcircuits.NDComponents.html" class="btn btn-neutral float-left" title="eoscircuits.alcircuits.NDComponents package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, FlyBrainLab Dev Team.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

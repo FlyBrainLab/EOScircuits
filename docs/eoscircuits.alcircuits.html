@@ -1,0 +1,720 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>eoscircuits.alcircuits package &mdash; EOScircuits 0.1.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="eoscircuits.alcircuits.NDComponents package" href="eoscircuits.alcircuits.NDComponents.html" />
+    <link rel="prev" title="eoscircuits package" href="eoscircuits.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> EOScircuits
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="readme.html">EOScircuits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">eoscircuits</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="eoscircuits.html">eoscircuits package</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="eoscircuits.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">eoscircuits.alcircuits package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="eoscircuits.antcircuits.html">eoscircuits.antcircuits package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="eoscircuits.mbcircuits.html">eoscircuits.mbcircuits package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="eoscircuits.html#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="eoscircuits.html#module-eoscircuits.basecircuit">eoscircuits.basecircuit module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="eoscircuits.html#module-eoscircuits.plot">eoscircuits.plot module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="eoscircuits.html#module-eoscircuits">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="authors.html">Credits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="history.html">History</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">EOScircuits</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="modules.html">eoscircuits</a> &raquo;</li>
+        
+          <li><a href="eoscircuits.html">eoscircuits package</a> &raquo;</li>
+        
+      <li>eoscircuits.alcircuits package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/eoscircuits.alcircuits.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="eoscircuits-alcircuits-package">
+<h1>eoscircuits.alcircuits package<a class="headerlink" href="#eoscircuits-alcircuits-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="eoscircuits.alcircuits.NDComponents.html">eoscircuits.alcircuits.NDComponents package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="eoscircuits.alcircuits.NDComponents.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="eoscircuits.alcircuits.NDComponents.html#module-eoscircuits.alcircuits.NDComponents.Alpha">eoscircuits.alcircuits.NDComponents.Alpha module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="eoscircuits.alcircuits.NDComponents.html#module-eoscircuits.alcircuits.NDComponents.LeakyIAF">eoscircuits.alcircuits.NDComponents.LeakyIAF module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="eoscircuits.alcircuits.NDComponents.html#module-eoscircuits.alcircuits.NDComponents.OSNAxt">eoscircuits.alcircuits.NDComponents.OSNAxt module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="eoscircuits.alcircuits.NDComponents.html#module-eoscircuits.alcircuits.NDComponents.OSNAxt2">eoscircuits.alcircuits.NDComponents.OSNAxt2 module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="eoscircuits.alcircuits.NDComponents.html#module-eoscircuits.alcircuits.NDComponents.PN">eoscircuits.alcircuits.NDComponents.PN module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="eoscircuits.alcircuits.NDComponents.html#module-eoscircuits.alcircuits.NDComponents.PostLN">eoscircuits.alcircuits.NDComponents.PostLN module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="eoscircuits.alcircuits.NDComponents.html#module-eoscircuits.alcircuits.NDComponents.PreLN">eoscircuits.alcircuits.NDComponents.PreLN module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="eoscircuits.alcircuits.NDComponents.html#module-eoscircuits.alcircuits.NDComponents">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-eoscircuits.alcircuits.circuit">
+<span id="eoscircuits-alcircuits-circuit-module"></span><h2>eoscircuits.alcircuits.circuit module<a class="headerlink" href="#module-eoscircuits.alcircuits.circuit" title="Permalink to this headline">¶</a></h2>
+<p>Antennal Lobe Circuit</p>
+<p>This module supports:</p>
+<p>1. Changing parameter values of Biological Spike Generators (BSGs) associated with each
+of the Local and Projection Neurons,
+2. Changing the number and connectivity of Projection Neurons innervating a given AL
+Glomerulus,
+3. Changing the number and connectivity of Local Neurons in the Predictive Coding and
+ON-OFF circuits of the AL</p>
+<dl class="py class">
+<dt id="eoscircuits.alcircuits.circuit.ALCircuit">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">eoscircuits.alcircuits.circuit.</span></code><code class="sig-name descname"><span class="pre">ALCircuit</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">graph</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/eoscircuits/alcircuits/circuit.html#ALCircuit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#eoscircuits.alcircuits.circuit.ALCircuit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="eoscircuits.html#eoscircuits.basecircuit.Circuit" title="eoscircuits.basecircuit.Circuit"><code class="xref py py-class docutils literal notranslate"><span class="pre">eoscircuits.basecircuit.Circuit</span></code></a></p>
+<p>Antennal Lobe Circuit</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>graph</strong> (<em>networkx.classes.multidigraph.MultiDiGraph</em>) – </p></li>
+<li><p><strong>config</strong> (<a class="reference internal" href="#eoscircuits.alcircuits.circuit.ALConfig" title="eoscircuits.alcircuits.circuit.ALConfig"><em>eoscircuits.alcircuits.circuit.ALConfig</em></a>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt id="eoscircuits.alcircuits.circuit.ALCircuit.config">
+<code class="sig-name descname"><span class="pre">config</span></code><em class="property"><span class="pre">:</span> <a class="reference internal" href="#eoscircuits.alcircuits.circuit.ALConfig" title="eoscircuits.alcircuits.circuit.ALConfig"><span class="pre">eoscircuits.alcircuits.circuit.ALConfig</span></a></em><a class="headerlink" href="#eoscircuits.alcircuits.circuit.ALCircuit.config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Configuration of Circuit. Fully Specifies the Circuit</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="eoscircuits.alcircuits.circuit.ALCircuit.create_from_config">
+<em class="property"><span class="pre">classmethod</span> </em><code class="sig-name descname"><span class="pre">create_from_config</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cfg</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/eoscircuits/alcircuits/circuit.html#ALCircuit.create_from_config"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#eoscircuits.alcircuits.circuit.ALCircuit.create_from_config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create Instance from Config</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>cfg</strong> – Config instance that specifies the configuration of the module</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A new ANTCircuit instance</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#eoscircuits.alcircuits.circuit.ALCircuit" title="eoscircuits.alcircuits.circuit.ALCircuit">eoscircuits.alcircuits.circuit.ALCircuit</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="eoscircuits.alcircuits.circuit.ALCircuit.create_graph">
+<em class="property"><span class="pre">classmethod</span> </em><code class="sig-name descname"><span class="pre">create_graph</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cfg</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/eoscircuits/alcircuits/circuit.html#ALCircuit.create_graph"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#eoscircuits.alcircuits.circuit.ALCircuit.create_graph" title="Permalink to this definition">¶</a></dt>
+<dd><p>class method that creates an instance of networkx graph from configuration</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>networkx.classes.multidigraph.MultiDiGraph</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="eoscircuits.alcircuits.circuit.ALCircuit.extra_comps">
+<code class="sig-name descname"><span class="pre">extra_comps</span></code><em class="property"><span class="pre">:</span> <span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">NDComponent</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#eoscircuits.alcircuits.circuit.ALCircuit.extra_comps" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extra Components to be aded to NeuroKernel at Run Time</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="eoscircuits.alcircuits.circuit.ALCircuit.get_node_ids">
+<code class="sig-name descname"><span class="pre">get_node_ids</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">receptor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/eoscircuits/alcircuits/circuit.html#ALCircuit.get_node_ids"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#eoscircuits.alcircuits.circuit.ALCircuit.get_node_ids" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>node_type</strong> (<em>ALConfig.node_types</em>) – </p></li>
+<li><p><strong>receptor</strong> (<em>Union</em><em>[</em><em>str</em><em>, </em><em>Iterable</em><em>[</em><em>str</em><em>]</em><em>]</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="eoscircuits.alcircuits.circuit.ALCircuit.inputs">
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">inputs</span></code><a class="headerlink" href="#eoscircuits.alcircuits.circuit.ALCircuit.inputs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Output OTP Nodes IDs and the Variables</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>OTPs with input variable <cite>conc</cite></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="eoscircuits.alcircuits.circuit.ALCircuit.outputs">
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">outputs</span></code><a class="headerlink" href="#eoscircuits.alcircuits.circuit.ALCircuit.outputs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Output BSG Nodes IDs and the Variables</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>PNs with output variable <cite>r</cite></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="eoscircuits.alcircuits.circuit.ALCircuit.set_neuron_number">
+<code class="sig-name descname"><span class="pre">set_neuron_number</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">number</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">receptor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/eoscircuits/alcircuits/circuit.html#ALCircuit.set_neuron_number"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#eoscircuits.alcircuits.circuit.ALCircuit.set_neuron_number" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set Number of Neurons and change Routing Table Appropriately</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>node_type</strong> (<em>ALConfig.node_types</em>) – </p></li>
+<li><p><strong>number</strong> (<em>int</em>) – </p></li>
+<li><p><strong>receptor</strong> (<em>Union</em><em>[</em><em>str</em><em>, </em><em>Iterable</em><em>[</em><em>str</em><em>]</em><em>]</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="#eoscircuits.alcircuits.circuit.ALCircuit" title="eoscircuits.alcircuits.circuit.ALCircuit">ALCircuit</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="eoscircuits.alcircuits.circuit.ALCircuit.set_node_params">
+<code class="sig-name descname"><span class="pre">set_node_params</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">receptor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/eoscircuits/alcircuits/circuit.html#ALCircuit.set_node_params"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#eoscircuits.alcircuits.circuit.ALCircuit.set_node_params" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set Parameter Value of selected Nodes</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>node_type</strong> (<em>ALConfig.node_types</em>) – </p></li>
+<li><p><strong>key</strong> (<em>str</em>) – </p></li>
+<li><p><strong>value</strong> (<em>float</em>) – </p></li>
+<li><p><strong>receptor</strong> (<em>Union</em><em>[</em><em>str</em><em>, </em><em>Iterable</em><em>[</em><em>str</em><em>]</em><em>]</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="eoscircuits.alcircuits.circuit.ALCircuit.set_routing">
+<code class="sig-name descname"><span class="pre">set_routing</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">table</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">receptor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/eoscircuits/alcircuits/circuit.html#ALCircuit.set_routing"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#eoscircuits.alcircuits.circuit.ALCircuit.set_routing" title="Permalink to this definition">¶</a></dt>
+<dd><p>Seting Routing Table in Antennal Lobe</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>table</strong> (<em>numpy.ndarray</em>) – </p></li>
+<li><p><strong>name</strong> (<em>str</em>) – </p></li>
+<li><p><strong>receptor</strong> (<em>Optional</em><em>[</em><em>Union</em><em>[</em><em>str</em><em>, </em><em>Iterable</em><em>[</em><em>str</em><em>]</em><em>]</em><em>]</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="eoscircuits.alcircuits.circuit.ALConfig">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">eoscircuits.alcircuits.circuit.</span></code><code class="sig-name descname"><span class="pre">ALConfig</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="pre">NO:Iterable[Iterable[int]],</span> <span class="pre">affs:Iterable[float],</span> <span class="pre">receptors:Iterable[str]=None,</span> <span class="pre">resting:float=None,</span> <span class="pre">node_params:dict=&lt;factory&gt;,</span> <span class="pre">osns:Iterable[Iterable[str]]=None,</span> <span class="pre">NP:Union[int,</span> <span class="pre">Iterable[int]]=None,</span> <span class="pre">NPreLN:int=None,</span> <span class="pre">NPosteLN:Union[int,</span> <span class="pre">Iterable[int]]=None,</span> <span class="pre">NPostiLN:Union[int,</span> <span class="pre">Iterable[int]]=None,</span> <span class="pre">prelns:Iterable[str]=None,</span> <span class="pre">postelns:Iterable[Iterable[str]]=None,</span> <span class="pre">postilns:Iterable[Iterable[str]]=None,</span> <span class="pre">pns:Iterable[Iterable[str]]=None,</span> <span class="pre">osn_to_preln:Iterable[Iterable[float]]=None,</span> <span class="pre">osn_to_postiln:Iterable[Iterable[float]]=None,</span> <span class="pre">osn_to_posteln:Iterable[Iterable[float]]=None,</span> <span class="pre">preln_to_axt:Iterable[Iterable[float]]=None,</span> <span class="pre">axt_to_pn:Iterable[Iterable[float]]=None,</span> <span class="pre">postiln_to_pn:Iterable[Iterable[float]]=None,</span> <span class="pre">posteln_to_pn:Iterable[Iterable[float]]=None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/eoscircuits/alcircuits/circuit.html#ALConfig"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#eoscircuits.alcircuits.circuit.ALConfig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="eoscircuits.antcircuits.html#eoscircuits.antcircuits.circuit.ANTConfig" title="eoscircuits.antcircuits.circuit.ANTConfig"><code class="xref py py-class docutils literal notranslate"><span class="pre">eoscircuits.antcircuits.circuit.ANTConfig</span></code></a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>NO</strong> (<em>Iterable</em><em>[</em><em>Iterable</em><em>[</em><em>int</em><em>]</em><em>]</em>) – </p></li>
+<li><p><strong>affs</strong> (<em>Iterable</em><em>[</em><em>float</em><em>]</em>) – </p></li>
+<li><p><strong>receptors</strong> (<em>Iterable</em><em>[</em><em>str</em><em>]</em>) – </p></li>
+<li><p><strong>resting</strong> (<em>float</em>) – </p></li>
+<li><p><strong>node_params</strong> (<em>dict</em>) – </p></li>
+<li><p><strong>osns</strong> (<em>Iterable</em><em>[</em><em>Iterable</em><em>[</em><em>str</em><em>]</em><em>]</em>) – </p></li>
+<li><p><strong>NP</strong> (<em>Union</em><em>[</em><em>int</em><em>, </em><em>Iterable</em><em>[</em><em>int</em><em>]</em><em>]</em>) – </p></li>
+<li><p><strong>NPreLN</strong> (<em>int</em>) – </p></li>
+<li><p><strong>NPosteLN</strong> (<em>Union</em><em>[</em><em>int</em><em>, </em><em>Iterable</em><em>[</em><em>int</em><em>]</em><em>]</em>) – </p></li>
+<li><p><strong>NPostiLN</strong> (<em>Union</em><em>[</em><em>int</em><em>, </em><em>Iterable</em><em>[</em><em>int</em><em>]</em><em>]</em>) – </p></li>
+<li><p><strong>prelns</strong> (<em>Iterable</em><em>[</em><em>str</em><em>]</em>) – </p></li>
+<li><p><strong>postelns</strong> (<em>Iterable</em><em>[</em><em>Iterable</em><em>[</em><em>str</em><em>]</em><em>]</em>) – </p></li>
+<li><p><strong>postilns</strong> (<em>Iterable</em><em>[</em><em>Iterable</em><em>[</em><em>str</em><em>]</em><em>]</em>) – </p></li>
+<li><p><strong>pns</strong> (<em>Iterable</em><em>[</em><em>Iterable</em><em>[</em><em>str</em><em>]</em><em>]</em>) – </p></li>
+<li><p><strong>osn_to_preln</strong> (<em>Iterable</em><em>[</em><em>Iterable</em><em>[</em><em>float</em><em>]</em><em>]</em>) – </p></li>
+<li><p><strong>osn_to_postiln</strong> (<em>Iterable</em><em>[</em><em>Iterable</em><em>[</em><em>float</em><em>]</em><em>]</em>) – </p></li>
+<li><p><strong>osn_to_posteln</strong> (<em>Iterable</em><em>[</em><em>Iterable</em><em>[</em><em>float</em><em>]</em><em>]</em>) – </p></li>
+<li><p><strong>preln_to_axt</strong> (<em>Iterable</em><em>[</em><em>Iterable</em><em>[</em><em>float</em><em>]</em><em>]</em>) – </p></li>
+<li><p><strong>axt_to_pn</strong> (<em>Iterable</em><em>[</em><em>Iterable</em><em>[</em><em>float</em><em>]</em><em>]</em>) – </p></li>
+<li><p><strong>postiln_to_pn</strong> (<em>Iterable</em><em>[</em><em>Iterable</em><em>[</em><em>float</em><em>]</em><em>]</em>) – </p></li>
+<li><p><strong>posteln_to_pn</strong> (<em>Iterable</em><em>[</em><em>Iterable</em><em>[</em><em>float</em><em>]</em><em>]</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt id="eoscircuits.alcircuits.circuit.ALConfig.NP">
+<code class="sig-name descname"><span class="pre">NP</span></code><em class="property"><span class="pre">:</span> <span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span> </span><span class="pre">Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"> <span class="pre">=</span> <span class="pre">None</span></em><a class="headerlink" href="#eoscircuits.alcircuits.circuit.ALConfig.NP" title="Permalink to this definition">¶</a></dt>
+<dd><p>Number of PNs, organized by Receptor Type</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="eoscircuits.alcircuits.circuit.ALConfig.NPosteLN">
+<code class="sig-name descname"><span class="pre">NPosteLN</span></code><em class="property"><span class="pre">:</span> <span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span> </span><span class="pre">Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"> <span class="pre">=</span> <span class="pre">None</span></em><a class="headerlink" href="#eoscircuits.alcircuits.circuit.ALConfig.NPosteLN" title="Permalink to this definition">¶</a></dt>
+<dd><p>Number of Post-synaptic Excitatory Local Neurons, organized by Receptor Type</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="eoscircuits.alcircuits.circuit.ALConfig.NPostiLN">
+<code class="sig-name descname"><span class="pre">NPostiLN</span></code><em class="property"><span class="pre">:</span> <span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span> </span><span class="pre">Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"> <span class="pre">=</span> <span class="pre">None</span></em><a class="headerlink" href="#eoscircuits.alcircuits.circuit.ALConfig.NPostiLN" title="Permalink to this definition">¶</a></dt>
+<dd><p>Number of Post-synaptic Inhibitory Local Neurons, organized by Receptor Type</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="eoscircuits.alcircuits.circuit.ALConfig.NPreLN">
+<code class="sig-name descname"><span class="pre">NPreLN</span></code><em class="property"><span class="pre">:</span> <span class="pre">int</span></em><em class="property"> <span class="pre">=</span> <span class="pre">None</span></em><a class="headerlink" href="#eoscircuits.alcircuits.circuit.ALConfig.NPreLN" title="Permalink to this definition">¶</a></dt>
+<dd><p>Number of Pre-synaptic Local Neurons</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="eoscircuits.alcircuits.circuit.ALConfig.as_node_ids">
+<code class="sig-name descname"><span class="pre">as_node_ids</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">table</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">source</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/eoscircuits/alcircuits/circuit.html#ALConfig.as_node_ids"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#eoscircuits.alcircuits.circuit.ALConfig.as_node_ids" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert Routing Table’s indices to node Ids</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>table</strong> – routing table</p></li>
+<li><p><strong>source</strong> – source node ids</p></li>
+<li><p><strong>target</strong> – target node ids</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A flattenend list of all [source, target] node ids</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>List[List[str]]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="eoscircuits.alcircuits.circuit.ALConfig.axt_to_pn">
+<code class="sig-name descname"><span class="pre">axt_to_pn</span></code><em class="property"><span class="pre">:</span> <span class="pre">Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"> <span class="pre">=</span> <span class="pre">None</span></em><a class="headerlink" href="#eoscircuits.alcircuits.circuit.ALConfig.axt_to_pn" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="eoscircuits.alcircuits.circuit.ALConfig.default_axt_to_pn">
+<code class="sig-name descname"><span class="pre">default_axt_to_pn</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/eoscircuits/alcircuits/circuit.html#ALConfig.default_axt_to_pn"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#eoscircuits.alcircuits.circuit.ALConfig.default_axt_to_pn" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="eoscircuits.alcircuits.circuit.ALConfig.default_osn_to_posteln">
+<code class="sig-name descname"><span class="pre">default_osn_to_posteln</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/eoscircuits/alcircuits/circuit.html#ALConfig.default_osn_to_posteln"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#eoscircuits.alcircuits.circuit.ALConfig.default_osn_to_posteln" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="eoscircuits.alcircuits.circuit.ALConfig.default_osn_to_postiln">
+<code class="sig-name descname"><span class="pre">default_osn_to_postiln</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/eoscircuits/alcircuits/circuit.html#ALConfig.default_osn_to_postiln"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#eoscircuits.alcircuits.circuit.ALConfig.default_osn_to_postiln" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="eoscircuits.alcircuits.circuit.ALConfig.default_osn_to_preln">
+<code class="sig-name descname"><span class="pre">default_osn_to_preln</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/eoscircuits/alcircuits/circuit.html#ALConfig.default_osn_to_preln"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#eoscircuits.alcircuits.circuit.ALConfig.default_osn_to_preln" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="eoscircuits.alcircuits.circuit.ALConfig.default_posteln_to_pn">
+<code class="sig-name descname"><span class="pre">default_posteln_to_pn</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/eoscircuits/alcircuits/circuit.html#ALConfig.default_posteln_to_pn"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#eoscircuits.alcircuits.circuit.ALConfig.default_posteln_to_pn" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="eoscircuits.alcircuits.circuit.ALConfig.default_postiln_to_pn">
+<code class="sig-name descname"><span class="pre">default_postiln_to_pn</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/eoscircuits/alcircuits/circuit.html#ALConfig.default_postiln_to_pn"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#eoscircuits.alcircuits.circuit.ALConfig.default_postiln_to_pn" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="eoscircuits.alcircuits.circuit.ALConfig.default_preln_to_axt">
+<code class="sig-name descname"><span class="pre">default_preln_to_axt</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/eoscircuits/alcircuits/circuit.html#ALConfig.default_preln_to_axt"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#eoscircuits.alcircuits.circuit.ALConfig.default_preln_to_axt" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="eoscircuits.alcircuits.circuit.ALConfig.node_types">
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">node_types</span></code><a class="headerlink" href="#eoscircuits.alcircuits.circuit.ALConfig.node_types" title="Permalink to this definition">¶</a></dt>
+<dd><p>List of Recognized Node Types</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="eoscircuits.alcircuits.circuit.ALConfig.osn_alphas">
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">osn_alphas</span></code><a class="headerlink" href="#eoscircuits.alcircuits.circuit.ALConfig.osn_alphas" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="eoscircuits.alcircuits.circuit.ALConfig.osn_axts">
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">osn_axts</span></code><a class="headerlink" href="#eoscircuits.alcircuits.circuit.ALConfig.osn_axts" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="eoscircuits.alcircuits.circuit.ALConfig.osn_bsgs">
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">osn_bsgs</span></code><a class="headerlink" href="#eoscircuits.alcircuits.circuit.ALConfig.osn_bsgs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="eoscircuits.alcircuits.circuit.ALConfig.osn_otps">
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">osn_otps</span></code><a class="headerlink" href="#eoscircuits.alcircuits.circuit.ALConfig.osn_otps" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="eoscircuits.alcircuits.circuit.ALConfig.osn_to_posteln">
+<code class="sig-name descname"><span class="pre">osn_to_posteln</span></code><em class="property"><span class="pre">:</span> <span class="pre">Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"> <span class="pre">=</span> <span class="pre">None</span></em><a class="headerlink" href="#eoscircuits.alcircuits.circuit.ALConfig.osn_to_posteln" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="eoscircuits.alcircuits.circuit.ALConfig.osn_to_postiln">
+<code class="sig-name descname"><span class="pre">osn_to_postiln</span></code><em class="property"><span class="pre">:</span> <span class="pre">Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"> <span class="pre">=</span> <span class="pre">None</span></em><a class="headerlink" href="#eoscircuits.alcircuits.circuit.ALConfig.osn_to_postiln" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="eoscircuits.alcircuits.circuit.ALConfig.osn_to_preln">
+<code class="sig-name descname"><span class="pre">osn_to_preln</span></code><em class="property"><span class="pre">:</span> <span class="pre">Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"> <span class="pre">=</span> <span class="pre">None</span></em><a class="headerlink" href="#eoscircuits.alcircuits.circuit.ALConfig.osn_to_preln" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="eoscircuits.alcircuits.circuit.ALConfig.pns">
+<code class="sig-name descname"><span class="pre">pns</span></code><em class="property"><span class="pre">:</span> <span class="pre">Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"> <span class="pre">=</span> <span class="pre">None</span></em><a class="headerlink" href="#eoscircuits.alcircuits.circuit.ALConfig.pns" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="eoscircuits.alcircuits.circuit.ALConfig.posteln_to_pn">
+<code class="sig-name descname"><span class="pre">posteln_to_pn</span></code><em class="property"><span class="pre">:</span> <span class="pre">Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"> <span class="pre">=</span> <span class="pre">None</span></em><a class="headerlink" href="#eoscircuits.alcircuits.circuit.ALConfig.posteln_to_pn" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="eoscircuits.alcircuits.circuit.ALConfig.postelns">
+<code class="sig-name descname"><span class="pre">postelns</span></code><em class="property"><span class="pre">:</span> <span class="pre">Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"> <span class="pre">=</span> <span class="pre">None</span></em><a class="headerlink" href="#eoscircuits.alcircuits.circuit.ALConfig.postelns" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="eoscircuits.alcircuits.circuit.ALConfig.postiln_to_pn">
+<code class="sig-name descname"><span class="pre">postiln_to_pn</span></code><em class="property"><span class="pre">:</span> <span class="pre">Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"> <span class="pre">=</span> <span class="pre">None</span></em><a class="headerlink" href="#eoscircuits.alcircuits.circuit.ALConfig.postiln_to_pn" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="eoscircuits.alcircuits.circuit.ALConfig.postilns">
+<code class="sig-name descname"><span class="pre">postilns</span></code><em class="property"><span class="pre">:</span> <span class="pre">Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"> <span class="pre">=</span> <span class="pre">None</span></em><a class="headerlink" href="#eoscircuits.alcircuits.circuit.ALConfig.postilns" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="eoscircuits.alcircuits.circuit.ALConfig.preln_to_axt">
+<code class="sig-name descname"><span class="pre">preln_to_axt</span></code><em class="property"><span class="pre">:</span> <span class="pre">Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"> <span class="pre">=</span> <span class="pre">None</span></em><a class="headerlink" href="#eoscircuits.alcircuits.circuit.ALConfig.preln_to_axt" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="eoscircuits.alcircuits.circuit.ALConfig.prelns">
+<code class="sig-name descname"><span class="pre">prelns</span></code><em class="property"><span class="pre">:</span> <span class="pre">Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><em class="property"> <span class="pre">=</span> <span class="pre">None</span></em><a class="headerlink" href="#eoscircuits.alcircuits.circuit.ALConfig.prelns" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="eoscircuits.alcircuits.circuit.ALConfig.routing_tables">
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">routing_tables</span></code><a class="headerlink" href="#eoscircuits.alcircuits.circuit.ALConfig.routing_tables" title="Permalink to this definition">¶</a></dt>
+<dd><p>List of Recognized Routing Tables</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="eoscircuits.alcircuits.circuit.ALConfig.set_or_assert_edges">
+<code class="sig-name descname"><span class="pre">set_or_assert_edges</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">new_array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/eoscircuits/alcircuits/circuit.html#ALConfig.set_or_assert_edges"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#eoscircuits.alcircuits.circuit.ALConfig.set_or_assert_edges" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py exception">
+<dt id="eoscircuits.alcircuits.circuit.ALException">
+<em class="property"><span class="pre">exception</span> </em><code class="sig-prename descclassname"><span class="pre">eoscircuits.alcircuits.circuit.</span></code><code class="sig-name descname"><span class="pre">ALException</span></code><a class="reference internal" href="_modules/eoscircuits/alcircuits/circuit.html#ALException"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#eoscircuits.alcircuits.circuit.ALException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+<p>Base Antennal Lobe Exception</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-eoscircuits.alcircuits.model">
+<span id="eoscircuits-alcircuits-model-module"></span><h2>eoscircuits.alcircuits.model module<a class="headerlink" href="#module-eoscircuits.alcircuits.model" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="eoscircuits.alcircuits.model.Alpha">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">eoscircuits.alcircuits.model.</span></code><code class="sig-name descname"><span class="pre">Alpha</span></code><a class="reference internal" href="_modules/eoscircuits/alcircuits/model.html#Alpha"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#eoscircuits.alcircuits.model.Alpha" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt id="eoscircuits.alcircuits.model.Alpha.params">
+<code class="sig-name descname"><span class="pre">params</span></code><em class="property"> <span class="pre">=</span> <span class="pre">{'ad':</span> <span class="pre">12.19,</span> <span class="pre">'ar':</span> <span class="pre">12.5,</span> <span class="pre">'gmax':</span> <span class="pre">0.1}</span></em><a class="headerlink" href="#eoscircuits.alcircuits.model.Alpha.params" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="eoscircuits.alcircuits.model.LeakyIAF">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">eoscircuits.alcircuits.model.</span></code><code class="sig-name descname"><span class="pre">LeakyIAF</span></code><a class="reference internal" href="_modules/eoscircuits/alcircuits/model.html#LeakyIAF"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#eoscircuits.alcircuits.model.LeakyIAF" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt id="eoscircuits.alcircuits.model.LeakyIAF.params">
+<code class="sig-name descname"><span class="pre">params</span></code><em class="property"> <span class="pre">=</span> <span class="pre">{'c':</span> <span class="pre">1.5,</span> <span class="pre">'r':</span> <span class="pre">0.2,</span> <span class="pre">'vr':</span> <span class="pre">-0.07,</span> <span class="pre">'vt':</span> <span class="pre">-0.025}</span></em><a class="headerlink" href="#eoscircuits.alcircuits.model.LeakyIAF.params" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="eoscircuits.alcircuits.model.OSNAxt">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">eoscircuits.alcircuits.model.</span></code><code class="sig-name descname"><span class="pre">OSNAxt</span></code><a class="reference internal" href="_modules/eoscircuits/alcircuits/model.html#OSNAxt"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#eoscircuits.alcircuits.model.OSNAxt" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt id="eoscircuits.alcircuits.model.OSNAxt.params">
+<code class="sig-name descname"><span class="pre">params</span></code><em class="property"> <span class="pre">=</span> <span class="pre">{'bias':</span> <span class="pre">1.0,</span> <span class="pre">'gain':</span> <span class="pre">1.0,</span> <span class="pre">'gamma':</span> <span class="pre">100.0}</span></em><a class="headerlink" href="#eoscircuits.alcircuits.model.OSNAxt.params" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="eoscircuits.alcircuits.model.OSNAxt2">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">eoscircuits.alcircuits.model.</span></code><code class="sig-name descname"><span class="pre">OSNAxt2</span></code><a class="reference internal" href="_modules/eoscircuits/alcircuits/model.html#OSNAxt2"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#eoscircuits.alcircuits.model.OSNAxt2" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt id="eoscircuits.alcircuits.model.OSNAxt2.params">
+<code class="sig-name descname"><span class="pre">params</span></code><em class="property"> <span class="pre">=</span> <span class="pre">{'bias':</span> <span class="pre">1.0,</span> <span class="pre">'gain':</span> <span class="pre">1.0}</span></em><a class="headerlink" href="#eoscircuits.alcircuits.model.OSNAxt2.params" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="eoscircuits.alcircuits.model.PN">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">eoscircuits.alcircuits.model.</span></code><code class="sig-name descname"><span class="pre">PN</span></code><a class="reference internal" href="_modules/eoscircuits/alcircuits/model.html#PN"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#eoscircuits.alcircuits.model.PN" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt id="eoscircuits.alcircuits.model.PN.params">
+<code class="sig-name descname"><span class="pre">params</span></code><em class="property"> <span class="pre">=</span> <span class="pre">{'threshold':</span> <span class="pre">0.0}</span></em><a class="headerlink" href="#eoscircuits.alcircuits.model.PN.params" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="eoscircuits.alcircuits.model.PostLN">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">eoscircuits.alcircuits.model.</span></code><code class="sig-name descname"><span class="pre">PostLN</span></code><a class="reference internal" href="_modules/eoscircuits/alcircuits/model.html#PostLN"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#eoscircuits.alcircuits.model.PostLN" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt id="eoscircuits.alcircuits.model.PostLN.params">
+<code class="sig-name descname"><span class="pre">params</span></code><em class="property"> <span class="pre">=</span> <span class="pre">{'C':</span> <span class="pre">0.01,</span> <span class="pre">'C1':</span> <span class="pre">4.7,</span> <span class="pre">'ICR':</span> <span class="pre">80.74,</span> <span class="pre">'L':</span> <span class="pre">0.1,</span> <span class="pre">'R':</span> <span class="pre">3.0,</span> <span class="pre">'RC':</span> <span class="pre">0.047,</span> <span class="pre">'a1':</span> <span class="pre">10.066,</span> <span class="pre">'a2':</span> <span class="pre">0.12,</span> <span class="pre">'b1':</span> <span class="pre">0.11,</span> <span class="pre">'k':</span> <span class="pre">2.0,</span> <span class="pre">'polarity':</span> <span class="pre">1.0,</span> <span class="pre">'s1':</span> <span class="pre">0.12,</span> <span class="pre">'s2':</span> <span class="pre">0.05,</span> <span class="pre">'tau':</span> <span class="pre">96.61835748792272}</span></em><a class="headerlink" href="#eoscircuits.alcircuits.model.PostLN.params" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="eoscircuits.alcircuits.model.PreLN">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">eoscircuits.alcircuits.model.</span></code><code class="sig-name descname"><span class="pre">PreLN</span></code><a class="reference internal" href="_modules/eoscircuits/alcircuits/model.html#PreLN"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#eoscircuits.alcircuits.model.PreLN" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt id="eoscircuits.alcircuits.model.PreLN.params">
+<code class="sig-name descname"><span class="pre">params</span></code><em class="property"> <span class="pre">=</span> <span class="pre">{'dummy':</span> <span class="pre">0.0}</span></em><a class="headerlink" href="#eoscircuits.alcircuits.model.PreLN.params" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-eoscircuits.alcircuits">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-eoscircuits.alcircuits" title="Permalink to this headline">¶</a></h2>
+<p>Antennal Lobe Circuit</p>
+<p>This module supports:</p>
+<ol class="arabic simple">
+<li><p>Changing parameter values of Biological Spike Generators (BSGs) associated with each of the Local and Projection Neurons,</p></li>
+<li><p>Changing the number and connectivity of Projection Neurons innervating a given AL Glomerulus,</p></li>
+<li><p>Changing the number and connectivity of Local Neurons in the Predictive Coding and ON-OFF circuits of the AL</p></li>
+</ol>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="eoscircuits.alcircuits.NDComponents.html" class="btn btn-neutral float-right" title="eoscircuits.alcircuits.NDComponents package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="eoscircuits.html" class="btn btn-neutral float-left" title="eoscircuits package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, FlyBrainLab Dev Team.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

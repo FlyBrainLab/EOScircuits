@@ -1,0 +1,566 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>eoscircuits.mbcircuits package &mdash; EOScircuits 0.1.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="eoscircuits.mbcircuits.NDComponents package" href="eoscircuits.mbcircuits.NDComponents.html" />
+    <link rel="prev" title="eoscircuits.antcircuits.NDComponents package" href="eoscircuits.antcircuits.NDComponents.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> EOScircuits
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="readme.html">EOScircuits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">eoscircuits</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="eoscircuits.html">eoscircuits package</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="eoscircuits.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="eoscircuits.alcircuits.html">eoscircuits.alcircuits package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="eoscircuits.antcircuits.html">eoscircuits.antcircuits package</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">eoscircuits.mbcircuits package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="eoscircuits.html#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="eoscircuits.html#module-eoscircuits.basecircuit">eoscircuits.basecircuit module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="eoscircuits.html#module-eoscircuits.plot">eoscircuits.plot module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="eoscircuits.html#module-eoscircuits">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="authors.html">Credits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="history.html">History</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">EOScircuits</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="modules.html">eoscircuits</a> &raquo;</li>
+        
+          <li><a href="eoscircuits.html">eoscircuits package</a> &raquo;</li>
+        
+      <li>eoscircuits.mbcircuits package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/eoscircuits.mbcircuits.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="eoscircuits-mbcircuits-package">
+<h1>eoscircuits.mbcircuits package<a class="headerlink" href="#eoscircuits-mbcircuits-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="eoscircuits.mbcircuits.NDComponents.html">eoscircuits.mbcircuits.NDComponents package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="eoscircuits.mbcircuits.NDComponents.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="eoscircuits.mbcircuits.NDComponents.html#module-eoscircuits.mbcircuits.NDComponents.APL">eoscircuits.mbcircuits.NDComponents.APL module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="eoscircuits.mbcircuits.NDComponents.html#module-eoscircuits.mbcircuits.NDComponents.KC">eoscircuits.mbcircuits.NDComponents.KC module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="eoscircuits.mbcircuits.NDComponents.html#module-eoscircuits.mbcircuits.NDComponents.KCDend">eoscircuits.mbcircuits.NDComponents.KCDend module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="eoscircuits.mbcircuits.NDComponents.html#module-eoscircuits.mbcircuits.NDComponents.PN2KC">eoscircuits.mbcircuits.NDComponents.PN2KC module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="eoscircuits.mbcircuits.NDComponents.html#module-eoscircuits.mbcircuits.NDComponents">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-eoscircuits.mbcircuits.circuit">
+<span id="eoscircuits-mbcircuits-circuit-module"></span><h2>eoscircuits.mbcircuits.circuit module<a class="headerlink" href="#module-eoscircuits.mbcircuits.circuit" title="Permalink to this headline">¶</a></h2>
+<p>Mushroom Body Circuit</p>
+<p>This module supports:</p>
+<p>1. Generating and changing random connectivity patterns between PNs and KCs with
+varying degree of fan-in ratio (number of PNs connected to a given KC)
+2. Changing the strength of feedback inhibition of the APL neuron</p>
+<dl class="py class">
+<dt id="eoscircuits.mbcircuits.circuit.MBCircuit">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">eoscircuits.mbcircuits.circuit.</span></code><code class="sig-name descname"><span class="pre">MBCircuit</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">graph</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/eoscircuits/mbcircuits/circuit.html#MBCircuit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#eoscircuits.mbcircuits.circuit.MBCircuit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="eoscircuits.html#eoscircuits.basecircuit.Circuit" title="eoscircuits.basecircuit.Circuit"><code class="xref py py-class docutils literal notranslate"><span class="pre">eoscircuits.basecircuit.Circuit</span></code></a></p>
+<p>Mushroom Body Circuit</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>graph</strong> (<em>networkx.classes.multidigraph.MultiDiGraph</em>) – </p></li>
+<li><p><strong>config</strong> (<a class="reference internal" href="#eoscircuits.mbcircuits.circuit.MBConfig" title="eoscircuits.mbcircuits.circuit.MBConfig"><em>eoscircuits.mbcircuits.circuit.MBConfig</em></a>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt id="eoscircuits.mbcircuits.circuit.MBCircuit.change_apl_strength">
+<code class="sig-name descname"><span class="pre">change_apl_strength</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">N</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/eoscircuits/mbcircuits/circuit.html#MBCircuit.change_apl_strength"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#eoscircuits.mbcircuits.circuit.MBCircuit.change_apl_strength" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set APL Strength</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>N</strong> (<em>float</em>) – The larger the N the weaker the inhibition. N should be in
+the range of [1, inf]. Typical values are around
+<code class="code docutils literal notranslate"><span class="pre">config.NK</span></code></p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="eoscircuits.mbcircuits.circuit.MBCircuit.change_pn_to_kc">
+<code class="sig-name descname"><span class="pre">change_pn_to_kc</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">routing</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fanin</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/eoscircuits/mbcircuits/circuit.html#MBCircuit.change_pn_to_kc"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#eoscircuits.mbcircuits.circuit.MBCircuit.change_pn_to_kc" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>routing</strong> (<em>Optional</em><em>[</em><em>numpy.ndarray</em><em>]</em>) – </p></li>
+<li><p><strong>fanin</strong> (<em>Optional</em><em>[</em><em>int</em><em>]</em>) – </p></li>
+<li><p><strong>seed</strong> (<em>Optional</em><em>[</em><em>int</em><em>]</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="eoscircuits.mbcircuits.circuit.MBCircuit.config">
+<code class="sig-name descname"><span class="pre">config</span></code><em class="property"><span class="pre">:</span> <a class="reference internal" href="#eoscircuits.mbcircuits.circuit.MBConfig" title="eoscircuits.mbcircuits.circuit.MBConfig"><span class="pre">eoscircuits.mbcircuits.circuit.MBConfig</span></a></em><a class="headerlink" href="#eoscircuits.mbcircuits.circuit.MBCircuit.config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Configuration of Circuit. Fully Specifies the Circuit</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="eoscircuits.mbcircuits.circuit.MBCircuit.create_from_config">
+<em class="property"><span class="pre">classmethod</span> </em><code class="sig-name descname"><span class="pre">create_from_config</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cfg</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/eoscircuits/mbcircuits/circuit.html#MBCircuit.create_from_config"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#eoscircuits.mbcircuits.circuit.MBCircuit.create_from_config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create Instance from Config</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>cfg</strong> – Config instance that specifies the configuration of the module</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A new ANTCircuit instance</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="eoscircuits.alcircuits.html#eoscircuits.alcircuits.circuit.ALCircuit" title="eoscircuits.alcircuits.circuit.ALCircuit">ALCircuit</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="eoscircuits.mbcircuits.circuit.MBCircuit.create_graph">
+<em class="property"><span class="pre">classmethod</span> </em><code class="sig-name descname"><span class="pre">create_graph</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cfg</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/eoscircuits/mbcircuits/circuit.html#MBCircuit.create_graph"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#eoscircuits.mbcircuits.circuit.MBCircuit.create_graph" title="Permalink to this definition">¶</a></dt>
+<dd><p>class method that creates an instance of networkx graph from configuration</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>networkx.classes.multidigraph.MultiDiGraph</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="eoscircuits.mbcircuits.circuit.MBCircuit.extra_comps">
+<code class="sig-name descname"><span class="pre">extra_comps</span></code><em class="property"><span class="pre">:</span> <span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">NDComponent</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#eoscircuits.mbcircuits.circuit.MBCircuit.extra_comps" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extra Components to be aded to NeuroKernel at Run Time</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="eoscircuits.mbcircuits.circuit.MBCircuit.inputs">
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">inputs</span></code><a class="headerlink" href="#eoscircuits.mbcircuits.circuit.MBCircuit.inputs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Output OTP Nodes IDs and the Variables</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="eoscircuits.mbcircuits.circuit.MBCircuit.outputs">
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">outputs</span></code><a class="headerlink" href="#eoscircuits.mbcircuits.circuit.MBCircuit.outputs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Output BSG Nodes IDs and the Variables</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="eoscircuits.mbcircuits.circuit.MBConfig">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">eoscircuits.mbcircuits.circuit.</span></code><code class="sig-name descname"><span class="pre">MBConfig</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="pre">NO:Iterable[Iterable[int]],</span> <span class="pre">affs:Iterable[float],</span> <span class="pre">receptors:Iterable[str]=None,</span> <span class="pre">resting:float=None,</span> <span class="pre">node_params:dict=&lt;factory&gt;,</span> <span class="pre">osns:Iterable[Iterable[str]]=None,</span> <span class="pre">NP:Union[int,</span> <span class="pre">Iterable[int]]=None,</span> <span class="pre">NPreLN:int=None,</span> <span class="pre">NPosteLN:Union[int,</span> <span class="pre">Iterable[int]]=None,</span> <span class="pre">NPostiLN:Union[int,</span> <span class="pre">Iterable[int]]=None,</span> <span class="pre">prelns:Iterable[str]=None,</span> <span class="pre">postelns:Iterable[Iterable[str]]=None,</span> <span class="pre">postilns:Iterable[Iterable[str]]=None,</span> <span class="pre">pns:Iterable[Iterable[str]]=None,</span> <span class="pre">osn_to_preln:Iterable[Iterable[float]]=None,</span> <span class="pre">osn_to_postiln:Iterable[Iterable[float]]=None,</span> <span class="pre">osn_to_posteln:Iterable[Iterable[float]]=None,</span> <span class="pre">preln_to_axt:Iterable[Iterable[float]]=None,</span> <span class="pre">axt_to_pn:Iterable[Iterable[float]]=None,</span> <span class="pre">postiln_to_pn:Iterable[Iterable[float]]=None,</span> <span class="pre">posteln_to_pn:Iterable[Iterable[float]]=None,</span> <span class="pre">NK:int=None,</span> <span class="pre">NAPL:int=None,</span> <span class="pre">NFanIn:int=6,</span> <span class="pre">kcs:Iterable[str]=None,</span> <span class="pre">apls:Iterable[str]=None,</span> <span class="pre">pn_to_kc:Iterable[Iterable[float]]=None,</span> <span class="pre">kc_to_apl:Iterable[float]=None,</span> <span class="pre">apl_to_kc:Iterable[float]=None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/eoscircuits/mbcircuits/circuit.html#MBConfig"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#eoscircuits.mbcircuits.circuit.MBConfig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="eoscircuits.alcircuits.html#eoscircuits.alcircuits.circuit.ALConfig" title="eoscircuits.alcircuits.circuit.ALConfig"><code class="xref py py-class docutils literal notranslate"><span class="pre">eoscircuits.alcircuits.circuit.ALConfig</span></code></a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>NO</strong> (<em>Iterable</em><em>[</em><em>Iterable</em><em>[</em><em>int</em><em>]</em><em>]</em>) – </p></li>
+<li><p><strong>affs</strong> (<em>Iterable</em><em>[</em><em>float</em><em>]</em>) – </p></li>
+<li><p><strong>receptors</strong> (<em>Iterable</em><em>[</em><em>str</em><em>]</em>) – </p></li>
+<li><p><strong>resting</strong> (<em>float</em>) – </p></li>
+<li><p><strong>node_params</strong> (<em>dict</em>) – </p></li>
+<li><p><strong>osns</strong> (<em>Iterable</em><em>[</em><em>Iterable</em><em>[</em><em>str</em><em>]</em><em>]</em>) – </p></li>
+<li><p><strong>NP</strong> (<em>Union</em><em>[</em><em>int</em><em>, </em><em>Iterable</em><em>[</em><em>int</em><em>]</em><em>]</em>) – </p></li>
+<li><p><strong>NPreLN</strong> (<em>int</em>) – </p></li>
+<li><p><strong>NPosteLN</strong> (<em>Union</em><em>[</em><em>int</em><em>, </em><em>Iterable</em><em>[</em><em>int</em><em>]</em><em>]</em>) – </p></li>
+<li><p><strong>NPostiLN</strong> (<em>Union</em><em>[</em><em>int</em><em>, </em><em>Iterable</em><em>[</em><em>int</em><em>]</em><em>]</em>) – </p></li>
+<li><p><strong>prelns</strong> (<em>Iterable</em><em>[</em><em>str</em><em>]</em>) – </p></li>
+<li><p><strong>postelns</strong> (<em>Iterable</em><em>[</em><em>Iterable</em><em>[</em><em>str</em><em>]</em><em>]</em>) – </p></li>
+<li><p><strong>postilns</strong> (<em>Iterable</em><em>[</em><em>Iterable</em><em>[</em><em>str</em><em>]</em><em>]</em>) – </p></li>
+<li><p><strong>pns</strong> (<em>Iterable</em><em>[</em><em>Iterable</em><em>[</em><em>str</em><em>]</em><em>]</em>) – </p></li>
+<li><p><strong>osn_to_preln</strong> (<em>Iterable</em><em>[</em><em>Iterable</em><em>[</em><em>float</em><em>]</em><em>]</em>) – </p></li>
+<li><p><strong>osn_to_postiln</strong> (<em>Iterable</em><em>[</em><em>Iterable</em><em>[</em><em>float</em><em>]</em><em>]</em>) – </p></li>
+<li><p><strong>osn_to_posteln</strong> (<em>Iterable</em><em>[</em><em>Iterable</em><em>[</em><em>float</em><em>]</em><em>]</em>) – </p></li>
+<li><p><strong>preln_to_axt</strong> (<em>Iterable</em><em>[</em><em>Iterable</em><em>[</em><em>float</em><em>]</em><em>]</em>) – </p></li>
+<li><p><strong>axt_to_pn</strong> (<em>Iterable</em><em>[</em><em>Iterable</em><em>[</em><em>float</em><em>]</em><em>]</em>) – </p></li>
+<li><p><strong>postiln_to_pn</strong> (<em>Iterable</em><em>[</em><em>Iterable</em><em>[</em><em>float</em><em>]</em><em>]</em>) – </p></li>
+<li><p><strong>posteln_to_pn</strong> (<em>Iterable</em><em>[</em><em>Iterable</em><em>[</em><em>float</em><em>]</em><em>]</em>) – </p></li>
+<li><p><strong>NK</strong> (<em>int</em>) – </p></li>
+<li><p><strong>NAPL</strong> (<em>int</em>) – </p></li>
+<li><p><strong>NFanIn</strong> (<em>int</em>) – </p></li>
+<li><p><strong>kcs</strong> (<em>Iterable</em><em>[</em><em>str</em><em>]</em>) – </p></li>
+<li><p><strong>apls</strong> (<em>Iterable</em><em>[</em><em>str</em><em>]</em>) – </p></li>
+<li><p><strong>pn_to_kc</strong> (<em>Iterable</em><em>[</em><em>Iterable</em><em>[</em><em>float</em><em>]</em><em>]</em>) – </p></li>
+<li><p><strong>kc_to_apl</strong> (<em>Iterable</em><em>[</em><em>float</em><em>]</em>) – </p></li>
+<li><p><strong>apl_to_kc</strong> (<em>Iterable</em><em>[</em><em>float</em><em>]</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt id="eoscircuits.mbcircuits.circuit.MBConfig.NAPL">
+<code class="sig-name descname"><span class="pre">NAPL</span></code><em class="property"><span class="pre">:</span> <span class="pre">int</span></em><em class="property"> <span class="pre">=</span> <span class="pre">None</span></em><a class="headerlink" href="#eoscircuits.mbcircuits.circuit.MBConfig.NAPL" title="Permalink to this definition">¶</a></dt>
+<dd><p>Number of APLs</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="eoscircuits.mbcircuits.circuit.MBConfig.NFanIn">
+<code class="sig-name descname"><span class="pre">NFanIn</span></code><em class="property"><span class="pre">:</span> <span class="pre">int</span></em><em class="property"> <span class="pre">=</span> <span class="pre">6</span></em><a class="headerlink" href="#eoscircuits.mbcircuits.circuit.MBConfig.NFanIn" title="Permalink to this definition">¶</a></dt>
+<dd><p>Number of PNs (regardless of receptor type) connected to each KC</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="eoscircuits.mbcircuits.circuit.MBConfig.NK">
+<code class="sig-name descname"><span class="pre">NK</span></code><em class="property"><span class="pre">:</span> <span class="pre">int</span></em><em class="property"> <span class="pre">=</span> <span class="pre">None</span></em><a class="headerlink" href="#eoscircuits.mbcircuits.circuit.MBConfig.NK" title="Permalink to this definition">¶</a></dt>
+<dd><p>Number of KCs</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="eoscircuits.mbcircuits.circuit.MBConfig.apl_to_kc">
+<code class="sig-name descname"><span class="pre">apl_to_kc</span></code><em class="property"><span class="pre">:</span> <span class="pre">Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></em><em class="property"> <span class="pre">=</span> <span class="pre">None</span></em><a class="headerlink" href="#eoscircuits.mbcircuits.circuit.MBConfig.apl_to_kc" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="eoscircuits.mbcircuits.circuit.MBConfig.apls">
+<code class="sig-name descname"><span class="pre">apls</span></code><em class="property"><span class="pre">:</span> <span class="pre">Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><em class="property"> <span class="pre">=</span> <span class="pre">None</span></em><a class="headerlink" href="#eoscircuits.mbcircuits.circuit.MBConfig.apls" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="eoscircuits.mbcircuits.circuit.MBConfig.default_apl_to_kc">
+<code class="sig-name descname"><span class="pre">default_apl_to_kc</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/eoscircuits/mbcircuits/circuit.html#MBConfig.default_apl_to_kc"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#eoscircuits.mbcircuits.circuit.MBConfig.default_apl_to_kc" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create Densely Connected APL to KC routing table</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="eoscircuits.mbcircuits.circuit.MBConfig.default_kc_to_apl">
+<code class="sig-name descname"><span class="pre">default_kc_to_apl</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/eoscircuits/mbcircuits/circuit.html#MBConfig.default_kc_to_apl"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#eoscircuits.mbcircuits.circuit.MBConfig.default_kc_to_apl" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create Densely Connected KC to APL routing table</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="eoscircuits.mbcircuits.circuit.MBConfig.default_pn_to_kc">
+<code class="sig-name descname"><span class="pre">default_pn_to_kc</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fanin</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/eoscircuits/mbcircuits/circuit.html#MBConfig.default_pn_to_kc"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#eoscircuits.mbcircuits.circuit.MBConfig.default_pn_to_kc" title="Permalink to this definition">¶</a></dt>
+<dd><p>PN to KC Connectivity</p>
+<p>The indices of PNs connected to KC is sampled uniformly from all the PNs,
+regardless of receptor types.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fanin</strong> (<em>Optional</em><em>[</em><em>int</em><em>]</em>) – number of PNs connected to a single KC</p></li>
+<li><p><strong>seed</strong> (<em>Optional</em><em>[</em><em>int</em><em>]</em>) – seed for random number generator</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>numpy.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="eoscircuits.mbcircuits.circuit.MBConfig.kc_to_apl">
+<code class="sig-name descname"><span class="pre">kc_to_apl</span></code><em class="property"><span class="pre">:</span> <span class="pre">Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></em><em class="property"> <span class="pre">=</span> <span class="pre">None</span></em><a class="headerlink" href="#eoscircuits.mbcircuits.circuit.MBConfig.kc_to_apl" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="eoscircuits.mbcircuits.circuit.MBConfig.kcdends">
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">kcdends</span></code><a class="headerlink" href="#eoscircuits.mbcircuits.circuit.MBConfig.kcdends" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="eoscircuits.mbcircuits.circuit.MBConfig.kcs">
+<code class="sig-name descname"><span class="pre">kcs</span></code><em class="property"><span class="pre">:</span> <span class="pre">Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><em class="property"> <span class="pre">=</span> <span class="pre">None</span></em><a class="headerlink" href="#eoscircuits.mbcircuits.circuit.MBConfig.kcs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="eoscircuits.mbcircuits.circuit.MBConfig.node_types">
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">node_types</span></code><a class="headerlink" href="#eoscircuits.mbcircuits.circuit.MBConfig.node_types" title="Permalink to this definition">¶</a></dt>
+<dd><p>List of Recognized Node Types</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="eoscircuits.mbcircuits.circuit.MBConfig.pn_to_kc">
+<code class="sig-name descname"><span class="pre">pn_to_kc</span></code><em class="property"><span class="pre">:</span> <span class="pre">Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"> <span class="pre">=</span> <span class="pre">None</span></em><a class="headerlink" href="#eoscircuits.mbcircuits.circuit.MBConfig.pn_to_kc" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py exception">
+<dt id="eoscircuits.mbcircuits.circuit.MBException">
+<em class="property"><span class="pre">exception</span> </em><code class="sig-prename descclassname"><span class="pre">eoscircuits.mbcircuits.circuit.</span></code><code class="sig-name descname"><span class="pre">MBException</span></code><a class="reference internal" href="_modules/eoscircuits/mbcircuits/circuit.html#MBException"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#eoscircuits.mbcircuits.circuit.MBException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="eoscircuits.html#eoscircuits.basecircuit.EOSCircuitException" title="eoscircuits.basecircuit.EOSCircuitException"><code class="xref py py-class docutils literal notranslate"><span class="pre">eoscircuits.basecircuit.EOSCircuitException</span></code></a></p>
+<p>Base Mushroom Body Exception</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-eoscircuits.mbcircuits.model">
+<span id="eoscircuits-mbcircuits-model-module"></span><h2>eoscircuits.mbcircuits.model module<a class="headerlink" href="#module-eoscircuits.mbcircuits.model" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="eoscircuits.mbcircuits.model.APL">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">eoscircuits.mbcircuits.model.</span></code><code class="sig-name descname"><span class="pre">APL</span></code><a class="reference internal" href="_modules/eoscircuits/mbcircuits/model.html#APL"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#eoscircuits.mbcircuits.model.APL" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt id="eoscircuits.mbcircuits.model.APL.params">
+<code class="sig-name descname"><span class="pre">params</span></code><em class="property"> <span class="pre">=</span> <span class="pre">{'N':</span> <span class="pre">1.0}</span></em><a class="headerlink" href="#eoscircuits.mbcircuits.model.APL.params" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="eoscircuits.mbcircuits.model.KC">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">eoscircuits.mbcircuits.model.</span></code><code class="sig-name descname"><span class="pre">KC</span></code><a class="reference internal" href="_modules/eoscircuits/mbcircuits/model.html#KC"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#eoscircuits.mbcircuits.model.KC" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt id="eoscircuits.mbcircuits.model.KC.params">
+<code class="sig-name descname"><span class="pre">params</span></code><em class="property"> <span class="pre">=</span> <span class="pre">{'threshold':</span> <span class="pre">1.0}</span></em><a class="headerlink" href="#eoscircuits.mbcircuits.model.KC.params" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="eoscircuits.mbcircuits.model.KCDend">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">eoscircuits.mbcircuits.model.</span></code><code class="sig-name descname"><span class="pre">KCDend</span></code><a class="reference internal" href="_modules/eoscircuits/mbcircuits/model.html#KCDend"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#eoscircuits.mbcircuits.model.KCDend" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt id="eoscircuits.mbcircuits.model.KCDend.params">
+<code class="sig-name descname"><span class="pre">params</span></code><em class="property"> <span class="pre">=</span> <span class="pre">{'bias':</span> <span class="pre">1.0,</span> <span class="pre">'gain':</span> <span class="pre">1.0}</span></em><a class="headerlink" href="#eoscircuits.mbcircuits.model.KCDend.params" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="eoscircuits.mbcircuits.model.Model">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">eoscircuits.mbcircuits.model.</span></code><code class="sig-name descname"><span class="pre">Model</span></code><a class="reference internal" href="_modules/eoscircuits/mbcircuits/model.html#Model"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#eoscircuits.mbcircuits.model.Model" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>NeuroBallad Element that also wraps the underlying NDComponent</p>
+</dd></dl>
+
+<dl class="py class">
+<dt id="eoscircuits.mbcircuits.model.PN2KC">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">eoscircuits.mbcircuits.model.</span></code><code class="sig-name descname"><span class="pre">PN2KC</span></code><a class="reference internal" href="_modules/eoscircuits/mbcircuits/model.html#PN2KC"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#eoscircuits.mbcircuits.model.PN2KC" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt id="eoscircuits.mbcircuits.model.PN2KC.params">
+<code class="sig-name descname"><span class="pre">params</span></code><em class="property"> <span class="pre">=</span> <span class="pre">{'weight':</span> <span class="pre">1.0}</span></em><a class="headerlink" href="#eoscircuits.mbcircuits.model.PN2KC.params" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-eoscircuits.mbcircuits">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-eoscircuits.mbcircuits" title="Permalink to this headline">¶</a></h2>
+<p>Mushroom Body Circuit</p>
+<p>This module supports:</p>
+<ol class="arabic simple">
+<li><p>Generating and changing random connectivity patterns between PNs and KCs with varying degree of fan-in ratio (number of PNs connected to a given KC)</p></li>
+<li><p>Changing the strength of feedback inhibition of the APL neuron</p></li>
+</ol>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="eoscircuits.mbcircuits.NDComponents.html" class="btn btn-neutral float-right" title="eoscircuits.mbcircuits.NDComponents package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="eoscircuits.antcircuits.NDComponents.html" class="btn btn-neutral float-left" title="eoscircuits.antcircuits.NDComponents package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, FlyBrainLab Dev Team.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -104,3 +104,5 @@ ENV/
 # IDE settings
 .vscode/
 .editorconfig
+data/bd_peak_ss.npz
+notebooks/aff_value_100ppm.csv

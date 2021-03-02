@@ -1,0 +1,589 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>eoscircuits package &mdash; EOScircuits 0.1.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="eoscircuits.alcircuits package" href="eoscircuits.alcircuits.html" />
+    <link rel="prev" title="eoscircuits" href="modules.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> EOScircuits
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="readme.html">EOScircuits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">eoscircuits</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">eoscircuits package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#subpackages">Subpackages</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="eoscircuits.alcircuits.html">eoscircuits.alcircuits package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="eoscircuits.antcircuits.html">eoscircuits.antcircuits package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="eoscircuits.mbcircuits.html">eoscircuits.mbcircuits package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-eoscircuits.basecircuit">eoscircuits.basecircuit module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-eoscircuits.plot">eoscircuits.plot module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-eoscircuits">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="authors.html">Credits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="history.html">History</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">EOScircuits</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="modules.html">eoscircuits</a> &raquo;</li>
+        
+      <li>eoscircuits package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/eoscircuits.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="eoscircuits-package">
+<h1>eoscircuits package<a class="headerlink" href="#eoscircuits-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="eoscircuits.alcircuits.html">eoscircuits.alcircuits package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="eoscircuits.alcircuits.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="eoscircuits.alcircuits.NDComponents.html">eoscircuits.alcircuits.NDComponents package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="eoscircuits.alcircuits.NDComponents.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="eoscircuits.alcircuits.NDComponents.html#module-eoscircuits.alcircuits.NDComponents.Alpha">eoscircuits.alcircuits.NDComponents.Alpha module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="eoscircuits.alcircuits.NDComponents.html#module-eoscircuits.alcircuits.NDComponents.LeakyIAF">eoscircuits.alcircuits.NDComponents.LeakyIAF module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="eoscircuits.alcircuits.NDComponents.html#module-eoscircuits.alcircuits.NDComponents.OSNAxt">eoscircuits.alcircuits.NDComponents.OSNAxt module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="eoscircuits.alcircuits.NDComponents.html#module-eoscircuits.alcircuits.NDComponents.OSNAxt2">eoscircuits.alcircuits.NDComponents.OSNAxt2 module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="eoscircuits.alcircuits.NDComponents.html#module-eoscircuits.alcircuits.NDComponents.PN">eoscircuits.alcircuits.NDComponents.PN module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="eoscircuits.alcircuits.NDComponents.html#module-eoscircuits.alcircuits.NDComponents.PostLN">eoscircuits.alcircuits.NDComponents.PostLN module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="eoscircuits.alcircuits.NDComponents.html#module-eoscircuits.alcircuits.NDComponents.PreLN">eoscircuits.alcircuits.NDComponents.PreLN module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="eoscircuits.alcircuits.NDComponents.html#module-eoscircuits.alcircuits.NDComponents">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="eoscircuits.alcircuits.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="eoscircuits.alcircuits.html#module-eoscircuits.alcircuits.circuit">eoscircuits.alcircuits.circuit module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="eoscircuits.alcircuits.html#module-eoscircuits.alcircuits.model">eoscircuits.alcircuits.model module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="eoscircuits.alcircuits.html#module-eoscircuits.alcircuits">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="eoscircuits.antcircuits.html">eoscircuits.antcircuits package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="eoscircuits.antcircuits.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="eoscircuits.antcircuits.NDComponents.html">eoscircuits.antcircuits.NDComponents package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="eoscircuits.antcircuits.NDComponents.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="eoscircuits.antcircuits.NDComponents.html#module-eoscircuits.antcircuits.NDComponents.NoisyConnorStevens">eoscircuits.antcircuits.NDComponents.NoisyConnorStevens module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="eoscircuits.antcircuits.NDComponents.html#module-eoscircuits.antcircuits.NDComponents.OTP">eoscircuits.antcircuits.NDComponents.OTP module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="eoscircuits.antcircuits.NDComponents.html#module-eoscircuits.antcircuits.NDComponents">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="eoscircuits.antcircuits.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="eoscircuits.antcircuits.html#module-eoscircuits.antcircuits.circuit">eoscircuits.antcircuits.circuit module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="eoscircuits.antcircuits.html#module-eoscircuits.antcircuits.model">eoscircuits.antcircuits.model module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="eoscircuits.antcircuits.html#module-eoscircuits.antcircuits">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="eoscircuits.mbcircuits.html">eoscircuits.mbcircuits package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="eoscircuits.mbcircuits.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="eoscircuits.mbcircuits.NDComponents.html">eoscircuits.mbcircuits.NDComponents package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="eoscircuits.mbcircuits.NDComponents.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="eoscircuits.mbcircuits.NDComponents.html#module-eoscircuits.mbcircuits.NDComponents.APL">eoscircuits.mbcircuits.NDComponents.APL module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="eoscircuits.mbcircuits.NDComponents.html#module-eoscircuits.mbcircuits.NDComponents.KC">eoscircuits.mbcircuits.NDComponents.KC module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="eoscircuits.mbcircuits.NDComponents.html#module-eoscircuits.mbcircuits.NDComponents.KCDend">eoscircuits.mbcircuits.NDComponents.KCDend module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="eoscircuits.mbcircuits.NDComponents.html#module-eoscircuits.mbcircuits.NDComponents.PN2KC">eoscircuits.mbcircuits.NDComponents.PN2KC module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="eoscircuits.mbcircuits.NDComponents.html#module-eoscircuits.mbcircuits.NDComponents">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="eoscircuits.mbcircuits.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="eoscircuits.mbcircuits.html#module-eoscircuits.mbcircuits.circuit">eoscircuits.mbcircuits.circuit module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="eoscircuits.mbcircuits.html#module-eoscircuits.mbcircuits.model">eoscircuits.mbcircuits.model module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="eoscircuits.mbcircuits.html#module-eoscircuits.mbcircuits">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-eoscircuits.basecircuit">
+<span id="eoscircuits-basecircuit-module"></span><h2>eoscircuits.basecircuit module<a class="headerlink" href="#module-eoscircuits.basecircuit" title="Permalink to this headline">¶</a></h2>
+<p>Base Circuit Class for EOS Circuits</p>
+<dl class="py class">
+<dt id="eoscircuits.basecircuit.Circuit">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">eoscircuits.basecircuit.</span></code><code class="sig-name descname"><span class="pre">Circuit</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="pre">graph</span></em>, <em class="sig-param"><span class="pre">config</span></em>, <em class="sig-param"><span class="pre">extra_comps=&lt;factory&gt;</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/eoscircuits/basecircuit.html#Circuit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#eoscircuits.basecircuit.Circuit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A Dataclass of Base EOS Circuit</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>graph</strong> (<em>networkx.classes.multidigraph.MultiDiGraph</em>) – </p></li>
+<li><p><strong>config</strong> (<a class="reference internal" href="#eoscircuits.basecircuit.Config" title="eoscircuits.basecircuit.Config"><em>eoscircuits.basecircuit.Config</em></a>) – </p></li>
+<li><p><strong>extra_comps</strong> (<em>List</em><em>[</em><em>neurokernel.LPU.NDComponents.NDComponent</em><em>]</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt id="eoscircuits.basecircuit.Circuit.add_nodes_to_graph">
+<em class="property"><span class="pre">classmethod</span> </em><code class="sig-name descname"><span class="pre">add_nodes_to_graph</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">G</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cfg</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ndcomp_clsname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ndcomp_module</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/eoscircuits/basecircuit.html#Circuit.add_nodes_to_graph"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#eoscircuits.basecircuit.Circuit.add_nodes_to_graph" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add Node to Graph</p>
+<p>This method adds nodes to <a class="reference internal" href="#eoscircuits.basecircuit.Circuit.graph" title="eoscircuits.basecircuit.Circuit.graph"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Circuit.graph</span></code></a> with the appropriate
+ids and attributes based on the <code class="xref py py-attr docutils literal notranslate"><span class="pre">Circuit.Config</span></code> specifications.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>G</strong> (<em>networkx.classes.multidigraph.MultiDiGraph</em>) – The networkx graph that the node should be added to</p></li>
+<li><p><strong>cfg</strong> (<a class="reference internal" href="#eoscircuits.basecircuit.Config" title="eoscircuits.basecircuit.Config"><em>eoscircuits.basecircuit.Config</em></a>) – The configuration instance</p></li>
+<li><p><strong>node_type</strong> (<em>Config.node_types</em>) – The node types permissible according to the configuration</p></li>
+<li><p><strong>ndcomp_clsname</strong> (<em>str</em>) – The class name of the NeuroDriver component</p></li>
+<li><p><strong>ndcomp_module</strong> (<em>Module</em>) – The name of the ndcomp_module in the associated <em>model.py</em>
+file for each circuit module. This name is used to pull the <code class="code docutils literal notranslate"><span class="pre">params</span></code>
+from the correct class from the <em>model.py</em> file to add to the graph.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="eoscircuits.basecircuit.Circuit.config">
+<code class="sig-name descname"><span class="pre">config</span></code><em class="property"><span class="pre">:</span> <a class="reference internal" href="#eoscircuits.basecircuit.Config" title="eoscircuits.basecircuit.Config"><span class="pre">eoscircuits.basecircuit.Config</span></a></em><a class="headerlink" href="#eoscircuits.basecircuit.Circuit.config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Configuration of Circuit. Fully Specifies the Circuit</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="eoscircuits.basecircuit.Circuit.create_from_config">
+<em class="property"><span class="pre">abstract</span> <span class="pre">classmethod</span> </em><code class="sig-name descname"><span class="pre">create_from_config</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/eoscircuits/basecircuit.html#Circuit.create_from_config"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#eoscircuits.basecircuit.Circuit.create_from_config" title="Permalink to this definition">¶</a></dt>
+<dd><p>class method that creates an instance of circuit from configuration</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>config</strong> (<a class="reference internal" href="#eoscircuits.basecircuit.Config" title="eoscircuits.basecircuit.Config"><em>eoscircuits.basecircuit.Config</em></a>) – </p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="#eoscircuits.basecircuit.Circuit" title="eoscircuits.basecircuit.Circuit">eoscircuits.basecircuit.Circuit</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="eoscircuits.basecircuit.Circuit.create_graph">
+<em class="property"><span class="pre">classmethod</span> </em><code class="sig-name descname"><span class="pre">create_graph</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/eoscircuits/basecircuit.html#Circuit.create_graph"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#eoscircuits.basecircuit.Circuit.create_graph" title="Permalink to this definition">¶</a></dt>
+<dd><p>class method that creates an instance of networkx graph from configuration</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>config</strong> (<a class="reference internal" href="#eoscircuits.basecircuit.Config" title="eoscircuits.basecircuit.Config"><em>eoscircuits.basecircuit.Config</em></a>) – </p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>networkx.classes.multidigraph.MultiDiGraph</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="eoscircuits.basecircuit.Circuit.extra_comps">
+<code class="sig-name descname"><span class="pre">extra_comps</span></code><em class="property"><span class="pre">:</span> <span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">neurokernel.LPU.NDComponents.NDComponent</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#eoscircuits.basecircuit.Circuit.extra_comps" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extra Components to be aded to NeuroKernel at Run Time</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="eoscircuits.basecircuit.Circuit.graph">
+<code class="sig-name descname"><span class="pre">graph</span></code><em class="property"><span class="pre">:</span> <span class="pre">networkx.classes.multidigraph.MultiDiGraph</span></em><a class="headerlink" href="#eoscircuits.basecircuit.Circuit.graph" title="Permalink to this definition">¶</a></dt>
+<dd><p>Specification of Executable Graph Compatible with NeuroDriver</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="eoscircuits.basecircuit.Circuit.inputs">
+<em class="property"><span class="pre">abstract</span> <span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">inputs</span></code><a class="headerlink" href="#eoscircuits.basecircuit.Circuit.inputs" title="Permalink to this definition">¶</a></dt>
+<dd><p>input variable and uids dictionary</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="eoscircuits.basecircuit.Circuit.outputs">
+<em class="property"><span class="pre">abstract</span> <span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">outputs</span></code><a class="headerlink" href="#eoscircuits.basecircuit.Circuit.outputs" title="Permalink to this definition">¶</a></dt>
+<dd><p>output variable and uids dictionary</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="eoscircuits.basecircuit.Circuit.simulate">
+<code class="sig-name descname"><span class="pre">simulate</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inputs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">record_var_list</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_interval</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/eoscircuits/basecircuit.html#Circuit.simulate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#eoscircuits.basecircuit.Circuit.simulate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Simulate The Circuit
+Update Affinities and Change Circuit Accordingly</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>t</strong> (<em>numpy.ndarray</em>) – input time array</p></li>
+<li><p><strong>inputs</strong> (<em>Any</em>) – <p>input data</p>
+<ul>
+<li><p>if is <cite>BaseInputProcessor</cite> instance, passed to LPU directly</p></li>
+<li><p>if is dictionary, passed to <cite>ArrayInputProcessor</cite> if is compatible</p></li>
+</ul>
+</p></li>
+<li><p><strong>record_var_list</strong> (<em>Iterable</em><em>[</em><em>Tuple</em><em>[</em><em>str</em><em>, </em><em>Iterable</em><em>]</em><em>]</em>) – <code class="code docutils literal notranslate"><span class="pre">[(var,</span> <span class="pre">uids)]</span></code> list of tuples of variables to be
+recorded during simulation</p></li>
+<li><p><strong>sample_interval</strong> (<em>int</em>) – interval at which output is recorded</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p>fi: <code class="xref py py-class docutils literal notranslate"><span class="pre">BaseInputProcessor</span></code></p></li>
+<li><p>fo: <code class="xref py py-class docutils literal notranslate"><span class="pre">OutputRecorder</span></code></p></li>
+<li><p>lpu: <code class="xref py py-class docutils literal notranslate"><span class="pre">LPU</span></code></p></li>
+</ul>
+</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>A tuple with the follow 3 components</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="eoscircuits.basecircuit.Circuit.update_graph_attributes">
+<code class="sig-name descname"><span class="pre">update_graph_attributes</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_predictive</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/eoscircuits/basecircuit.html#Circuit.update_graph_attributes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#eoscircuits.basecircuit.Circuit.update_graph_attributes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update Attributes of the graph</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data_dict</strong> (<em>dict</em>) – a dictionary of {attr: value} to be set for all filtered nodes</p></li>
+<li><p><strong>node_predictive</strong> (<em>Optional</em><em>[</em><em>Callable</em><em>[</em><em>networkx.classes.reportviews.NodeView</em><em>, </em><em>bool</em><em>]</em><em>]</em>) – a function that filtering of nodes from
+<code class="xref py py-func docutils literal notranslate"><span class="pre">networkx.nodes(data=True)()</span></code> call</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">circuit</span><span class="o">.</span><span class="n">update_graph_attributes</span><span class="p">(</span>
+<span class="go">        {&#39;sigma&#39;:1.},</span>
+<span class="go">        node_predictive=lambda key, val: val[&#39;class&#39;] == &#39;NoisyConnorStevens&#39;</span>
+<span class="go">    )</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="eoscircuits.basecircuit.Config">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">eoscircuits.basecircuit.</span></code><code class="sig-name descname"><span class="pre">Config</span></code><a class="reference internal" href="_modules/eoscircuits/basecircuit.html#Config"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#eoscircuits.basecircuit.Config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A Base Dataclass of EOS Configuration</p>
+<p><a class="reference internal" href="#eoscircuits.basecircuit.Config" title="eoscircuits.basecircuit.Config"><code class="xref py py-class docutils literal notranslate"><span class="pre">Config</span></code></a> objects are full specifications of the executable circuit modules in
+the <code class="xref py py-mod docutils literal notranslate"><span class="pre">EOSCircuits</span></code> module. It is consumed by the
+<a class="reference internal" href="#eoscircuits.basecircuit.Circuit.create_from_config" title="eoscircuits.basecircuit.Circuit.create_from_config"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Circuit.create_from_config()</span></code></a> function to create instances of
+EOS Executable Circuits.</p>
+<p>Among others, <a class="reference internal" href="#eoscircuits.basecircuit.Config" title="eoscircuits.basecircuit.Config"><code class="xref py py-class docutils literal notranslate"><span class="pre">Config</span></code></a> objects provide 3 types attributes:</p>
+<ol class="arabic">
+<li><p>Number of Nodes: <code class="code docutils literal notranslate"><span class="pre">N{x}</span></code></p>
+<blockquote>
+<div><ul class="simple">
+<li><p>These are attributes that specify, for example, the number of receptor
+types in the circuit is specified as
+<a class="reference internal" href="eoscircuits.antcircuits.html#eoscircuits.antcircuits.circuit.ANTConfig.NR" title="eoscircuits.antcircuits.circuit.ANTConfig.NR"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NR</span></code></a></p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Node Ids:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>These are attributes that specify the unique node ids for every
+neuron type in the circuit. For example,
+<a class="reference internal" href="eoscircuits.antcircuits.html#eoscircuits.antcircuits.circuit.ANTConfig.osns" title="eoscircuits.antcircuits.circuit.ANTConfig.osns"><code class="xref py py-obj docutils literal notranslate"><span class="pre">osns</span></code></a> defines
+all unique node ids of the osns.</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Routing Table: <code class="code docutils literal notranslate"><span class="pre">{source_node_type}_to_{target_node_type}</span></code></p>
+<blockquote>
+<div><ul class="simple">
+<li><p>These are attributes that specify how node types are connected together.
+Routing tables are typically <code class="xref py py-class docutils literal notranslate"><span class="pre">numpy.ndarray</span></code> of either
+<code class="xref py py-class docutils literal notranslate"><span class="pre">numpy.ndarray</span></code> of <code class="code docutils literal notranslate"><span class="pre">(int,</span> <span class="pre">int)</span></code> or <code class="code docutils literal notranslate"><span class="pre">(int,</span> <span class="pre">int)</span></code>,
+where each entry is the integer indices of the source and target nodes in the
+corresponding <em>Node Ids</em> list.</p></li>
+<li><p>For example, if the routing table <code class="code docutils literal notranslate"><span class="pre">osn_to_pn[0][1]</span> <span class="pre">=</span> <span class="pre">(1,2)</span></code> means that
+the in the <em>0-th</em> receptor type, the <em>1st</em> OSN  is connected to the <em>2nd</em> PN
+expressing this particular receptor type.</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ol>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt id="eoscircuits.basecircuit.Config.node_types">
+<em class="property"><span class="pre">abstract</span> <span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">node_types</span></code><a class="headerlink" href="#eoscircuits.basecircuit.Config.node_types" title="Permalink to this definition">¶</a></dt>
+<dd><p>List of Recognized Node Types</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py exception">
+<dt id="eoscircuits.basecircuit.EOSCircuitException">
+<em class="property"><span class="pre">exception</span> </em><code class="sig-prename descclassname"><span class="pre">eoscircuits.basecircuit.</span></code><code class="sig-name descname"><span class="pre">EOSCircuitException</span></code><a class="reference internal" href="_modules/eoscircuits/basecircuit.html#EOSCircuitException"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#eoscircuits.basecircuit.EOSCircuitException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+<p>Base EOS Circuit Exception</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-eoscircuits.plot">
+<span id="eoscircuits-plot-module"></span><h2>eoscircuits.plot module<a class="headerlink" href="#module-eoscircuits.plot" title="Permalink to this headline">¶</a></h2>
+<p>Plotting Modules for EOSCircuits</p>
+<p>This module uses <code class="code docutils literal notranslate"><span class="pre">olftrans.plot</span></code> as basis and adds additional
+features to handle data formats that are returned by <code class="code docutils literal notranslate"><span class="pre">NeuroDriver</span></code></p>
+<dl class="py exception">
+<dt id="eoscircuits.plot.EOSPlotterException">
+<em class="property"><span class="pre">exception</span> </em><code class="sig-prename descclassname"><span class="pre">eoscircuits.plot.</span></code><code class="sig-name descname"><span class="pre">EOSPlotterException</span></code><a class="reference internal" href="_modules/eoscircuits/plot.html#EOSPlotterException"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#eoscircuits.plot.EOSPlotterException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+<p>Base EOS plotter exception</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="eoscircuits.plot.plot_data">
+<code class="sig-prename descclassname"><span class="pre">eoscircuits.plot.</span></code><code class="sig-name descname"><span class="pre">plot_data</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">markersize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'k'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/eoscircuits/plot.html#plot_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#eoscircuits.plot.plot_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot Continuous Valued Data</p>
+<p>Plots data returned by NeuroDriver’s <code class="code docutils literal notranslate"><span class="pre">OutputRecorder</span></code>
+where each the data is a dictionary of dictionaries, where the first
+dictionary is keyed by node_id and the second dictionary is keyed
+by ‘data’ and ‘time’</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<em>dict</em>) – </p></li>
+<li><p><strong>markersize</strong> (<em>Optional</em><em>[</em><em>int</em><em>]</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>matplotlib.axes._axes.Axes</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="eoscircuits.plot.plot_spikes">
+<code class="sig-prename descclassname"><span class="pre">eoscircuits.plot.</span></code><code class="sig-name descname"><span class="pre">plot_spikes</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">spikes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">markersize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'k'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/eoscircuits/plot.html#plot_spikes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#eoscircuits.plot.plot_spikes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot Spikes returned by NeuroDriver’s OutputRecorder</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>spikes</strong> (<em>dict</em>) – </p></li>
+<li><p><strong>ax</strong> (<em>Optional</em><em>[</em><em>matplotlib.axes._axes.Axes</em><em>]</em>) – </p></li>
+<li><p><strong>markersize</strong> (<em>Optional</em><em>[</em><em>int</em><em>]</em>) – </p></li>
+<li><p><strong>color</strong> (<em>Union</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>matplotlib.axes._axes.Axes</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-eoscircuits">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-eoscircuits" title="Permalink to this headline">¶</a></h2>
+<p>Top-level package for EOScircuits.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="eoscircuits.alcircuits.html" class="btn btn-neutral float-right" title="eoscircuits.alcircuits package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="modules.html" class="btn btn-neutral float-left" title="eoscircuits" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, FlyBrainLab Dev Team.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
