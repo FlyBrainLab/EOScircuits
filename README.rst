@@ -8,6 +8,7 @@ EOScircuits
 
 Drosophila Early Olfactory Circuit Libraries for FlyBrainLab.
 
+* Documentation: https://flybrainlab.github.io/EOScircuits/
 
 Features
 ========
