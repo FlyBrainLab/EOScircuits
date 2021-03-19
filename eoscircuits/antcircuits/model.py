@@ -1,7 +1,6 @@
 """NeuroDriver Models and Utilities
 """
 from collections import OrderedDict
-from neuroballad.models.element import Element
 import numpy as np
 import copy
 import networkx as nx
@@ -11,19 +10,10 @@ from . import NDComponents as ndcomp
 
 EXTRA_COMPS = [ndcomp.OTP, ndcomp.NoisyConnorStevens]
 
-
-class Model(Element):
-    """NeuroBallad Element that also wraps the underlying NDComponent"""
-
-    _ndcomp = None
-
-
-class OTP(Model):
+class OTP:
     """
     Odorant Transduction Process
     """
-
-    element_class = "neuron"
     states = OrderedDict(
         [("v", 0.0), ("uh", 0.0), ("duh", 0.0), ("x1", 0.0), ("x2", 0.0), ("x3", 0.0)]
     )
@@ -46,7 +36,7 @@ class OTP(Model):
     _ndcomp = ndcomp.OTP
 
 
-class NoisyConnorStevens(Model):
+class NoisyConnorStevens:
     """
     Noisy Connor-Stevens Neuron Model
 

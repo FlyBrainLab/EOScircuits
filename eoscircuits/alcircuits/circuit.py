@@ -1,3 +1,6 @@
+# pylint:disable=unsupported-membership-test
+# pylint:disable=unsubscriptable-object
+# pylint:disable=unsupported-assignment-operation
 """Antennal Lobe Circuit
 
 This module supports:
@@ -32,18 +35,25 @@ class ALException(Exception):
 @dataclass
 class ALConfig(ANTConfig):
     # numbers
-    NP: tp.Union[int, tp.Iterable[int]] = None
-    NPreLN: int = None
-    NPosteLN: tp.Union[int, tp.Iterable[int]] = None
-    NPostiLN: tp.Union[int, tp.Iterable[int]] = None
+    NP: tp.Union[int, tp.Iterable[int]] = None 
+    """Number of PNs, organized by Receptor Type"""
 
-    # names
+    NPreLN: int = None 
+    """Number of Pre-synaptic Local Neurons"""
+
+    NPosteLN: tp.Union[int, tp.Iterable[int]] = None 
+    """Number of Post-synaptic Excitatory Local Neurons, organized by Receptor Type"""
+
+    NPostiLN: tp.Union[int, tp.Iterable[int]] = None 
+    """Number of Post-synaptic Inhibitory Local Neurons, organized by Receptor Type"""
+
+    # Names
     prelns: tp.Iterable[str] = field(repr=False, default=None)
     postelns: tp.Iterable[tp.Iterable[str]] = field(repr=False, default=None)
     postilns: tp.Iterable[tp.Iterable[str]] = field(repr=False, default=None)
     pns: tp.Iterable[tp.Iterable[str]] = field(repr=False, default=None)
 
-    # routings
+    # Routings
     osn_to_preln: tp.Iterable[tp.Iterable[float]] = field(default=None, repr=False)
     osn_to_postiln: tp.Iterable[tp.Iterable[float]] = field(default=None, repr=False)
     osn_to_posteln: tp.Iterable[tp.Iterable[float]] = field(default=None, repr=False)
@@ -57,7 +67,7 @@ class ALConfig(ANTConfig):
         super().__post_init__()
         self.node_params["postelns"]["polarity"] = 1.0
         self.node_params["postilns"]["polarity"] = -1.0
-        # set pn names
+        # Set PN names
         if np.isscalar(self.NP):
             self.NP = np.full(self.NR, self.NP)
         else:
@@ -71,12 +81,12 @@ class ALConfig(ANTConfig):
             self.NP,
         )
 
-        # set prelns names
+        # Set PreLN names
         self.prelns = self.set_or_assert(
             self.prelns, [f"PreLN/{r}" for r in range(self.NPreLN)], self.NPreLN
         )
 
-        # set posteln names
+        # Set PostELN names
         if np.isscalar(self.NPosteLN):
             self.NPosteLN = np.full(self.NR, self.NPosteLN)
         else:
@@ -90,7 +100,7 @@ class ALConfig(ANTConfig):
             self.NPosteLN,
         )
 
-        # set postiln names
+        # Set PostILN names
         if np.isscalar(self.NPostiLN):
             self.NPostiLN = np.full(self.NR, self.NPostiLN)
         else:
@@ -192,6 +202,9 @@ class ALConfig(ANTConfig):
                 target_id = np.asarray(target)[r][tab[:, 1]]
             except:
                 target_id = np.asarray(target)[tab[:, 1]]
+            if not isinstance(source_id, str) :
+                # source_id = source_id[0]
+                pass
             uids += list(zip(source_id, target_id))
         return uids
 
@@ -263,7 +276,7 @@ class ALCircuit(Circuit):
     )
 
     @classmethod
-    def create_graph(cls, cfg) -> nx.MultiDiGraph:
+    def create_graph(cls, cfg, connectome=False) -> nx.MultiDiGraph:
         G = nx.MultiDiGraph()
         for r, (_otp_ids, _bsg_ids) in enumerate(zip(cfg.osn_otps, cfg.osn_bsgs)):
             bsg_params = copy.deepcopy(NDModel.NoisyConnorStevens.params)
@@ -303,7 +316,8 @@ class ALCircuit(Circuit):
         G.add_edges_from(
             zip(sum(cfg.osn_alphas, []), sum(cfg.osn_axts, [])), variable="g"
         )
-
+        # print(cfg.osn_to_preln)
+        # print(cfg.as_node_ids(cfg.osn_to_preln, cfg.osn_alphas, cfg.prelns))
         G.add_edges_from(
             cfg.as_node_ids(cfg.osn_to_preln, cfg.osn_alphas, cfg.prelns), variable="g"
         )
@@ -322,16 +336,26 @@ class ALCircuit(Circuit):
         G.add_edges_from(
             cfg.as_node_ids(cfg.axt_to_pn, cfg.osn_axts, cfg.pns), variable="I"
         )
-        G.add_edges_from(
-            cfg.as_node_ids(cfg.postiln_to_pn, cfg.postilns, cfg.pns), variable="I"
-        )
-        G.add_edges_from(
-            cfg.as_node_ids(cfg.posteln_to_pn, cfg.postelns, cfg.pns), variable="I"
-        )
+        if connectome:
+            edges = []
+            for i in range(cfg.postiln_to_pn.shape[0]):
+                edges.append((cfg.postilns[cfg.postiln_to_pn[i,0]][0],cfg.pns[cfg.postiln_to_pn[i,1]][0]))
+            G.add_edges_from(edges, variable="I")
+            edges = []
+            for i in range(cfg.posteln_to_pn.shape[0]):
+                edges.append((cfg.postelns[cfg.posteln_to_pn[i,0]][0],cfg.pns[cfg.posteln_to_pn[i,1]][0]))
+            G.add_edges_from(edges, variable="I")
+        else:
+            G.add_edges_from(
+                cfg.as_node_ids(cfg.postiln_to_pn, cfg.postilns, cfg.pns), variable="I"
+            )
+            G.add_edges_from(
+                cfg.as_node_ids(cfg.posteln_to_pn, cfg.postelns, cfg.pns), variable="I"
+            )
         return G
 
     @classmethod
-    def create_from_config(cls, cfg) -> "ALCircuit":
+    def create_from_config(cls, cfg, connectome=False) -> "ALCircuit":
         """Create Instance from Config
 
         Arguments:
@@ -340,7 +364,7 @@ class ALCircuit(Circuit):
         Returns:
             A new ANTCircuit instance
         """
-        return cls(graph=cls.create_graph(cfg), config=cfg)
+        return cls(graph=cls.create_graph(cfg, connectome=connectome), config=cfg)
 
     def set_node_params(
         self,

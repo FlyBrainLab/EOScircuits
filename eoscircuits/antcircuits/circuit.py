@@ -1,3 +1,6 @@
+# pylint:disable=unsupported-membership-test
+# pylint:disable=unsubscriptable-object
+# pylint:disable=unsupported-assignment-operation
 """Antenna Circuit
 
 This module supports:
@@ -14,7 +17,7 @@ from dataclasses import dataclass, field
 import numpy as np
 import networkx as nx
 from olftrans.olftrans import estimate_resting_spike_rate, estimate_sigma
-from ..basecircuit import Circuit, EOSCircuitException
+from ..basecircuit import Config, Circuit, EOSCircuitException
 from . import model as NDModel
 from . import NDComponents as ndcomp
 
@@ -24,7 +27,7 @@ class ANTException(EOSCircuitException):
 
 
 @dataclass
-class ANTConfig:
+class ANTConfig(Config):
     """Configuration for Antenna Circuits"""
 
     NO: tp.Iterable[tp.Iterable[int]]
@@ -43,7 +46,10 @@ class ANTConfig:
     """Parameters for each neuron type"""
 
     osns: tp.Iterable[tp.Iterable[str]] = field(repr=False, default=None)
-    """Ids of OSNs for each channel"""
+    """Ids of OSNs for each channel
+
+    This is a list of list, where the outer list correspond to
+    """
 
     def __post_init__(self):
         for n in self.node_types:

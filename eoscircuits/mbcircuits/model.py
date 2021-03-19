@@ -22,20 +22,20 @@ EXTRA_COMPS += [
 ]
 
 
-class Model(Element):
+class Model:
     """NeuroBallad Element that also wraps the underlying NDComponent"""
 
     _ndcomp = None
 
 
-class KC(Model):
+class KC:
     params = dict(
         threshold=1.0,
     )
     _ndcomp = ndComp.KC
 
 
-class KCDend(Model):
+class KCDend:
     params = dict(
         bias=1.0,
         gain=1.0,
@@ -43,14 +43,14 @@ class KCDend(Model):
     _ndcomp = ndComp.KCDend
 
 
-class APL(Model):
+class APL:
     params = dict(
         N=1.0,
     )
     _ndcomp = ndComp.APL
 
 
-class PN2KC(Model):
+class PN2KC:
     params = dict(
         weight=1.0,
     )

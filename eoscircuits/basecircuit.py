@@ -13,15 +13,54 @@ class EOSCircuitException(Exception):
 
     pass
 
+@dataclass
+class Config:
+    """A Base Dataclass of EOS Configuration
+
+    :py:class:`Config` objects are full specifications of the executable circuit modules in
+    the :py:mod:`EOSCircuits` module. It is consumed by the
+    :py:meth:`Circuit.create_from_config` function to create instances of
+    EOS Executable Circuits.
+
+    Among others, :py:class:`Config` objects provide 3 types attributes:
+
+    1. Number of Nodes: :code:`N{x}`
+
+        * These are attributes that specify, for example, the number of receptor
+          types in the circuit is specified as
+          :py:obj:`~eoscircuits.antcircuits.circuit.ANTConfig.NR`
+
+    2. Node Ids:
+
+        * These are attributes that specify the unique node ids for every
+          neuron type in the circuit. For example,
+          :py:obj:`~eoscircuits.antcircuits.circuit.ANTConfig.osns` defines
+          all unique node ids of the osns.
+
+    3. Routing Table: :code:`{source_node_type}_to_{target_node_type}`
+
+        * These are attributes that specify how node types are connected together.
+          Routing tables are typically :py:class:`numpy.ndarray` of either
+          :py:class:`numpy.ndarray` of :code:`(int, int)` or :code:`(int, int)`,
+          where each entry is the integer indices of the source and target nodes in the
+          corresponding *Node Ids* list.
+        * For example, if the routing table :code:`osn_to_pn[0][1] = (1,2)` means that
+          the in the *0-th* receptor type, the *1st* OSN  is connected to the *2nd* PN
+          expressing this particular receptor type.
+    """
+    @abstractproperty
+    def node_types(self) -> tp.List[str]:
+        """List of Recognized Node Types"""
+
 
 @dataclass(repr=False)
 class Circuit:
-    """Base EOS Circuit"""
+    """A Dataclass of Base EOS Circuit"""
 
     graph: nx.MultiDiGraph
     """Specification of Executable Graph Compatible with NeuroDriver"""
 
-    config: dict
+    config: Config
     """Configuration of Circuit. Fully Specifies the Circuit"""
 
     extra_comps: tp.List["neurokernel.LPU.NDComponents.NDComponent"] = field(
@@ -30,12 +69,12 @@ class Circuit:
     """Extra Components to be aded to NeuroKernel at Run Time"""
 
     @abstractclassmethod
-    def create_from_config(cls, config):
+    def create_from_config(cls, config:Config) -> "eoscircuits.basecircuit.Circuit":
         """class method that creates an instance of circuit from configuration"""
 
     @classmethod
-    def create_graph(cls):
-        """class method that creates an instance of circuit from configuration"""
+    def create_graph(cls, config:Config) -> nx.MultiDiGraph:
+        """class method that creates an instance of networkx graph from configuration"""
 
     @abstractproperty
     def inputs(self) -> dict:
@@ -51,24 +90,26 @@ class Circuit:
         inputs: tp.Any,
         record_var_list: tp.Iterable[tp.Tuple[str, tp.Iterable]] = None,
         sample_interval: int = 1,
-    ) -> tp.Tuple["FileInput", "FileOutput", "LPU"]:
+    ) -> tp.Tuple["InputProcessor", "OuputProcessor", "LPU"]:
         """Simulate The Circuit
         Update Affinities and Change Circuit Accordingly
 
         Arguments:
             t: input time array
             inputs: input data
-                - if is `BaseInputProcessor` instance, passed to LPU directly
-                - if is dictionary, passed to ArrayInputProcessor if is compatible
 
-        Keyword Argumnets:
-            record_var_list: [(var, uids)]
+                * if is `BaseInputProcessor` instance, passed to LPU directly
+                * if is dictionary, passed to `ArrayInputProcessor` if is compatible
+            record_var_list: :code:`[(var, uids)]` list of tuples of variables to be
+                recorded during simulation
             sample_interval: interval at which output is recorded
 
         Returns:
-            fi: Input Processor
-            fo: Output Processor
-            lpu: LPU instance
+            A tuple with the follow 3 components:
+
+            * fi: :py:class:`~neurokernel.LPU.InputProcerssors.BaseInputProcessor.BaseInputProcessor`
+            * fo: :py:class:`~neurokernel.LPU.OutputProcessors.OutputRecorder.OutputRecorder`
+            * lpu: :py:class:`~neurokernel.LPU.LPU.LPU`
         """
         from neurokernel.LPU.LPU import LPU
         from neurokernel.LPU.InputProcessors.BaseInputProcessor import (
@@ -119,9 +160,8 @@ class Circuit:
 
         Arguments:
             data_dict: a dictionary of {attr: value} to be set for all filtered nodes
-
-        Keyword Arguments:
-            node_predictive: filtering of nodes from `nx.nodes` call
+            node_predictive: a function that filtering of nodes from
+              :py:func:`networkx.nodes(data=True)` call
 
         Example:
             >>> circuit.update_graph_attributes(
@@ -142,12 +182,25 @@ class Circuit:
     def add_nodes_to_graph(
         cls,
         G: nx.MultiDiGraph,
-        cfg: "Config",
+        cfg: Config,
         node_type: "Config.node_types",
         ndcomp_clsname: str,
         ndcomp_module: "Module",
     ) -> None:
-        """Add Node to Graph"""
+        """Add Node to Graph
+
+        This method adds nodes to :py:attr:`Circuit.graph` with the appropriate
+        ids and attributes based on the :py:attr:`Circuit.Config` specifications.
+
+        Arguments:
+            G: The networkx graph that the node should be added to
+            cfg: The configuration instance
+            node_type: The node types permissible according to the configuration
+            ndcomp_clsname: The class name of the NeuroDriver component
+            ndcomp_module: The name of the ndcomp_module in the associated *model.py*
+              file for each circuit module. This name is used to pull the :code:`params`
+              from the correct class from the *model.py* file to add to the graph.
+        """
         if node_type not in cfg.node_types:
             raise EOSCircuitException(
                 f"Attempting to add node of type {node_type}, "

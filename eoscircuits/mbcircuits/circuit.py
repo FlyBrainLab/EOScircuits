@@ -1,3 +1,6 @@
+# pylint:disable=unsupported-membership-test
+# pylint:disable=unsubscriptable-object
+# pylint:disable=unsupported-assignment-operation
 # pylint:disable=no-member
 """Mushroom Body Circuit
 
@@ -30,8 +33,13 @@ class MBException(EOSCircuitException):
 @dataclass
 class MBConfig(ALConfig):
     NK: int = None
+    """Number of KCs"""
+
     NAPL: int = None
+    """Number of APLs"""
+
     NFanIn: int = 6
+    """Number of PNs (regardless of receptor type) connected to each KC"""
 
     # names
     kcs: tp.Iterable[str] = field(repr=False, default=None)
@@ -84,6 +92,9 @@ class MBConfig(ALConfig):
 
     def default_pn_to_kc(self, fanin: int = None, seed: int = None) -> np.ndarray:
         """PN to KC Connectivity
+
+        The indices of PNs connected to KC is sampled uniformly from all the PNs,
+        regardless of receptor types.
 
         Arguments:
             fanin: number of PNs connected to a single KC

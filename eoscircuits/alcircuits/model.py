@@ -1,6 +1,5 @@
 from . import NDComponents as ndComp
 from ..antcircuits.model import EXTRA_COMPS, OTP, NoisyConnorStevens
-from neuroballad.models.element import Element
 from collections import OrderedDict
 
 
@@ -15,7 +14,7 @@ EXTRA_COMPS += [
 ]
 
 
-class LeakyIAF(Element):
+class LeakyIAF:
     params = dict(
         vt=-0.025,
         c=1.5,
@@ -26,7 +25,7 @@ class LeakyIAF(Element):
     _ndcomp = ndComp.LeakyIAF
 
 
-class OSNAxt(Element):
+class OSNAxt:
     params = dict(
         gamma=100.0,
         bias=1.0,
@@ -35,7 +34,7 @@ class OSNAxt(Element):
     _ndcomp = ndComp.OSNAxt
 
 
-class OSNAxt2(Element):
+class OSNAxt2:
     params = dict(
         bias=1.0,
         gain=1.0,
@@ -43,21 +42,21 @@ class OSNAxt2(Element):
     _ndcomp = ndComp.OSNAxt2
 
 
-class PN(Element):
+class PN:
     params = dict(
         threshold=0.0,
     )
     _ndcomp = ndComp.PN
 
 
-class PreLN(Element):
+class PreLN:
     params = dict(
         dummy=0.0,
     )
     _ndcomp = ndComp.PreLN
 
 
-class PostLN(Element):
+class PostLN:
     params = dict(
         a1=10.066,
         b1=0.110,
@@ -77,7 +76,7 @@ class PostLN(Element):
     _ndcomp = ndComp.PostLN
 
 
-class Alpha(Element):
+class Alpha:
     params = dict(
         ar=12.5,
         ad=12.19,

@@ -18,7 +18,7 @@ test_requirements = [ ]
 
 setup(
     author="FlyBrainLab Dev Team",
-    author_email='tl2747@columbia.edu',
+    author_email='tl2747@columbia.edu,mkt2126@columbia.edu',
     python_requires='>=3.5',
     classifiers=[
         'Development Status :: 2 - Pre-Alpha',
